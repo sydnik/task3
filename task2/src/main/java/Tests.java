@@ -26,7 +26,7 @@ public class Tests {
     }
 
     @Test
-    public void testCase1() throws InterruptedException {
+    public void testCase1() {
         MainPage mainPage = new MainPage();
         mainPage.openPage();
         mainPage.isMainPage();
@@ -38,7 +38,7 @@ public class Tests {
         mainPage.isMainPage();
     }
     @Test
-    public void testCase2() throws InterruptedException {
+    public void testCase2() {
         MainPage mainPage = new MainPage();
         mainPage.openPage();
         mainPage.isMainPage();

@@ -16,7 +16,7 @@ public class GamePage extends Page {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("game_highlights")));
         Assert.assertEquals(game.getName(),webDriver.findElement(By.id("appHubAppName")).getText());
     }
-    public void assertData() throws InterruptedException {
+    public void assertData() {
         String name = webDriver.findElement(By.id("appHubAppName")).getText();
         String price = webDriver.findElement(By.xpath("//*[@itemprop='price']")).getAttribute("content");
         String date = webDriver.findElement(By.className("date")).getText();

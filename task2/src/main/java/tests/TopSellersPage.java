@@ -52,7 +52,7 @@ public class TopSellersPage extends Page {
 
     }
 
-    public void selectTags() throws InterruptedException {
+    public void selectTags() {
 
         WebElement tagFilterContainer = webDriver.findElement(By.xpath("//div[@id='TagFilter_Container']/div[1]"));
         if(!tagFilterContainer.isDisplayed()) {
@@ -75,7 +75,7 @@ public class TopSellersPage extends Page {
         wait.until(ExpectedConditions.stalenessOf(elementGame));
 
     }
-    public void checkTags() throws InterruptedException {
+    public void checkTags() {
         int time = properties.getConfigurationInt("waitSeconds")*2;
         boolean equals = false;
         String result = webDriver.findElement(By.xpath("//*[@id='search_results']/div[1]")).getText();
