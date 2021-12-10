@@ -1,6 +1,7 @@
 import Data.Game;
 import Instruments.MyProperties;
 import Instruments.MyWebDriver;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -10,7 +11,7 @@ import tests.MainPage;
 import tests.TopSellersPage;
 
 public class Tests {
-    private MyWebDriver webDriver;
+    private WebDriver webDriver;
     private MyProperties properties;
 
     @BeforeTest
