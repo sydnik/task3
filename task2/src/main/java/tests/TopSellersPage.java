@@ -4,10 +4,14 @@ import Data.Game;
 import Instruments.MyProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.time.Duration;
 
 import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
@@ -30,9 +34,9 @@ public class TopSellersPage extends Page {
             wait.until(ExpectedConditions.visibilityOfElementLocated((By.ByXPath.xpath("//input[@id='os']//parent::*"))));
         }
         String logOS= properties.getDataString("tagOS");
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@data-loc='"+ logOS +"']")));
-        element.click();
-        wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(element)));
+        WebElement elementOS = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@data-loc='"+ logOS +"']")));
+        elementOS.click();
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(elementOS)));
     }
 
     public void selectNumberPayers() {
@@ -62,7 +66,11 @@ public class TopSellersPage extends Page {
 
         String tag = MyProperties.getInstance().getDataUTF8("tags");
         webDriver.findElement(By.id("TagSuggest")).sendKeys(tag);
-        wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(tagFilterContainer)));//Если тест крутить 2 раза то тут ломается тест
+        try {
+            new WebDriverWait(webDriver,Duration.ofSeconds(1)).until(ExpectedConditions.refreshed(
+                    ExpectedConditions.visibilityOf(tagFilterContainer)));
+        }
+        catch (TimeoutException e){}
         new Actions(webDriver).keyDown(Keys.SHIFT).keyUp(Keys.SHIFT).build().perform();
 
         WebElement webDriverElement = wait.until(ExpectedConditions.refreshed((ExpectedConditions.presenceOfElementLocated((
