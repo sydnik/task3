@@ -1,4 +1,4 @@
-public class Test extends StartTest {
+public class Test extends Tests {
 
 //    public void
 
