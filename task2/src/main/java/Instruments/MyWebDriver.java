@@ -2,29 +2,46 @@ package Instruments;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class MyWebDriver extends ChromeDriver  {
-    private static MyWebDriver driver;
+public class MyWebDriver   {
+    private static WebDriver driver;
 
 
     private MyWebDriver(){
     }
 
-    public static MyWebDriver getInstance(){
-        if(driver==null){
-            WebDriverManager.getInstance().setup();
-            driver = new MyWebDriver();
-            sizeWindow();
-
+    public static WebDriver getInstance(){
+        if(driver==null) {
+            switch (MyProperties.getInstance().getConfigurationString("browser")) {
+                case "Edge": {
+                    WebDriverManager.edgedriver().setup();
+                    driver = new EdgeDriver();
+                    break;
+                }
+                case "FireFox": {
+                    WebDriverManager.firefoxdriver().setup();
+                    driver = new FirefoxDriver();
+                    break;
+                }
+                default: {
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver();
+                    break;
+                }
+            }
+            setSizeWindow();
         }
         return driver;
     }
 
-    private static void sizeWindow(){
-        MyProperties properties = MyProperties.getInstance();
-        driver.manage().window().setSize(new Dimension(
-                properties.getConfigurationInt("windowWidth"),properties.getConfigurationInt("windowHeight")));
+    private static void setSizeWindow(){
+        int width = MyProperties.getInstance().getConfigurationInt("windowWidth");
+        int height = MyProperties.getInstance().getConfigurationInt("windowHeight");
+        driver.manage().window().setSize(new Dimension(width,height));
     }
 
 }
