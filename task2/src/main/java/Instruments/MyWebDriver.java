@@ -2,27 +2,29 @@ package Instruments;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class MyWebDriver {
-    private static WebDriver driver;
+public class MyWebDriver extends ChromeDriver  {
+    private static MyWebDriver driver;
 
 
     private MyWebDriver(){
     }
 
-    public static WebDriver getInstance(){
+    public static MyWebDriver getInstance(){
         if(driver==null){
             WebDriverManager.getInstance().setup();
-            driver = new ChromeDriver();
+            driver = new MyWebDriver();
+            sizeWindow();
+
         }
         return driver;
     }
 
-    public void sizeWindow(){
-        MyProperties myProperties = MyProperties.getInstance();
+    private static void sizeWindow(){
+        MyProperties properties = MyProperties.getInstance();
         driver.manage().window().setSize(new Dimension(
-                Integer.parseInt(myProperties.getConfiguration("windowWidth")),Integer.parseInt(myProperties.getConfiguration("pixelY"))));
+                properties.getConfigurationInt("windowWidth"),properties.getConfigurationInt("windowHeight")));
     }
+
 }
