@@ -28,6 +28,13 @@ public class MainPage extends Page {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("noteworthy_flyout")));
         webDriver.findElement(By.xpath("//*[@id='noteworthy_flyout']//a[contains(@href,'topseller')]")).click();
     }
+    public void openMarket(){
+        WebElement subMenu = webDriver.findElement(By.xpath("//*[@id='global_header']//a[contains(@data-tooltip-content,'submenu_community')]"));
+        Actions actions = new Actions(webDriver);
+        actions.moveToElement(subMenu).build().perform();
+        WebElement market = webDriver.findElement(By.xpath(("//*[@id='global_header']//div[@class='submenu_community']/a[contains(@href,'market')]")));
+        wait.until(ExpectedConditions.elementToBeClickable(market)).click();
+    }
 
     public void openPage(){
         webDriver.get(properties.getDataString("mainPageURL"));
