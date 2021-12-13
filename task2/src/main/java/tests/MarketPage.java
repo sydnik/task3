@@ -1,6 +1,7 @@
 package tests;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
@@ -26,6 +27,27 @@ public class MarketPage extends Page{
         webDriver.findElement(By.id("advancedSearchBox")).sendKeys(properties.getDataString("nameThing"));
         webDriver.findElement(By.xpath("//*[@class='market_advancedsearch_bottombuttons']/div")).click();
 
+    }
+    public void checkFirstFiveResult(){
+        String line = properties.getDataString("nameThing").toLowerCase();
+        for (int i =0;i<5;i++){
+            Assert.assertTrue(webDriver.findElement(By.id("result_"+i)).
+                    getAttribute("data-hash-name").toLowerCase().contains(line));
+        }
+    }
+    public void deleteTagForSearch(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("market_searchedForTerm")));
+        String deleteTag[] = properties.getDataString("tagMarketToDelete").split("%");
+        WebElement element;
+        for (int i = 0; i <deleteTag.length; i++) {
+            element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + deleteTag[i] + "')]]")));
+            element.click();
+            wait.until(ExpectedConditions.stalenessOf(element));
+        }
+
+    }
+    public void openPage(){
+        webDriver.get(properties.getDataString("marketURL"));
     }
 
 }
