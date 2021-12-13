@@ -56,22 +56,11 @@ public class Tests {
         gamePage.isGamePage();
         gamePage.assertData();
     }
-//    @Test
-    public void betatest() throws InterruptedException {
-        for(int i =0;i<3;i++) {
-            TopSellersPage sellersPage = new TopSellersPage();
-            sellersPage.openPage();
-            sellersPage.isTopSellersPage();
-            sellersPage.selectOS();
-            sellersPage.selectNumberPayers();
-            sellersPage.selectTags();
-            sellersPage.checkTags();
-            sellersPage.openGamePage();
-            Thread.sleep(1000);
-//            MyWebDriver.closeWebDrive();
-//            MyWebDriver.newWebDriver();
-
-
-        }
+    @Test
+    public void testCase3() {
+        MainPage mainPage = new MainPage();
+        mainPage.openPage();
+        mainPage.isMainPage();
     }
+
 }
