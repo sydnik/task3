@@ -3,7 +3,6 @@ import Instruments.MyWebDriver;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import tests.MainPage;
 import tests.MarketPage;
 
 public class Test extends Tests {
@@ -22,13 +21,12 @@ public class Test extends Tests {
     }
     @org.testng.annotations.Test
     public void test() throws InterruptedException {
-        MainPage mainPage = new MainPage();
-        mainPage.openPage();
-        mainPage.isMainPage();
-        mainPage.openMarket();
         MarketPage marketPage = new MarketPage();
+        marketPage.openPage();
         marketPage.isMarketPage();
         marketPage.searchOnMarket();
+        marketPage.checkFirstFiveResult();
+        marketPage.deleteTagForSearch();
         Thread.sleep(1000);
 
     }
