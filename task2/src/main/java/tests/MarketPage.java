@@ -12,8 +12,8 @@ public class MarketPage extends Page{
         super();
     }
     public void isMarketPage(){
-        Assert.assertEquals(webDriver.getCurrentUrl(),properties.getDataString("marketURL"));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='market_header_logo']")));
+        Assert.assertEquals(webDriver.getCurrentUrl(),properties.getDataString("marketURL"));
     }
     public void searchOnMarket(){
         webDriver.findElement(By.id("market_search_advanced_show")).click();
@@ -49,32 +49,23 @@ public class MarketPage extends Page{
         String deleteTag[] = properties.getDataString("tagMarketToDelete").split("%");
         WebElement element;
         for (int i = 0; i <deleteTag.length; i++) {
-            element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + deleteTag[i] + "')]]")));
+            element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+                    "//*[@class='market_search_results_header']//*[text()[contains(.,'" + deleteTag[i] + "')]]")));
             element.click();
             wait.until(ExpectedConditions.stalenessOf(element));
         }
     }
-    public void checkFirstItem(){
-        String fullName = webDriver.findElement(By.id("result_1")).getAttribute("data-hash-name");
-
-        String rarity = webDriver.findElement(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'"
+    public ItemDota getFirstItemAndOpen(){
+        String fullName,rarity,hero,game;
+        fullName = webDriver.findElement(By.id("result_1")).getAttribute("data-hash-name");
+        rarity = webDriver.findElement(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'"
                 + properties.getDataString("rarity") + "')]]")).getText();
-        String hero = webDriver.findElement(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'"
+        hero = webDriver.findElement(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'"
                 + properties.getDataString("hero") + "')]]")).getText();
-        String game = webDriver.findElement(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'"
+        game = webDriver.findElement(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'"
                 + properties.getDataString("gameSearch") + "')]]")).getText();
-        ItemDota itemDota1 = new ItemDota(fullName,rarity,hero,game);
         webDriver.findElement(By.id("result_1")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("largeiteminfo")));
-
-        fullName = webDriver.findElement(By.id("largeiteminfo_item_name")).getText();
-        //rarity work only RU site split and String[1]. For EN need use split and String[0]
-        rarity = webDriver.findElement(By.id("largeiteminfo_item_type")).getText().split(" ")[1];
-        game = webDriver.findElement(By.id("largeiteminfo_game_name")).getText();
-        hero = webDriver.findElement(By.xpath("//*[@id='largeiteminfo_item_descriptors']/div[1]")).getText();
-        hero = hero.substring(hero.indexOf(": ")+2);
-        ItemDota itemDota2 = new ItemDota(fullName,rarity,hero,game);
-        Assert.assertEquals(itemDota1,itemDota2);
+        return new ItemDota(fullName,rarity,hero,game);
     }
     public void openPage(){
         webDriver.get(properties.getDataString("marketURL"));
