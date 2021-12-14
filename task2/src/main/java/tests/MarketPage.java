@@ -12,59 +12,72 @@ public class MarketPage extends Page{
         super();
     }
     public void isMarketPage(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='market_header_logo']")));
-        Assert.assertEquals(webDriver.getCurrentUrl(),properties.getDataString("marketURL"));
+        wait.until(ExpectedConditions.urlToBe(properties.getDataString("marketURL")));
+        waitVisibility(By.xpath("//div[@class='market_header_logo']"));
+//        Assert.assertEquals(webDriver.getCurrentUrl(),properties.getDataString("marketURL"));
     }
     public void searchOnMarket(){
-        webDriver.findElement(By.id("market_search_advanced_show")).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("app_option_0_selected"))).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='market_advancedsearch_appselect_options']//img[@alt='"
-                + properties.getDataString("gameSearch") +"']"))).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='market_advancedsearch_filters']//select[contains(@name,'Hero')]"))).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='econ_tag_filter_category']//option[text()='"
-                + properties.getDataString("hero") + "']"))).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='market_advancedsearch_filters']//span[text()='"
-                + properties.getDataString("rarity") + "']"))).click();
-        webDriver.findElement(By.id("advancedSearchBox")).sendKeys(properties.getDataString("nameThing"));
-        webDriver.findElement(By.xpath("//*[@class='market_advancedsearch_bottombuttons']/div")).click();
+        By      xpathButtonSearch = By.id("market_search_advanced_show"),
+                xpathSelectGame = By.id("app_option_0_selected"),
+                xpathGame = By.xpath("//div[@id='market_advancedsearch_appselect_options']//img[@alt='" + properties.getDataString("gameSearch") +"']"),
+                xpathSelectHero = By.xpath("//div[@id='market_advancedsearch_filters']//select[contains(@name,'Hero')]"),
+                xpathHero = By.xpath("//div[@class='econ_tag_filter_category']//option[text()='" + properties.getDataString("hero") + "']"),
+                xpathRarity = By.xpath("//div[@id='market_advancedsearch_filters']//span[text()='" + properties.getDataString("rarity") + "']"),
+                xpathTextField = By.id("advancedSearchBox"),
+                xpathButtonFind = By.xpath("//*[@class='market_advancedsearch_bottombuttons']/div");
+
+        waitClickable(xpathButtonSearch).click();
+        waitClickable(xpathSelectGame).click();
+        waitClickable(xpathGame).click();
+        waitClickable(xpathSelectHero).click();
+        waitClickable(xpathHero).click();
+        waitClickable(xpathRarity).click();
+        waitClickable(xpathTextField).sendKeys(properties.getDataString("nameThing"));
+        waitClickable(xpathButtonFind).click();
 
     }
     public void checkFilterAndResult(){
+        By      xpathTagGame = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataString("gameSearch") + "')]]"),
+                xpathTagHero = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataString("hero") + "')]]"),
+                xpathTagRarity = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataString("rarity") + "')]]"),
+                xpathTagNameThing = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataString("nameThing") + "')]]");
+
         String line = properties.getDataString("nameThing").toLowerCase();
         for (int i =0;i<5;i++){
             Assert.assertTrue(webDriver.findElement(By.id("result_"+i)).
                     getAttribute("data-hash-name").toLowerCase().contains(line));
         }
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'"
-                + properties.getDataString("gameSearch") + "')]]")));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'"
-                + properties.getDataString("hero") + "')]]")));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'"
-                + properties.getDataString("rarity") + "')]]")));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'"
-                + properties.getDataString("nameThing") + "')]]")));
+        waitVisibility(xpathTagGame);
+        waitVisibility(xpathTagHero);
+        waitVisibility(xpathTagRarity);
+        waitVisibility(xpathTagNameThing);
     }
     public void deleteTagForSearch(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("market_searchedForTerm")));
+        WebElement removeTag;
         String deleteTag[] = properties.getDataString("tagMarketToDelete").split("%");
-        WebElement element;
+        By[] xpathForDeletion = new By[deleteTag.length];
         for (int i = 0; i <deleteTag.length; i++) {
-            element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-                    "//*[@class='market_search_results_header']//*[text()[contains(.,'" + deleteTag[i] + "')]]")));
-            element.click();
-            wait.until(ExpectedConditions.stalenessOf(element));
+            xpathForDeletion[i] = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + deleteTag[i] + "')]]");
+        }
+
+        for (int i = 0; i <deleteTag.length; i++) {
+            removeTag = waitClickable(xpathForDeletion[i]);
+            removeTag.click();
+            waitStalenessOf(removeTag);
         }
     }
     public ItemDota getFirstItemAndOpen(){
         String fullName,rarity,hero,game;
-        fullName = webDriver.findElement(By.id("result_1")).getAttribute("data-hash-name");
-        rarity = webDriver.findElement(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'"
-                + properties.getDataString("rarity") + "')]]")).getText();
-        hero = webDriver.findElement(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'"
-                + properties.getDataString("hero") + "')]]")).getText();
-        game = webDriver.findElement(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'"
-                + properties.getDataString("gameSearch") + "')]]")).getText();
-        webDriver.findElement(By.id("result_1")).click();
+        By      xpathFirstItem = By.id("result_0"),
+                xpathRarity = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataString("rarity") + "')]]"),
+                xpathHero = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataString("hero") + "')]]"),
+                xpathGame = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataString("gameSearch") + "')]]");
+
+        fullName = waitPresence(xpathFirstItem).getAttribute("data-hash-name");
+        rarity = waitPresence(xpathRarity).getText();
+        hero = waitPresence(xpathHero).getText();
+        game = waitPresence(xpathGame).getText();
+        waitClickable(xpathFirstItem).click();
         return new ItemDota(fullName,rarity,hero,game);
     }
     public void openPage(){
