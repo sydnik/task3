@@ -28,12 +28,20 @@ public class MarketPage extends Page{
         webDriver.findElement(By.xpath("//*[@class='market_advancedsearch_bottombuttons']/div")).click();
 
     }
-    public void checkFirstFiveResult(){
+    public void checkFilterAndResult(){
         String line = properties.getDataString("nameThing").toLowerCase();
         for (int i =0;i<5;i++){
             Assert.assertTrue(webDriver.findElement(By.id("result_"+i)).
                     getAttribute("data-hash-name").toLowerCase().contains(line));
         }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'"
+                + properties.getDataString("gameSearch") + "')]]")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'"
+                + properties.getDataString("hero") + "')]]")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'"
+                + properties.getDataString("rarity") + "')]]")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'"
+                + properties.getDataString("nameThing") + "')]]")));
     }
     public void deleteTagForSearch(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("market_searchedForTerm")));
