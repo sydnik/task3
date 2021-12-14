@@ -14,7 +14,6 @@ public class MarketPage extends Page{
     public void isMarketPage(){
         wait.until(ExpectedConditions.urlToBe(properties.getDataString("marketURL")));
         waitVisibility(By.xpath("//div[@class='market_header_logo']"));
-//        Assert.assertEquals(webDriver.getCurrentUrl(),properties.getDataString("marketURL"));
     }
     public void searchOnMarket(){
         By      xpathButtonSearch = By.id("market_search_advanced_show"),
@@ -41,8 +40,8 @@ public class MarketPage extends Page{
                 xpathTagHero = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataString("hero") + "')]]"),
                 xpathTagRarity = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataString("rarity") + "')]]"),
                 xpathTagNameThing = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataString("nameThing") + "')]]");
-
         String line = properties.getDataString("nameThing").toLowerCase();
+
         for (int i =0;i<5;i++){
             Assert.assertTrue(webDriver.findElement(By.id("result_"+i)).
                     getAttribute("data-hash-name").toLowerCase().contains(line));
@@ -60,7 +59,7 @@ public class MarketPage extends Page{
             xpathForDeletion[i] = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + deleteTag[i] + "')]]");
         }
 
-        for (int i = 0; i <deleteTag.length; i++) {
+        for (int i = 0; i <xpathForDeletion.length; i++) {
             removeTag = waitClickable(xpathForDeletion[i]);
             removeTag.click();
             waitStalenessOf(removeTag);
