@@ -17,7 +17,7 @@ public class MainPage extends Page {
         wait.until(ExpectedConditions.urlToBe(properties.getDataString("mainPageURL")));
     }
     public void openAboutPage(){
-        WebElement buttonAbout = webDriver.findElement(By.xpath("//div[@class='supernav_container']//a[contains(@href,'about')]"));
+        WebElement buttonAbout = waitClickable(By.xpath("//div[@class='supernav_container']//a[contains(@href,'about')]"));
         buttonAbout.click();
     }
     public void openLeaderSeller(){

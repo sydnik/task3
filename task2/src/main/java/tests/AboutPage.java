@@ -20,10 +20,10 @@ public class AboutPage extends Page {
         By      xpathOnline = By.xpath("//div[contains(@class, 'gamers_online')]//parent::div[@class='online_stat']"),
                 xpathGamerInGame =By.xpath("//div[contains(@class, 'gamers_in_game')]//parent::div[@class='online_stat']");
 
-        String[] line = webDriver.findElement(xpathOnline).getText().split("\n");
+        String[] line = waitPresence(xpathOnline).getText().split("\n");
         int numberOfOnline = Integer.parseInt(line[1].replaceAll(",",""));
 
-        line = webDriver.findElement(xpathGamerInGame).getText().split("\n");
+        line = waitPresence(xpathGamerInGame).getText().split("\n");
         int numberInGame = Integer.parseInt(line[1].replaceAll(",","")) ;
 
         Assert.assertTrue(numberOfOnline>numberInGame);

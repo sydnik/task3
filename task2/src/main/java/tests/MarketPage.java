@@ -43,7 +43,7 @@ public class MarketPage extends Page{
         String line = properties.getDataString("nameThing").toLowerCase();
 
         for (int i =0;i<5;i++){
-            Assert.assertTrue(webDriver.findElement(By.id("result_"+i)).
+            Assert.assertTrue(waitVisibility(By.id("result_"+i)).
                     getAttribute("data-hash-name").toLowerCase().contains(line));
         }
         waitVisibility(xpathTagGame);

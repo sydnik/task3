@@ -14,12 +14,12 @@ public class GamePage extends Page {
     }
     public void isGamePage(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("game_highlights")));
-        Assert.assertEquals(game.getName(),webDriver.findElement(By.id("appHubAppName")).getText());
+        Assert.assertEquals(game.getName(),waitPresence(By.id("appHubAppName")).getText());
     }
     public void assertData() {
-        String name = webDriver.findElement(By.id("appHubAppName")).getText();
-        String price = webDriver.findElement(By.xpath("//*[@itemprop='price']")).getAttribute("content");
-        String date = webDriver.findElement(By.className("date")).getText();
+        String name = waitPresence(By.id("appHubAppName")).getText();
+        String price = waitPresence(By.xpath("//*[@itemprop='price']")).getAttribute("content");
+        String date = waitPresence(By.className("date")).getText();
         Game game = new Game(name,date,price);
         Assert.assertEquals(this.game,game);
     }

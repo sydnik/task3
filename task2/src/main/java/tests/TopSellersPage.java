@@ -57,12 +57,12 @@ public class TopSellersPage extends Page {
                 xpathHeaderTag = By.xpath("//div[@data-collapse-name='tags']");
 
         if(!waitPresence(xpathTagsContainer).isDisplayed()) {
-            webDriver.findElement(xpathHeaderTag).click();
+            waitClickable(xpathHeaderTag).click();
             waitVisibility(xpathTagsContainer);
         }
         new Actions(webDriver).moveToElement(waitClickable(xpathTagsTextField)).click().sendKeys(tag).build().perform();
-        WebElement webDriverElement  = waitVisibility(xpathSelectTag);
-        numberOfGameTags = Integer.parseInt(webDriverElement.getText().replaceAll("[^0-9]",""));
+        WebElement selectTag  = waitVisibility(xpathSelectTag);
+        numberOfGameTags = Integer.parseInt(selectTag.getText().replaceAll("[^0-9]",""));
         WebElement elementGame = waitVisibility(xpathRefreshList);
         waitClickable(xpathSelectTag).click();
         waitStalenessOf(elementGame);
@@ -84,7 +84,7 @@ public class TopSellersPage extends Page {
         return new Game(name,date,price);
     }
     public void openGamePage(){
-        webDriver.findElement(By.xpath("//div[@id='search_resultsRows']//a")).click();
+        waitClickable(By.xpath("//div[@id='search_resultsRows']//a")).click();
     }
     public void openPage(){
         webDriver.get(properties.getDataString("topSellersURL"));
