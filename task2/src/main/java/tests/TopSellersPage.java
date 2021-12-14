@@ -1,7 +1,7 @@
 package tests;
 
 import data.Game;
-import Instruments.MyProperties;
+import instruments.MyProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.TimeoutException;

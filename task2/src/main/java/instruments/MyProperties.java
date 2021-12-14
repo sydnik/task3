@@ -1,4 +1,4 @@
-package Instruments;
+package instruments;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

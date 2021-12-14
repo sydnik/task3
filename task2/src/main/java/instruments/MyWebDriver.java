@@ -1,4 +1,4 @@
-package Instruments;
+package instruments;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;

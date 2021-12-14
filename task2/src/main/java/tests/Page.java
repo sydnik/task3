@@ -1,7 +1,7 @@
 package tests;
 
-import Instruments.MyProperties;
-import Instruments.MyWebDriver;
+import instruments.MyProperties;
+import instruments.MyWebDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
