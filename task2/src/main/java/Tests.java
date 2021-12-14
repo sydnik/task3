@@ -1,14 +1,12 @@
 import data.Game;
+import data.ItemDota;
 import instruments.MyProperties;
 import instruments.MyWebDriver;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import tests.AboutPage;
-import tests.GamePage;
-import tests.MainPage;
-import tests.TopSellersPage;
+import tests.*;
 
 public class Tests {
     private WebDriver webDriver;
@@ -61,6 +59,16 @@ public class Tests {
         MainPage mainPage = new MainPage();
         mainPage.openPage();
         mainPage.isMainPage();
+        mainPage.openMarket();
+        MarketPage marketPage = new MarketPage();
+        marketPage.isMarketPage();
+        marketPage.searchOnMarket();
+        marketPage.checkFilterAndResult();
+        marketPage.deleteTagForSearch();
+        ItemDota item = marketPage.getFirstItemAndOpen();
+        ItemPage itemPage = new ItemPage(item);
+        itemPage.isItemPage();
+        itemPage.checkFirstItemWithThis();
     }
 
 }

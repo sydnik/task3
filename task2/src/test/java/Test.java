@@ -27,7 +27,7 @@ public class Test extends Tests {
         marketPage.searchOnMarket();
         marketPage.checkFilterAndResult();
         marketPage.deleteTagForSearch();
-        marketPage.checkFirstItem();
+        marketPage.getFirstItemAndOpen();
         Thread.sleep(1000);
 
     }
