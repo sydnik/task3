@@ -24,7 +24,7 @@ public abstract class Page {
     public Page(int waitSecond){
         webDriver = MyWebDriver.getInstance();
         properties = MyProperties.getInstance();
-        this.waitSecond = waitSecond;
+        wait = new WebDriverWait(webDriver, Duration.ofSeconds(waitSecond));
     }
 
     public WebElement waitVisibility(By by){
@@ -39,5 +39,6 @@ public abstract class Page {
     public Boolean waitStalenessOf(WebElement element){
         return wait.until(ExpectedConditions.stalenessOf(element));
     }
+
 
 }
