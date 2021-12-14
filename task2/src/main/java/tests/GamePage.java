@@ -1,6 +1,6 @@
 package tests;
 
-import Data.Game;
+import data.Game;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;

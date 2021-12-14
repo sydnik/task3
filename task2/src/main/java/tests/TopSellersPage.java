@@ -1,6 +1,6 @@
 package tests;
 
-import Data.Game;
+import data.Game;
 import Instruments.MyProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;

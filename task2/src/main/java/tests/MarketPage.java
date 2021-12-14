@@ -52,8 +52,6 @@ public class MarketPage extends Page{
             element.click();
             wait.until(ExpectedConditions.stalenessOf(element));
         }
-        //test git
-
     }
     public void openPage(){
         webDriver.get(properties.getDataString("marketURL"));

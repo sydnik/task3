@@ -1,4 +1,4 @@
-import Data.Game;
+import data.Game;
 import Instruments.MyProperties;
 import Instruments.MyWebDriver;
 import org.openqa.selenium.WebDriver;
