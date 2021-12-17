@@ -1,11 +1,13 @@
 package instruments;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class MyWebDriver   {
     private static WebDriver driver;
@@ -15,33 +17,51 @@ public class MyWebDriver   {
     }
 
     public static WebDriver getInstance(){
-        if(driver==null) {
-            switch (MyProperties.getInstance().getConfProperty("browser")) {
-                case "Edge": {
-                    WebDriverManager.edgedriver().setup();
-                    driver = new EdgeDriver();
-                    break;
-                }
-                case "FireFox": {
-                    WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
-                    break;
-                }
-                default: {
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
-                    break;
-                }
+        if(driver!=null) {
+            return driver;
+        }
+        switch (MyProperties.getInstance().getConfProperty("browser")) {
+            case "Edge": {
+                startEdge();
+                break;
             }
-            setSizeWindow();
+            case "FireFox": {
+                startFireFox();
+                break;
+            }
+            case "Chrome": {
+                startChrome();
+                break;
+            } default: {
+                throw new IllegalArgumentException(driver + " - invalid browser name");
+            }
         }
         return driver;
     }
 
-    private static void setSizeWindow(){
-        int width = MyProperties.getInstance().getConfIntProperty("windowWidth");
-        int height = MyProperties.getInstance().getConfIntProperty("windowHeight");
-        driver.manage().window().setSize(new Dimension(width,height));
+    private static void startChrome(){
+        WebDriverManager.chromedriver().setup();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--window-size=" +
+                MyProperties.getInstance().getConfProperty("windowWidth") +","+
+                MyProperties.getInstance().getConfProperty("windowHeight"));
+        driver = new ChromeDriver(options);
+
+    }
+    private static void startFireFox(){
+        WebDriverManager.firefoxdriver().setup();
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.addArguments("--width="+MyProperties.getInstance().getConfProperty("windowWidth"));
+        firefoxOptions.addArguments("--height="+MyProperties.getInstance().getConfProperty("windowHeight"));
+        driver = new FirefoxDriver();
+    }
+    private static void startEdge(){
+        WebDriverManager.edgedriver().setup();
+        EdgeOptions edgeOptions = new EdgeOptions();
+        edgeOptions.addArguments("--window-size=" +
+                MyProperties.getInstance().getConfProperty("windowWidth") +","+
+                MyProperties.getInstance().getConfProperty("windowHeight"));
+        driver = new EdgeDriver(edgeOptions);
     }
 
 }
