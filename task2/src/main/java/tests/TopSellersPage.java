@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class TopSellersPage extends Page {
     private int numberOfGameTags;
-    private int foundGame;
 
     public TopSellersPage() {
         super();
@@ -16,7 +15,6 @@ public class TopSellersPage extends Page {
 
     public void isTopSellersPage(){
         waitVisibility(By.id("search_results"));
-        wait.until(ExpectedConditions.urlToBe(properties.getDataProperty("topSellersURL")));
     }
 
     public void selectOS(){
@@ -86,7 +84,5 @@ public class TopSellersPage extends Page {
     public void openGamePage(){
         waitClickable(By.xpath("//div[@id='search_resultsRows']//a")).click();
     }
-    public void openPage(){
-        webDriver.get(properties.getDataProperty("topSellersURL"));
-    }
+
 }

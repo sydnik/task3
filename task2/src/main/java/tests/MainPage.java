@@ -3,7 +3,6 @@ package tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public class MainPage extends Page {
@@ -14,7 +13,6 @@ public class MainPage extends Page {
 
     public void isMainPage(){
         waitPresence(By.xpath("//div[contains(@id,'home_maincap')]"));
-        wait.until(ExpectedConditions.urlToBe(properties.getDataProperty("mainPageURL")));
     }
     public void openAboutPage(){
         WebElement buttonAbout = waitClickable(By.xpath("//div[@class='supernav_container']//a[contains(@href,'about')]"));

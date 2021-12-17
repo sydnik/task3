@@ -2,7 +2,6 @@ package tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class MarketPage extends Page{
@@ -11,7 +10,6 @@ public class MarketPage extends Page{
         super();
     }
     public void isMarketPage(){
-        wait.until(ExpectedConditions.urlToBe(properties.getDataProperty("marketURL")));
         waitVisibility(By.xpath("//div[@class='market_header_logo']"));
     }
     public void searchOnMarket(){
@@ -70,9 +68,6 @@ public class MarketPage extends Page{
         String fullName = waitPresence(xpathFirstItem).getAttribute("data-hash-name");
         waitClickable(xpathFirstItem).click();
         return fullName;
-    }
-    public void openPage(){
-        webDriver.get(properties.getDataProperty("marketURL"));
     }
 
 }

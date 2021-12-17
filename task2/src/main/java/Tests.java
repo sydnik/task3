@@ -2,6 +2,7 @@ import data.Game;
 import instruments.MyProperties;
 import instruments.MyWebDriver;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -49,9 +50,9 @@ public class Tests {
         sellersPage.checkTags();
         Game game = sellersPage.getFirstGame();
         sellersPage.openGamePage();
-        GamePage gamePage = new GamePage(game);
+        GamePage gamePage = new GamePage();
         gamePage.isGamePage();
-        gamePage.assertData();
+        Assert.assertEquals(gamePage.getGame(),game);
     }
     @Test
     public void testCase3() {

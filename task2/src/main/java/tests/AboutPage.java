@@ -1,7 +1,6 @@
 package tests;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class AboutPage extends Page {
@@ -12,7 +11,6 @@ public class AboutPage extends Page {
 
     public void isAboutPage(){
         waitPresence(By.id("about_greeting"));
-        wait.until(ExpectedConditions.urlToBe(properties.getDataProperty("aboutURL")));
     }
 
     public void comparePlayer() {
@@ -31,8 +29,5 @@ public class AboutPage extends Page {
 
     public void clickShop(){
         waitClickable(By.xpath("//div[@class='supernav_container']//a[@data-tooltip-content='.submenu_store']")).click();
-    }
-    public void openPage(){
-        webDriver.get(properties.getDataProperty("aboutURL"));
     }
 }
