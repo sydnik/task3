@@ -24,7 +24,7 @@ public class GamePage extends Page {
         Assert.assertEquals(this.game,game);
     }
     public void openPage(){
-        webDriver.get(properties.getDataString("gameURL"));
+        webDriver.get(properties.getDataProperty("gameURL"));
     }
 
 

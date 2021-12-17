@@ -14,7 +14,7 @@ public class MainPage extends Page {
 
     public void isMainPage(){
         waitPresence(By.xpath("//div[contains(@id,'home_maincap')]"));
-        wait.until(ExpectedConditions.urlToBe(properties.getDataString("mainPageURL")));
+        wait.until(ExpectedConditions.urlToBe(properties.getDataProperty("mainPageURL")));
     }
     public void openAboutPage(){
         WebElement buttonAbout = waitClickable(By.xpath("//div[@class='supernav_container']//a[contains(@href,'about')]"));
@@ -36,6 +36,6 @@ public class MainPage extends Page {
     }
 
     public void openPage(){
-        webDriver.get(properties.getDataString("mainPageURL"));
+        webDriver.get(properties.getDataProperty("mainPageURL"));
     }
 }

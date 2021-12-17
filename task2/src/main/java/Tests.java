@@ -1,5 +1,4 @@
 import data.Game;
-import data.ItemDota;
 import instruments.MyProperties;
 import instruments.MyWebDriver;
 import org.openqa.selenium.WebDriver;
@@ -65,7 +64,7 @@ public class Tests {
         marketPage.searchOnMarket();
         marketPage.checkFilterAndResult();
         marketPage.deleteTagForSearch();
-        ItemDota item = marketPage.getFirstItemAndOpen();
+        String item = marketPage.getFirstItemAndOpen();
         ItemPage itemPage = new ItemPage(item);
         itemPage.isItemPage();
         itemPage.checkFirstItemWithThis();

@@ -19,7 +19,7 @@ public abstract class Page {
     public Page(){
         webDriver = MyWebDriver.getInstance();
         properties = MyProperties.getInstance();
-        wait = new WebDriverWait(webDriver, Duration.ofSeconds(properties.getConfigurationInt("waitSeconds")));
+        wait = new WebDriverWait(webDriver, Duration.ofSeconds(properties.getConfIntProperty("waitSeconds")));
     }
     public Page(int waitSecond){
         webDriver = MyWebDriver.getInstance();

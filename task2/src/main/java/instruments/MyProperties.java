@@ -2,7 +2,7 @@ package instruments;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
@@ -12,18 +12,15 @@ public class MyProperties {
     private static MyProperties myProperties;
     private Properties propertiesData;
     private Properties propertiesConfiguration;
-    private FileInputStream streamData;
-    private FileInputStream streamConfiguration;
 
     private MyProperties(){
-        try {
-            streamData = new FileInputStream(PATH_DATA);
+        try (InputStreamReader readerData = new InputStreamReader(new FileInputStream(PATH_DATA), StandardCharsets.UTF_8);
+             InputStreamReader readerConfig = new InputStreamReader(new FileInputStream(PATH_CONFIGURATION), StandardCharsets.UTF_8))
+        {
             propertiesData = new Properties();
-            propertiesData.load(streamData);
-
-            streamConfiguration = new FileInputStream(PATH_CONFIGURATION);
+            propertiesData.load(readerData);
             propertiesConfiguration = new Properties();
-            propertiesConfiguration.load(streamConfiguration);
+            propertiesConfiguration.load(readerConfig);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -38,39 +35,23 @@ public class MyProperties {
         }
         return myProperties;
     }
-    public String getConfigurationString(String key){
-        return (String) propertiesConfiguration.get(key);
-    }
 
-    public Integer getConfigurationInt(String key){
-        return Integer.parseInt((String) propertiesConfiguration.get(key));
-    }
-
-    public String getDataString(String key){
+    public String getDataProperty(String key){
         return (String) propertiesData.get(key);
     }
 
-    public Integer getDataInt(String key){
-        return Integer.parseInt((String)propertiesData.get(key));
+    public Integer getDataIntProperty(String key){
+        return Integer.parseInt((String) propertiesData.get(key));
     }
 
-    public String getDataUTF8(String key){
-        String line = (String) propertiesData.get(key);
-        byte[] mainData = line.getBytes(StandardCharsets.ISO_8859_1);
-        return new String(mainData, StandardCharsets.UTF_8);
+    public String getConfProperty(String key){
+        return (String) propertiesConfiguration.get(key);
     }
 
-    public String getConfigurationUTF8(String key){
-        String line = (String) propertiesData.get(key);
-        byte[] mainData = line.getBytes(StandardCharsets.ISO_8859_1);
-        return new String(mainData, StandardCharsets.UTF_8);
+    public Integer getConfIntProperty(String key){
+        return Integer.parseInt((String) propertiesConfiguration.get(key));
     }
-    public void close(){
-        try {
-            streamConfiguration.close();
-            streamData.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
+
+
 }

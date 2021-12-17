@@ -16,11 +16,11 @@ public class TopSellersPage extends Page {
 
     public void isTopSellersPage(){
         waitVisibility(By.id("search_results"));
-        wait.until(ExpectedConditions.urlToBe(properties.getDataString("topSellersURL")));
+        wait.until(ExpectedConditions.urlToBe(properties.getDataProperty("topSellersURL")));
     }
 
     public void selectOS(){
-        By      xpathTagOS = By.xpath("//span[@data-loc='"+ properties.getDataString("tagOS") +"']"),
+        By      xpathTagOS = By.xpath("//span[@data-loc='"+ properties.getDataProperty("tagOS") +"']"),
                 xpathListOS = By.xpath("//input[@id='os']//parent::*"),
                 xpathHeaderOS = By.xpath("//div[@data-collapse-name='os']"),
                 xpathRefreshList = By.xpath("//*[@id='search_resultsRows']/a[1]");
@@ -34,7 +34,7 @@ public class TopSellersPage extends Page {
     }
 
     public void selectNumberPayers() {
-        By      xpathTagNumberOfPlayers = By.xpath("//span[@data-loc='"+ properties.getDataUTF8("tagPlayers") +"']/span/span"),
+        By      xpathTagNumberOfPlayers = By.xpath("//span[@data-loc='"+ properties.getDataProperty("tagPlayers") +"']/span/span"),
                 xpathListNumberOfPlayers = By.xpath("//input[@id='category3']//parent::*"),
                 xpathHeaderNumberOfPlayers = By.xpath("//div[@data-collapse-name='category3']"),
                 xpathRefreshList = By.xpath("//*[@id='search_resultsRows']/a[1]");
@@ -49,7 +49,7 @@ public class TopSellersPage extends Page {
     }
 
     public void selectTags() {
-        String tag = properties.getDataUTF8("tags");
+        String tag = properties.getDataProperty("tags");
         By      xpathTagsContainer = By.xpath("//div[@id='TagFilter_Container']"),
                 xpathTagsTextField = By.id("TagSuggest"),
                 xpathSelectTag = By.xpath("//div[@data-loc='" + tag + "']"),
@@ -87,6 +87,6 @@ public class TopSellersPage extends Page {
         waitClickable(By.xpath("//div[@id='search_resultsRows']//a")).click();
     }
     public void openPage(){
-        webDriver.get(properties.getDataString("topSellersURL"));
+        webDriver.get(properties.getDataProperty("topSellersURL"));
     }
 }

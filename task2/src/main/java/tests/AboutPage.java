@@ -12,7 +12,7 @@ public class AboutPage extends Page {
 
     public void isAboutPage(){
         waitPresence(By.id("about_greeting"));
-        wait.until(ExpectedConditions.urlToBe(properties.getDataString("aboutURL")));
+        wait.until(ExpectedConditions.urlToBe(properties.getDataProperty("aboutURL")));
     }
 
     public void comparePlayer() {
@@ -33,6 +33,6 @@ public class AboutPage extends Page {
         waitClickable(By.xpath("//div[@class='supernav_container']//a[@data-tooltip-content='.submenu_store']")).click();
     }
     public void openPage(){
-        webDriver.get(properties.getDataString("aboutURL"));
+        webDriver.get(properties.getDataProperty("aboutURL"));
     }
 }

@@ -16,7 +16,7 @@ public class MyWebDriver   {
 
     public static WebDriver getInstance(){
         if(driver==null) {
-            switch (MyProperties.getInstance().getConfigurationString("browser")) {
+            switch (MyProperties.getInstance().getConfProperty("browser")) {
                 case "Edge": {
                     WebDriverManager.edgedriver().setup();
                     driver = new EdgeDriver();
@@ -39,8 +39,8 @@ public class MyWebDriver   {
     }
 
     private static void setSizeWindow(){
-        int width = MyProperties.getInstance().getConfigurationInt("windowWidth");
-        int height = MyProperties.getInstance().getConfigurationInt("windowHeight");
+        int width = MyProperties.getInstance().getConfIntProperty("windowWidth");
+        int height = MyProperties.getInstance().getConfIntProperty("windowHeight");
         driver.manage().window().setSize(new Dimension(width,height));
     }
 
