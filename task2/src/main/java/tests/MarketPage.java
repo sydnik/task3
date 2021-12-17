@@ -2,7 +2,6 @@ package tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 
 public class MarketPage extends Page{
 
@@ -32,7 +31,7 @@ public class MarketPage extends Page{
         waitClickable(xpathButtonFind).click();
 
     }
-    public void checkFilterAndResult(){
+    public boolean checkFilterAndResult(){
         By      xpathTagGame = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataProperty("gameSearch") + "')]]"),
                 xpathTagHero = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataProperty("hero") + "')]]"),
                 xpathTagRarity = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataProperty("rarity") + "')]]"),
@@ -40,13 +39,15 @@ public class MarketPage extends Page{
         String line = properties.getDataProperty("nameThing").toLowerCase();
 
         for (int i =0;i<5;i++){
-            Assert.assertTrue(waitVisibility(By.id("result_"+i)).
-                    getAttribute("data-hash-name").toLowerCase().contains(line));
+            if (!waitVisibility(By.id("result_" + i)).getAttribute("data-hash-name").toLowerCase().contains(line)) {
+                return false;
+            }
         }
         waitVisibility(xpathTagGame);
         waitVisibility(xpathTagHero);
         waitVisibility(xpathTagRarity);
         waitVisibility(xpathTagNameThing);
+        return true;
     }
     public void deleteTagForSearch(){
         WebElement removeTag;

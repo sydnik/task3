@@ -32,7 +32,7 @@ public class Tests {
         mainPage.openAboutPage();
         AboutPage aboutPage = new AboutPage();
         aboutPage.isAboutPage();
-        aboutPage.comparePlayer();
+        Assert.assertTrue(aboutPage.comparePlayer());
         aboutPage.clickShop();
         mainPage.isMainPage();
     }
@@ -63,7 +63,7 @@ public class Tests {
         MarketPage marketPage = new MarketPage();
         marketPage.isMarketPage();
         marketPage.searchOnMarket();
-        marketPage.checkFilterAndResult();
+        Assert.assertTrue(marketPage.checkFilterAndResult());
         marketPage.deleteTagForSearch();
         String item = marketPage.getFirstItemAndOpen();
         ItemPage itemPage = new ItemPage(item);

@@ -1,7 +1,6 @@
 package tests;
 
 import org.openqa.selenium.By;
-import org.testng.Assert;
 
 public class AboutPage extends Page {
 
@@ -13,8 +12,7 @@ public class AboutPage extends Page {
         waitPresence(By.id("about_greeting"));
     }
 
-    public void comparePlayer() {
-        ////*[contains(@class, 'gamers_online')]//parent::*/text()[2]    в хроме работает, тут нет - no such element
+    public boolean comparePlayer() {
         By      xpathOnline = By.xpath("//div[contains(@class, 'gamers_online')]//parent::div[@class='online_stat']"),
                 xpathGamerInGame =By.xpath("//div[contains(@class, 'gamers_in_game')]//parent::div[@class='online_stat']");
 
@@ -24,7 +22,7 @@ public class AboutPage extends Page {
         line = waitPresence(xpathGamerInGame).getText().split("\n");
         int numberInGame = Integer.parseInt(line[1].replaceAll(",","")) ;
 
-        Assert.assertTrue(numberOfOnline>numberInGame);
+        return numberOfOnline>numberInGame;
     }
 
     public void clickShop(){
