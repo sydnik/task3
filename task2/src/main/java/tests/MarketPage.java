@@ -4,12 +4,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class MarketPage extends Page{
+    private final By
+            KEY_MARKET = By.xpath("//div[@class='market_header_logo']"),
+            FIRST_ITEM = By.id("result_0"),
+            GAME = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataProperty("gameSearch") + "')]]"),
+            HERO = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataProperty("hero") + "')]]"),
+            RARITY = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataProperty("rarity") + "')]]"),
+            NAME_ITEM = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataProperty("nameThing") + "')]]");
 
     public MarketPage() {
         super();
     }
     public void isMarketPage(){
-        waitVisibility(By.xpath("//div[@class='market_header_logo']"));
+        waitVisibility(KEY_MARKET);
     }
     public void searchOnMarket(){
         By      xpathButtonSearch = By.id("market_search_advanced_show"),
@@ -32,21 +39,16 @@ public class MarketPage extends Page{
 
     }
     public boolean checkFilterAndResult(){
-        By      xpathTagGame = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataProperty("gameSearch") + "')]]"),
-                xpathTagHero = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataProperty("hero") + "')]]"),
-                xpathTagRarity = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataProperty("rarity") + "')]]"),
-                xpathTagNameThing = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataProperty("nameThing") + "')]]");
         String line = properties.getDataProperty("nameThing").toLowerCase();
-
         for (int i =0;i<5;i++){
             if (!waitVisibility(By.id("result_" + i)).getAttribute("data-hash-name").toLowerCase().contains(line)) {
                 return false;
             }
         }
-        waitVisibility(xpathTagGame);
-        waitVisibility(xpathTagHero);
-        waitVisibility(xpathTagRarity);
-        waitVisibility(xpathTagNameThing);
+        waitVisibility(GAME);
+        waitVisibility(HERO);
+        waitVisibility(RARITY);
+        waitVisibility(NAME_ITEM);
         return true;
     }
     public void deleteTagForSearch(){
@@ -64,10 +66,8 @@ public class MarketPage extends Page{
         }
     }
     public String getFirstItemAndOpen(){
-        By      xpathFirstItem = By.id("result_0");
-
-        String fullName = waitPresence(xpathFirstItem).getAttribute("data-hash-name");
-        waitClickable(xpathFirstItem).click();
+        String fullName = waitPresence(FIRST_ITEM).getAttribute("data-hash-name");
+        waitClickable(FIRST_ITEM).click();
         return fullName;
     }
 

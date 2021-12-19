@@ -65,10 +65,10 @@ public class Tests {
         marketPage.searchOnMarket();
         Assert.assertTrue(marketPage.checkFilterAndResult());
         marketPage.deleteTagForSearch();
-        String item = marketPage.getFirstItemAndOpen();
-        ItemPage itemPage = new ItemPage(item);
+        String nameItem = marketPage.getFirstItemAndOpen();
+        ItemPage itemPage = new ItemPage();
         itemPage.isItemPage();
-        itemPage.checkFirstItemWithThis();
+        itemPage.checkFirstItemWithThis(nameItem);
     }
 
 }

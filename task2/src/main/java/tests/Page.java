@@ -14,7 +14,6 @@ public abstract class Page {
     protected WebDriver webDriver;
     protected MyProperties properties;
     protected WebDriverWait wait;
-    private int waitSecond;
 
     public Page(){
         webDriver = MyWebDriver.getInstance();
