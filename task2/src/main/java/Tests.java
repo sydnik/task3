@@ -1,4 +1,5 @@
 import data.Game;
+import formOnPage.SearchOnMarket;
 import instruments.MyProperties;
 import instruments.MyWebDriver;
 import org.openqa.selenium.WebDriver;
@@ -63,6 +64,12 @@ public class Tests {
         MarketPage marketPage = new MarketPage();
         marketPage.isMarketPage();
         marketPage.searchOnMarket();
+        SearchOnMarket searchOnMarket = new SearchOnMarket();
+        searchOnMarket.selectGame();
+        searchOnMarket.selectHero();
+        searchOnMarket.selectRarity();
+        searchOnMarket.sendName();
+        searchOnMarket.pushFind();
         Assert.assertTrue(marketPage.checkFilterAndResult());
         marketPage.deleteTagForSearch();
         String nameItem = marketPage.getFirstItemAndOpen();

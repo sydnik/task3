@@ -10,7 +10,8 @@ public class MarketPage extends Page{
             GAME = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataProperty("gameSearch") + "')]]"),
             HERO = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataProperty("hero") + "')]]"),
             RARITY = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataProperty("rarity") + "')]]"),
-            NAME_ITEM = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataProperty("nameThing") + "')]]");
+            NAME_ITEM = By.xpath("//*[@class='market_search_results_header']//*[text()[contains(.,'" + properties.getDataProperty("nameThing") + "')]]"),
+            BUTTON_SEARCH = By.id("market_search_advanced_show");
 
     public MarketPage() {
         super();
@@ -19,24 +20,7 @@ public class MarketPage extends Page{
         waitVisibility(KEY_MARKET);
     }
     public void searchOnMarket(){
-        By      xpathButtonSearch = By.id("market_search_advanced_show"),
-                xpathSelectGame = By.id("app_option_0_selected"),
-                xpathGame = By.xpath("//div[@id='market_advancedsearch_appselect_options']//img[@alt='" + properties.getDataProperty("gameSearch") +"']"),
-                xpathSelectHero = By.xpath("//div[@id='market_advancedsearch_filters']//select[contains(@name,'Hero')]"),
-                xpathHero = By.xpath("//div[@class='econ_tag_filter_category']//option[text()='" + properties.getDataProperty("hero") + "']"),
-                xpathRarity = By.xpath("//div[@id='market_advancedsearch_filters']//span[text()='" + properties.getDataProperty("rarity") + "']"),
-                xpathTextField = By.id("advancedSearchBox"),
-                xpathButtonFind = By.xpath("//*[@class='market_advancedsearch_bottombuttons']/div");
-
-        waitClickable(xpathButtonSearch).click();
-        waitClickable(xpathSelectGame).click();
-        waitClickable(xpathGame).click();
-        waitClickable(xpathSelectHero).click();
-        waitClickable(xpathHero).click();
-        waitClickable(xpathRarity).click();
-        waitClickable(xpathTextField).sendKeys(properties.getDataProperty("nameThing"));
-        waitClickable(xpathButtonFind).click();
-
+        waitClickable(BUTTON_SEARCH).click();
     }
     public boolean checkFilterAndResult(){
         String line = properties.getDataProperty("nameThing").toLowerCase();
