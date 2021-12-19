@@ -45,6 +45,7 @@ public class MyWebDriver   {
         options.addArguments("--window-size=" +
                 MyProperties.getInstance().getConfProperty("windowWidth") +","+
                 MyProperties.getInstance().getConfProperty("windowHeight"));
+        options.addArguments("--lang="+MyProperties.getInstance().getConfProperty("language"));
         driver = new ChromeDriver(options);
 
     }
