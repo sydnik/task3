@@ -24,4 +24,5 @@
 *target/
 *myTestPackage/
 *task2/
+*logs/
 *.dat
