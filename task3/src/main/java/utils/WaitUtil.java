@@ -14,9 +14,9 @@ public class WaitUtil {
         this.wait = new WebDriverWait(DriverUtil.getInstance().getWebDriver(),
                 Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds")));
     }
-    public static boolean waitVisibility(){
-
-        return true;
+    public static WebElement waitVisibility(WebElement element){
+        return new WebDriverWait(DriverUtil.getInstance().getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))).
+                until(ExpectedConditions.visibilityOf(element));
     }
     public static WebElement waitClickable(WebElement element){
         return new WebDriverWait(DriverUtil.getInstance().getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))).

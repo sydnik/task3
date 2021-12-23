@@ -5,12 +5,15 @@ import org.openqa.selenium.By;
 import pagesAndForms.BasePage;
 
 public class MainPage extends BasePage {
+    private final By BUTTON_ALERT_FRAME_WINDOW = By.xpath("//*[@class='card-body']//*[text()='Alerts, Frame & Windows']//..//..");
+
+
     public MainPage() {
         super(By.className("home-content"),"MainPage");
     }
+
     public void openAlertFrameAndWindow(){
-        //ЧТО ТУТ ДЕЛАТ??? АААААААААААААААААААААААААА
-        Button alertFrameAndWindow = new Button(By.xpath("/html/body/div[2]/div/div/div[2]/div/div[3]/div/div[2]"),"ButtonAlertFrameAndWindow");
+        Button alertFrameAndWindow = new Button(BUTTON_ALERT_FRAME_WINDOW,"ButtonAlertFrameAndWindow");
         alertFrameAndWindow.click();
     }
 }

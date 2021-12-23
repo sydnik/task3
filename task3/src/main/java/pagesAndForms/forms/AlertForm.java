@@ -1,24 +1,29 @@
 package pagesAndForms.forms;
 
 import elements.Button;
+import elements.Text;
 import org.openqa.selenium.By;
 import pagesAndForms.BasePage;
-import utils.DriverUtil;
 
 
 public class AlertForm extends BasePage {
     private final By BUTTON_TO_SEE_ALERT = By.id("alertButton");
     private final By BUTTON_CONFIRM = By.id("confirmButton");
     private final By BUTTON_PROMPT = By.id("promtButton");
+    private final By CONFIRM_RESULT = By.id("confirmResult");
+    private final By PROMPT_RESULT = By.id("promptResult");
+
     public AlertForm() {
         super(By.xpath("//*[@class='main-header'][text()='Alerts']"), "AlertForm");
     }
 
     public String getConfirmResult(){
-        return DriverUtil.getInstance().getWebDriver().findElement(By.id("confirmResult")).getText();
+        Text text = new Text(CONFIRM_RESULT,"confirmResult");
+        return text.getText();
     }
-    public String getPromptBoxWillAppear(){
-       return DriverUtil.getInstance().getWebDriver().findElement(By.id("promptResult")).getText();
+    public String getPromptResult(){
+        Text text = new Text(PROMPT_RESULT,"promptResult");
+        return text.getText();
     }
     public void clickAlert(){
         Button button = new Button(BUTTON_TO_SEE_ALERT,"alertButton");
@@ -33,8 +38,4 @@ public class AlertForm extends BasePage {
         button.click();
 
     }
-    public void click(){
-
-    }
-
 }

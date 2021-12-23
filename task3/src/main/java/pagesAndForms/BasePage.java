@@ -1,6 +1,9 @@
 package pagesAndForms;
 
+import elements.Unique;
 import org.openqa.selenium.By;
+import utils.LoggerUtil;
+import utils.WaitUtil;
 
 public abstract class BasePage {
     private String name;
@@ -12,6 +15,8 @@ public abstract class BasePage {
     }
 
     public boolean isPageOpened(){
-        return true;
+            Unique unique = new Unique(uniqueElement,"isPageOpened " + name);
+            boolean result =unique.exist();
+            return result;
     }
 }

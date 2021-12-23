@@ -32,7 +32,8 @@ public class DriverUtil {
                 driverUtils.startChrome();
                 break;
             } default: {
-                throw new IllegalArgumentException(ConfigUtil.getInstance().getConfProperty("browser") + " - invalid browser name");
+                LoggerUtil.fatal(ConfigUtil.getInstance().getConfProperty("browser"), " - invalid browser name");
+                throw new IllegalArgumentException();
             }
         }
         return driverUtils;
