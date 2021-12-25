@@ -10,8 +10,8 @@ import utils.WaitUtil;
 
 
 public abstract class BaseElement {
-    private String name;
-    private By locator;
+    protected String name;
+    protected By locator;
 
     public BaseElement(By locator, String name) {
         this.name = name;
@@ -26,11 +26,13 @@ public abstract class BaseElement {
             LoggerUtil.error(name,"there is no element");
             throw new RuntimeException();
         }
-
+    }
+    public boolean unExist(){
+        return WaitUtil.waitInVisibility(locator);
     }
     public String getAttribute(String attribute){
         String result = findElement().getAttribute(attribute);
-        return null;
+        return result;
     }
     public String getText(){
         try {

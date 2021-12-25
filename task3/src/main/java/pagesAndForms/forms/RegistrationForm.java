@@ -1,5 +1,6 @@
 package pagesAndForms.forms;
 
+import data.UserData;
 import elements.Button;
 import elements.JTextField;
 import org.openqa.selenium.By;
@@ -15,6 +16,16 @@ public class RegistrationForm extends BasePage {
     private final By BUTTON_SUBMIT = By.id("submit");
     public RegistrationForm() {
         super(By.id("registration-form-modal"), "RegistrationForm");
+    }
+
+    public void sendDataUser(UserData user){
+        sendFirstName(user.getFirstName());
+        sendLastName(user.getLastName());
+        sendEmail(user.getEmail());
+        sendAge(user.getAge());
+        sendSalary(user.getSalary());
+        sendDepartment(user.getDepartment());
+
     }
 
     public void sendFirstName(String firstName){

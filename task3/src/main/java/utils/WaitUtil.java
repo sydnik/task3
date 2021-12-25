@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class WaitUtil {
     private WebDriverWait wait;
@@ -18,6 +19,10 @@ public class WaitUtil {
         return new WebDriverWait(DriverUtil.getInstance().getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))).
                 until(ExpectedConditions.visibilityOf(element));
     }
+    public static boolean waitInVisibility(By locator){
+        return new WebDriverWait(DriverUtil.getInstance().getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))).
+                until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
     public static WebElement waitClickable(WebElement element){
         return new WebDriverWait(DriverUtil.getInstance().getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))).
                 until(ExpectedConditions.elementToBeClickable(element));
@@ -25,5 +30,9 @@ public class WaitUtil {
     public static WebElement waitPresence(By locator){
         return new WebDriverWait(DriverUtil.getInstance().getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))).
                 until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+    public static List<WebElement> watElements(By locator){
+        return new WebDriverWait(DriverUtil.getInstance().getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))).
+                until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
     }
 }

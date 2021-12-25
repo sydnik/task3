@@ -19,4 +19,9 @@ public abstract class BasePage {
             boolean result =unique.exist();
             return result;
     }
+    public boolean isPageClosed(){
+        Unique unique = new Unique(uniqueElement,"isPageOpened " + name);
+        boolean result =unique.unExist();
+        return result;
+    }
 }
