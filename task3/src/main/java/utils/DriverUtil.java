@@ -2,6 +2,7 @@ package utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -41,6 +42,15 @@ public class DriverUtil {
 
     public void openURL(String url){
         webDriver.get(url);
+    }
+    public String getCurrentFrame(){
+        return webDriver.getWindowHandle();
+    }
+    public void switchToFrame(WebElement element){
+        webDriver.switchTo().frame(element);
+    }
+    public void switchToFrame(String frame){
+        webDriver.switchTo().window(frame);
     }
 
     private void startChrome(){

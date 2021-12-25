@@ -3,6 +3,7 @@ package elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import utils.DriverUtil;
 import utils.LoggerUtil;
 import utils.WaitUtil;
@@ -23,7 +24,7 @@ public abstract class BaseElement {
             return true;
         } else {
             LoggerUtil.error(name,"there is no element");
-            return false;
+            throw new RuntimeException();
         }
 
     }
@@ -37,7 +38,7 @@ public abstract class BaseElement {
             LoggerUtil.info(name, "got Text");
             return result;
         }catch (Exception e) {
-            return findElement().getText();
+            throw new RuntimeException(e.getMessage());
         }
     }
     public void click(){
@@ -45,21 +46,23 @@ public abstract class BaseElement {
             WaitUtil.waitClickable(findElement()).click();
             LoggerUtil.info(name,"Clicked");
         } catch (Exception e){
-            LoggerUtil.error(name,"Didn't find element ");
+            LoggerUtil.error(name,"Didn't click element ");
+            throw new RuntimeException(e.getMessage());
         }
     }
     public void scrollToElement(){
+//        new Actions(DriverUtil.getInstance().getWebDriver()).moveToElement(findElement()).build().perform();
         ((JavascriptExecutor) DriverUtil.getInstance().getWebDriver()).executeScript("arguments[0].scrollIntoView(true);", findElement());
     }
 
-    private WebElement findElement(){
+    protected WebElement findElement(){
         try {
             WebElement element = WaitUtil.waitPresence(locator);
             LoggerUtil.info(name,"Element found");
             return element;
         } catch (Exception e){
             LoggerUtil.error(name,"Didn't find element ");
-            return null;
+            throw new RuntimeException(e.getMessage());
         }
     }
 

@@ -1,6 +1,7 @@
 package utils;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -22,12 +23,13 @@ public class ConfigUtil {
             configProperties = new Properties();
             configProperties.load(readerConfig);
         } catch (IOException e) {
-//            throw new FileNotFoundException(e.getMessage());
+            LoggerUtil.fatal("startTest",e.getMessage());
+            throw new RuntimeException();
         }
     }
     public static ConfigUtil getInstance()  {
         if(configUtils==null){
-            configUtils = new ConfigUtil();
+                configUtils = new ConfigUtil();
         }
         return configUtils;
     }

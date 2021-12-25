@@ -6,6 +6,7 @@ import pagesAndForms.BasePage;
 
 public class MainPage extends BasePage {
     private final By BUTTON_ALERT_FRAME_WINDOW = By.xpath("//*[@class='card-body']//*[text()='Alerts, Frame & Windows']//..//..");
+    private final By BUTTON_ELEMENTS = By.xpath("//*[@class='card-body']//*[text()='Elements']//..//..");
 
 
     public MainPage() {
@@ -14,6 +15,10 @@ public class MainPage extends BasePage {
 
     public void openAlertFrameAndWindow(){
         Button alertFrameAndWindow = new Button(BUTTON_ALERT_FRAME_WINDOW,"ButtonAlertFrameAndWindow");
+        alertFrameAndWindow.click();
+    }
+    public void openElements(){
+        Button alertFrameAndWindow = new Button(BUTTON_ELEMENTS,"Elements");
         alertFrameAndWindow.click();
     }
 }
