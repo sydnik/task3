@@ -52,9 +52,13 @@ public abstract class BaseElement {
             throw new RuntimeException(e.getMessage());
         }
     }
+    public boolean isVisibility(){
+        return findElement().isDisplayed();
+    }
     public void scrollToElement(){
 //        new Actions(DriverUtil.getInstance().getWebDriver()).moveToElement(findElement()).build().perform();
-        ((JavascriptExecutor) DriverUtil.getInstance().getWebDriver()).executeScript("arguments[0].scrollIntoView(true);", findElement());
+        JavascriptExecutor js = ((JavascriptExecutor) DriverUtil.getWebDriver());
+        js.executeScript("arguments[0].scrollIntoView(true);", findElement());
     }
 
     protected WebElement findElement(){

@@ -12,27 +12,27 @@ public class WaitUtil {
     private WebDriverWait wait;
 
     public WaitUtil() {
-        this.wait = new WebDriverWait(DriverUtil.getInstance().getWebDriver(),
+        this.wait = new WebDriverWait(DriverUtil.getWebDriver(),
                 Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds")));
     }
     public static WebElement waitVisibility(WebElement element){
-        return new WebDriverWait(DriverUtil.getInstance().getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))).
+        return new WebDriverWait(DriverUtil.getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))).
                 until(ExpectedConditions.visibilityOf(element));
     }
     public static boolean waitInVisibility(By locator){
-        return new WebDriverWait(DriverUtil.getInstance().getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))).
+        return new WebDriverWait(DriverUtil.getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))).
                 until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
     public static WebElement waitClickable(WebElement element){
-        return new WebDriverWait(DriverUtil.getInstance().getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))).
+        return new WebDriverWait(DriverUtil.getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))).
                 until(ExpectedConditions.elementToBeClickable(element));
     }
     public static WebElement waitPresence(By locator){
-        return new WebDriverWait(DriverUtil.getInstance().getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))).
+        return new WebDriverWait(DriverUtil.getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))).
                 until(ExpectedConditions.presenceOfElementLocated(locator));
     }
     public static List<WebElement> watElements(By locator){
-        return new WebDriverWait(DriverUtil.getInstance().getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))).
+        return new WebDriverWait(DriverUtil.getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))).
                 until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
     }
 }

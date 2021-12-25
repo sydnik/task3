@@ -8,6 +8,7 @@ public class AlertsFrameWindowsPage extends BasePage {
     private final By BUTTON_ALERT = By.xpath("//*[@class='text'][text()='Alerts']");
     private final By BUTTON_NESTED_FRAMES = By.xpath("//*[@class='text'][text()='Nested Frames']");
     private final By BUTTON_FRAMES = By.xpath("//*[@class='text'][text()='Frames']");
+    private final By BUTTON_BROWSER_WINDOW = By.xpath("//*[@class='text'][text()='Browser Windows']");
 
 
     public AlertsFrameWindowsPage() {
@@ -25,6 +26,10 @@ public class AlertsFrameWindowsPage extends BasePage {
     public void openFrames(){
         Button nestedFrames = new Button(BUTTON_FRAMES,"FramesForm");
         nestedFrames.scrollToElement();
+        nestedFrames.click();
+    }
+    public void openBrowserWindow(){
+        Button nestedFrames = new Button(BUTTON_BROWSER_WINDOW,"BrowserWindow");
         nestedFrames.click();
     }
 }

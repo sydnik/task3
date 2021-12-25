@@ -14,46 +14,27 @@ public class RegistrationForm extends BasePage {
     private final By FILED_SALARY= By.id("salary");
     private final By FILED_DEPARTMENT = By.id("department");
     private final By BUTTON_SUBMIT = By.id("submit");
+
     public RegistrationForm() {
         super(By.id("registration-form-modal"), "RegistrationForm");
     }
 
     public void sendDataUser(UserData user){
-        sendFirstName(user.getFirstName());
-        sendLastName(user.getLastName());
-        sendEmail(user.getEmail());
-        sendAge(user.getAge());
-        sendSalary(user.getSalary());
-        sendDepartment(user.getDepartment());
-
+        sendKeys(user.getFirstName(),FILED_FIRST_NAME);
+        sendKeys(user.getLastName(),FILED_LAST_NAME);
+        sendKeys(user.getEmail(),FILED_EMAIL);
+        sendKeys(user.getAge(),FILED_AGE);
+        sendKeys(user.getSalary(),FILED_SALARY);
+        sendKeys(user.getDepartment(),FILED_DEPARTMENT);
     }
 
-    public void sendFirstName(String firstName){
-        JTextField jTextField = new JTextField(FILED_FIRST_NAME, "textFieldFirstName");
-        jTextField.sendKeys(firstName);
-    }
-    public void sendLastName(String lastName){
-        JTextField jTextField = new JTextField(FILED_LAST_NAME, "textFieldLastName");
-        jTextField.sendKeys(lastName);
-    }
-    public void sendEmail(String email){
-        JTextField jTextField = new JTextField(FILED_EMAIL, "textFieldEmail");
-        jTextField.sendKeys(email);
-    }
-    public void sendAge(String age){
-        JTextField jTextField = new JTextField(FILED_AGE, "textFieldAge");
-        jTextField.sendKeys(age);
-    }
-    public void sendSalary(String salary){
-        JTextField jTextField = new JTextField(FILED_SALARY, "textFieldSalary");
-        jTextField.sendKeys(salary);
-    }
-    public void sendDepartment(String department){
-        JTextField jTextField = new JTextField(FILED_DEPARTMENT, "textFieldDepartment");
-        jTextField.sendKeys(department);
-    }
     public void clickSubmit(){
         Button button = new Button(BUTTON_SUBMIT,"ButtonSubmit");
         button.click();
+    }
+
+    private void sendKeys(String value, By textFieldLocator){
+        JTextField jTextField = new JTextField(textFieldLocator, value);
+        jTextField.sendKeys(value);
     }
 }

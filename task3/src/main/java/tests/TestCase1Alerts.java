@@ -12,7 +12,7 @@ import utils.DriverUtil;
 public class TestCase1Alerts extends BaseTest{
     @Test
     public void test()  {
-        DriverUtil.getInstance().openURL(configUtil.getDataProperty("mainPageURL"));
+        DriverUtil.openURL(configUtil.getDataProperty("mainPageURL"));
         MainPage mainPage = new MainPage();
         Assert.assertTrue(mainPage.isPageOpened());
         mainPage.openAlertFrameAndWindow();

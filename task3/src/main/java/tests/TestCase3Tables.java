@@ -23,7 +23,7 @@ public class TestCase3Tables extends BaseTest{
 
     @Test(dataProvider = "getDataForTest")
     public void test(String id,String firstName, String lastName, String email, String age, String salary, String department){
-        DriverUtil.getInstance().openURL(configUtil.getDataProperty("mainPageURL"));
+        DriverUtil.openURL(configUtil.getDataProperty("mainPageURL"));
         MainPage mainPage = new MainPage();
         Assert.assertTrue(mainPage.isPageOpened());
         mainPage.openElements();

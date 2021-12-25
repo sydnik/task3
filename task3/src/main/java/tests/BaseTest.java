@@ -18,8 +18,8 @@ public abstract class BaseTest {
 
     @AfterTest
     public void endTests(){
-        if (DriverUtil.getInstance().getWebDriver()!=null) {
-            DriverUtil.getInstance().getWebDriver().quit();
+        if (DriverUtil.getWebDriver()!=null) {
+            DriverUtil.getWebDriver().quit();
         }
     }
 }
