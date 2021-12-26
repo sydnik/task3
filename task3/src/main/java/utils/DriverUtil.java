@@ -18,7 +18,7 @@ public class DriverUtil {
     private DriverUtil(){
     }
 
-    public static WebDriver getWebDriver() {
+    public WebDriver getWebDriver() {
         return getInstance().webDriver;
     }
 
@@ -27,7 +27,7 @@ public class DriverUtil {
             return driverUtils;
         }
         driverUtils = new DriverUtil();
-        switch (ConfigUtil.getInstance().getConfProperty("browser")) {
+        switch (ConfigUtil.getConfProperty("browser")) {
             case "FireFox": {
                 driverUtils.startFireFox();
                 break;
@@ -36,7 +36,7 @@ public class DriverUtil {
                 driverUtils.startChrome();
                 break;
             } default: {
-                LoggerUtil.fatal(ConfigUtil.getInstance().getConfProperty("browser"), " - invalid browser name");
+                LoggerUtil.fatal(ConfigUtil.getConfProperty("browser"), " - invalid browser name");
                 throw new IllegalArgumentException();
             }
         }
@@ -46,7 +46,7 @@ public class DriverUtil {
     public static void openURL(String url){
         getInstance().webDriver.get(url);
     }
-    public static String getCurrentFrame(){
+    public static String getCurrentWidnow(){
         return getInstance().webDriver.getWindowHandle();
     }
     public static void switchToFrame(WebElement element){
@@ -55,20 +55,20 @@ public class DriverUtil {
     public static void switchToFrame(String frame){
         getInstance().webDriver.switchTo().window(frame);
     }
-    public static void saveCurrentTabs(){
-        tabAndWindow = getWebDriver().getWindowHandles();
+    public static void saveCurrentWidnows(){
+        tabAndWindow = getInstance().getWebDriver().getWindowHandles();
     }
-    public static void openNewTab(){
-        Set<String> tabs =  getWebDriver().getWindowHandles();
+    public static void openNewWindow(){
+        Set<String> tabs =  getInstance().getWebDriver().getWindowHandles();
         for (String s : tabs) {
             if(!tabAndWindow.contains(s)){
-                getWebDriver().switchTo().window(s);
+                getInstance().getWebDriver().switchTo().window(s);
             }
         }
     }
-    public static void openAvailableTab(){
-        for (String s : getWebDriver().getWindowHandles()){
-            getWebDriver().switchTo().window(s);
+    public static void openAvailableWindow(){
+        for (String s : getInstance().getWebDriver().getWindowHandles()){
+            getInstance().getWebDriver().switchTo().window(s);
             break;
         }
     }

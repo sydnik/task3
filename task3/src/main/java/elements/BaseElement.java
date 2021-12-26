@@ -3,7 +3,6 @@ package elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import utils.DriverUtil;
 import utils.LoggerUtil;
 import utils.WaitUtil;
@@ -48,7 +47,7 @@ public abstract class BaseElement {
             WaitUtil.waitClickable(findElement()).click();
             LoggerUtil.info(name,"Clicked");
         } catch (Exception e){
-            LoggerUtil.error(name,"Didn't click element ");
+            LoggerUtil.error(name,"Didn't click element "+e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -57,7 +56,7 @@ public abstract class BaseElement {
     }
     public void scrollToElement(){
 //        new Actions(DriverUtil.getInstance().getWebDriver()).moveToElement(findElement()).build().perform();
-        JavascriptExecutor js = ((JavascriptExecutor) DriverUtil.getWebDriver());
+        JavascriptExecutor js = ((JavascriptExecutor) DriverUtil.getInstance().getWebDriver());
         js.executeScript("arguments[0].scrollIntoView(true);", findElement());
     }
 

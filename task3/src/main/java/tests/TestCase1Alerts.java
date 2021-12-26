@@ -7,38 +7,36 @@ import pagesAndForms.forms.AlertForm;
 import pagesAndForms.pages.AlertsFrameWindowsPage;
 import pagesAndForms.pages.MainPage;
 import utils.AlertUtil;
+import utils.ConfigUtil;
 import utils.DriverUtil;
 
 public class TestCase1Alerts extends BaseTest{
     @Test
     public void test()  {
-        DriverUtil.openURL(configUtil.getDataProperty("mainPageURL"));
+        DriverUtil.openURL(ConfigUtil.getDataProperty("mainPageURL"));
         MainPage mainPage = new MainPage();
         Assert.assertTrue(mainPage.isPageOpened());
         mainPage.openAlertFrameAndWindow();
         AlertsFrameWindowsPage alertsFrameWindowsPage = new AlertsFrameWindowsPage();
-        alertsFrameWindowsPage.isPageOpened();
         alertsFrameWindowsPage.openAlert();
         AlertForm formAlert = new AlertForm();
         Assert.assertTrue(formAlert.isPageOpened());
         formAlert.clickAlert();
         AlertUtil.isAlert();
-        Assert.assertEquals(AlertUtil.getText(), configUtil.getDataProperty("textClickAlert"));
+        Assert.assertEquals(AlertUtil.getText(), ConfigUtil.getDataProperty("textClickAlert"));
         AlertUtil.accept();
         AlertUtil.isAlertClosed();
         formAlert.clickConfirm();
-        AlertUtil.isAlert();
-        Assert.assertEquals(AlertUtil.getText(),configUtil.getDataProperty("textClickConfirm"));
+        Assert.assertEquals(AlertUtil.getText(),ConfigUtil.getDataProperty("textClickConfirm"));
         AlertUtil.accept();
         AlertUtil.isAlertClosed();
-        Assert.assertEquals(formAlert.getConfirmResult(),configUtil.getDataProperty("resultConfirm"));
+        Assert.assertEquals(formAlert.getConfirmResult(),ConfigUtil.getDataProperty("resultConfirm"));
         formAlert.clickPrompt();
-        AlertUtil.isAlert();
-        Assert.assertEquals(AlertUtil.getText(),configUtil.getDataProperty("textClickPrompt"));
+        Assert.assertEquals(AlertUtil.getText(),ConfigUtil.getDataProperty("textClickPrompt"));
         String randomLine = RandomStringUtils.randomAlphabetic((int) (Math.random()*100));
         AlertUtil.sendKeys(randomLine);
         AlertUtil.accept();
-        AlertUtil.isAlertClosed();
+        Assert.assertTrue(AlertUtil.isAlertClosed());
         Assert.assertEquals(formAlert.getPromptResult(),"You entered " +randomLine);
     }
 }

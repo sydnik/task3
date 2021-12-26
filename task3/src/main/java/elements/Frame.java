@@ -10,7 +10,7 @@ public class Frame extends BaseElement{
         super(locator, name);
     }
     public void switchFrame(){
-        savedFrame = DriverUtil.getCurrentFrame();
+        savedFrame = DriverUtil.getCurrentWidnow();
         DriverUtil.switchToFrame(findElement());
     }
     public void switchEarlyFrame(){

@@ -7,19 +7,18 @@ import utils.ConfigUtil;
 import utils.DriverUtil;
 
 public abstract class BaseTest {
-    protected ConfigUtil configUtil;
     @BeforeMethod
     public void startTests() {
         if( ConfigUtil.getInstance()==null){
             throw new RuntimeException();
         }
-        configUtil= ConfigUtil.getInstance();
+        DriverUtil.getInstance();
     }
 
     @AfterTest
     public void endTests(){
-        if (DriverUtil.getWebDriver()!=null) {
-            DriverUtil.getWebDriver().quit();
+        if (DriverUtil.getInstance().getWebDriver()!=null) {
+            DriverUtil.getInstance().getWebDriver().quit();
         }
     }
 }

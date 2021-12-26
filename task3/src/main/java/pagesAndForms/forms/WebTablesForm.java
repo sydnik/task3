@@ -7,9 +7,7 @@ import org.openqa.selenium.WebElement;
 import pagesAndForms.BasePage;
 import utils.WaitUtil;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class WebTablesForm extends BasePage {
     private final By BUTTON_ADD = By.id("addNewRecordButton");
@@ -45,7 +43,16 @@ public class WebTablesForm extends BasePage {
         List<WebElement> list = WaitUtil.watElements(By.xpath("//*[@role='rowgroup']/div[not(contains(@class,'-padRow'))]"));
         return list.size();
     }
+    Set<String> s  = new HashSet<>();
+
     public int getNumberOfRow(UserData userData){
         return getAllUsers().indexOf(userData)+1;
+    }
+    public boolean contains(UserData userData){
+        if(getNumberOfRow(userData)==0){
+            return false;
+        }else {
+            return true;
+        }
     }
 }

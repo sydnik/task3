@@ -34,19 +34,20 @@ public class ConfigUtil {
         return configUtils;
     }
 
-    public String getDataProperty(String key){
-        return (String) testDataProperties.get(key);
+    public static String getDataProperty(String key){
+        return (String) getInstance().testDataProperties.get(key);
     }
 
-    public Integer getDataIntProperty(String key){
-        return Integer.parseInt((String) testDataProperties.get(key));
+    public static Integer getDataIntProperty(String key){
+        return Integer.parseInt((String) getInstance().testDataProperties.get(key));
     }
 
-    public String getConfProperty(String key){
-        return (String) configProperties.get(key);
+    public static String getConfProperty(String key){
+
+        return (String) getInstance().configProperties.get(key);
     }
 
-    public Integer getConfIntProperty(String key){
-        return Integer.parseInt((String) configProperties.get(key));
+    public static Integer getConfIntProperty(String key){
+        return Integer.parseInt((String) getInstance().configProperties.get(key));
     }
 }

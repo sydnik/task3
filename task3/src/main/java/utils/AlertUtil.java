@@ -1,38 +1,24 @@
 package utils;
 
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 
 public class AlertUtil {
     public static boolean isAlert(){
-        (new WebDriverWait(DriverUtil.getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))))
-                .until(ExpectedConditions.alertIsPresent());
+        WaitUtil.waitPresentAlert();
         return true;
     }
     public static boolean accept(){
-        (new WebDriverWait(DriverUtil.getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))))
-                .until(ExpectedConditions.alertIsPresent()).accept();
+        WaitUtil.waitPresentAlert().accept();
         return true;
     }
     public static String getText(){
-        return (new WebDriverWait(DriverUtil.getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))))
-                .until(ExpectedConditions.alertIsPresent()).getText();
+        return WaitUtil.waitPresentAlert().getText();
 
     }
     public static void sendKeys(String line){
-        (new WebDriverWait(DriverUtil.getWebDriver(), Duration.ofSeconds(ConfigUtil.getInstance().getConfIntProperty("waitSeconds"))))
-                .until(ExpectedConditions.alertIsPresent()).sendKeys(line);
+        WaitUtil.waitPresentAlert().sendKeys(line);
     }
     public static boolean isAlertClosed(){
-        try {
-            DriverUtil.getWebDriver().switchTo().alert();
-        }
-        catch (NoAlertPresentException e){
-            return true;
-        }
-        return false;
+        return WaitUtil.waitUnPresentAlert();
     }
 }
