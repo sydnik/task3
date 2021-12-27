@@ -1,17 +1,17 @@
-package pagesAndForms.forms;
+package pagesAndForms.pages;
 
 import elements.Button;
 import org.openqa.selenium.By;
 import pagesAndForms.BasePage;
-import pagesAndForms.pages.ClickLeftButtons;
+import pagesAndForms.ClickLeftButtons;
 
-public class BrowserWindowForm extends BasePage implements ClickLeftButtons {
+public class BrowserWindowPage extends BasePage implements ClickLeftButtons {
     private final By BUTTON_NEW_TAB = By.id("tabButton");
     private final By BUTTON_NEW_WINDOW = By.id("windowButton");
     private final By BUTTON_NEW_WINDOW_MESSAGE = By.id("messageWindowButton");
 
-    public BrowserWindowForm() {
-        super(By.xpath("//*[@class='main-header'][text()='Browser Windows']"), "BrowserWindowForm");
+    public BrowserWindowPage() {
+        super(By.xpath("//*[@class='main-header'][text()='Browser Windows']"), "BrowserWindowPage");
     }
 
     public void clickNewTab(){

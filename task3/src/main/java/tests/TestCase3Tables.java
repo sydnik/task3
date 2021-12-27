@@ -5,8 +5,9 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pagesAndForms.forms.RegistrationForm;
-import pagesAndForms.forms.WebTablesForm;
+import pagesAndForms.pages.WebTablesPage;
 import pagesAndForms.pages.ElementsPage;
+import pagesAndForms.LeftPanelButtons;
 import pagesAndForms.pages.MainPage;
 import utils.ConfigUtil;
 import utils.DriverUtil;
@@ -21,33 +22,26 @@ public class TestCase3Tables extends BaseTest{
 
     @Test(dataProvider = "getDataForTest")
     public void test(String id,String firstName, String lastName, String email, String age, String salary, String department){
-        System.out.println(id);
-        System.out.println(firstName);
-        System.out.println(lastName);
-        System.out.println(email);
-        System.out.println(age);
-        System.out.println(salary);
-        System.out.println(department);
         DriverUtil.openURL(ConfigUtil.getDataProperty("mainPageURL"));
         MainPage mainPage = new MainPage();
         Assert.assertTrue(mainPage.isPageOpened());
         mainPage.openElements();
         ElementsPage elementsPage = new ElementsPage();
-        elementsPage.openWebTables();
-        WebTablesForm webTablesForm = new WebTablesForm();
-        Assert.assertTrue(webTablesForm.isPageOpened());
-        webTablesForm.clickAdd();
+        elementsPage.open(LeftPanelButtons.WEB_TABLES);
+        WebTablesPage webTablesPage = new WebTablesPage();
+        Assert.assertTrue(webTablesPage.isPageOpened());
+        webTablesPage.clickAdd();
         RegistrationForm registrationForm = new RegistrationForm();
         Assert.assertTrue(registrationForm.isPageOpened());
         UserData userData = new UserData(firstName,lastName,email,age,salary,department);
         registrationForm.sendDataUser(userData);
         registrationForm.clickSubmit();
         Assert.assertTrue(registrationForm.isPageClosed());
-        Assert.assertTrue(webTablesForm.contains(userData));
-        int amountOfRows = webTablesForm.getAmountOfRows();
-        webTablesForm.deleteRow(userData);
-        Assert.assertEquals(amountOfRows-1,webTablesForm.getAmountOfRows());
-        Assert.assertFalse(webTablesForm.contains(userData));
+        Assert.assertTrue(webTablesPage.contains(userData));
+        int amountOfRows = webTablesPage.getAmountOfRows();
+        webTablesPage.deleteRow(userData);
+        Assert.assertEquals(amountOfRows-1, webTablesPage.getAmountOfRows());
+        Assert.assertFalse(webTablesPage.contains(userData));
     }
     @DataProvider
     public Object[][] getDataForTest(){

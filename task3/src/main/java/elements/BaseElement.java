@@ -1,6 +1,7 @@
 package elements;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import utils.DriverUtil;
@@ -17,17 +18,11 @@ public abstract class BaseElement {
         this.locator = locator;
     }
 
-    public boolean exist(){
-        WebElement element = WaitUtil.waitVisibility(findElement());
-        if(element!=null) {
-            return true;
-        } else {
-            LoggerUtil.error(name,"there is no element");
-            throw new RuntimeException();
-        }
-    }
-    public boolean unExist(){
+    public boolean isInVisibility(){
         return WaitUtil.waitInVisibility(locator);
+    }
+    public boolean isVisibility(){
+        return findElement().isDisplayed();
     }
     public String getAttribute(String attribute){
         String result = findElement().getAttribute(attribute);
@@ -46,20 +41,27 @@ public abstract class BaseElement {
         try {
             WaitUtil.waitClickable(findElement()).click();
             LoggerUtil.info(name,"Clicked");
-        } catch (Exception e){
+        }
+        catch (ElementClickInterceptedException e) {
+            scrollAndClickElement();
+        }
+        catch (Exception e){
             LoggerUtil.error(name,"Didn't click element "+e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }
-    public boolean isVisibility(){
-        return findElement().isDisplayed();
-    }
-    public void scrollToElement(){
+
+    protected void scrollToElement(){
 //        new Actions(DriverUtil.getInstance().getWebDriver()).moveToElement(findElement()).build().perform();
         JavascriptExecutor js = ((JavascriptExecutor) DriverUtil.getInstance().getWebDriver());
         js.executeScript("arguments[0].scrollIntoView(true);", findElement());
-    }
+        try {
+            Thread.sleep(10);// пока не нашел лучшего способа(
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
+    }
     protected WebElement findElement(){
         try {
             WebElement element = WaitUtil.waitPresence(locator);
@@ -67,6 +69,15 @@ public abstract class BaseElement {
             return element;
         } catch (Exception e){
             LoggerUtil.error(name,"Didn't find element ");
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+    protected void scrollAndClickElement(){
+        try {
+            scrollToElement();
+            WaitUtil.waitClickable(findElement()).click();
+        } catch (Exception e){
+            LoggerUtil.error(name,"Didn't click element after scroll "+e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }

@@ -22,8 +22,8 @@ public class ConfigUtil {
             testDataProperties.load(readerData);
             configProperties = new Properties();
             configProperties.load(readerConfig);
-        } catch (IOException e) {
-            LoggerUtil.fatal("startTest",e.getMessage());
+        } catch (Exception e) {
+            LoggerUtil.fatal("ConfigUtil", e.getMessage());
             throw new RuntimeException();
         }
     }

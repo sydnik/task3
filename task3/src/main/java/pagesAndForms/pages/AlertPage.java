@@ -1,4 +1,4 @@
-package pagesAndForms.forms;
+package pagesAndForms.pages;
 
 import elements.Button;
 import elements.Text;
@@ -6,15 +6,15 @@ import org.openqa.selenium.By;
 import pagesAndForms.BasePage;
 
 
-public class AlertForm extends BasePage {
+public class AlertPage extends BasePage {
     private final By BUTTON_TO_SEE_ALERT = By.id("alertButton");
     private final By BUTTON_CONFIRM = By.id("confirmButton");
     private final By BUTTON_PROMPT = By.id("promtButton");
     private final By CONFIRM_RESULT = By.id("confirmResult");
     private final By PROMPT_RESULT = By.id("promptResult");
 
-    public AlertForm() {
-        super(By.xpath("//*[@class='main-header'][text()='Alerts']"), "AlertForm");
+    public AlertPage() {
+        super(By.xpath("//*[@class='main-header'][text()='Alerts']"), "AlertPage");
     }
 
     public String getConfirmResult(){

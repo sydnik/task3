@@ -1,7 +1,8 @@
-package pagesAndForms.forms;
+package pagesAndForms.pages;
 
 import data.UserData;
 import elements.Button;
+import elements.Text;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pagesAndForms.BasePage;
@@ -9,10 +10,12 @@ import utils.WaitUtil;
 
 import java.util.*;
 
-public class WebTablesForm extends BasePage {
+public class WebTablesPage extends BasePage {
+    private final By ROWS_WITH_VALUE = By.xpath("//*[@role='rowgroup']/div[not(contains(@class,'-padRow'))]");
+    private final By COLUMN_NAMES = By.className("rt-tr");
     private final By BUTTON_ADD = By.id("addNewRecordButton");
-    public WebTablesForm() {
-        super(By.xpath("//*[@class='main-header'][text()='Web Tables']"), "WebTablesForm");
+    public WebTablesPage() {
+        super(By.xpath("//*[@class='main-header'][text()='Web Tables']"), "WebTablesPage");
     }
     public void clickAdd(){
         Button button = new Button(BUTTON_ADD,"ButtonAdd");
@@ -26,33 +29,34 @@ public class WebTablesForm extends BasePage {
     public List<UserData> getAllUsers(){
         List<UserData> usersList  = new ArrayList<>();
         //HashMap нужен чтобы, если столбцы будут менять местами, тест не сломался.
+        //Можно сделать просто по позициям, но мне кажется в больших проектах так будет лучше.
         HashMap<String,String> map = new HashMap<>();
-        List<WebElement> list = WaitUtil.watElements(By.xpath("//div[@class='rt-table']//*[not(contains(@class,'-padRow'))and(@role='row')]"));
-        String[] keys = list.get(0).getText().split("\n");
-        for (int i = 1; i < list.size(); i++) {
+        List<WebElement> list = WaitUtil.watElements(ROWS_WITH_VALUE);
+        String[] keys = getColumnNames();
+        for (int i = 0; i < list.size(); i++) {
             String[] s = list.get(i).getText().split("\n");
             for (int j = 0; j <s.length ; j++) {
                 map.put(keys[j],s[j]);
             }
-            usersList.add(new UserData(map.get("First Name"), map.get("Last Name"), map.get("Email"), map.get("Age"),
-                    map.get("Salary"), map.get("Department")));
+            usersList.add(new UserData(map.get("First Name"), map.get("Last Name"), map.get("Email"),
+                    map.get("Age"), map.get("Salary"), map.get("Department")));
         }
         return usersList;
     }
     public int getAmountOfRows(){
-        List<WebElement> list = WaitUtil.watElements(By.xpath("//*[@role='rowgroup']/div[not(contains(@class,'-padRow'))]"));
+        List<WebElement> list = WaitUtil.watElements(ROWS_WITH_VALUE);
         return list.size();
     }
-    Set<String> s  = new HashSet<>();
 
     public int getNumberOfRow(UserData userData){
         return getAllUsers().indexOf(userData)+1;
     }
     public boolean contains(UserData userData){
-        if(getNumberOfRow(userData)==0){
-            return false;
-        }else {
-            return true;
-        }
+        return getAllUsers().contains(userData);
+    }
+    private String[] getColumnNames(){
+        Text text = new Text(COLUMN_NAMES,"COLUMN_NAME");
+        String[] names = text.getText().split("\n");
+        return names;
     }
 }

@@ -3,10 +3,9 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pagesAndForms.forms.FramesForm;
-import pagesAndForms.forms.NestedFramesForm;
-import pagesAndForms.pages.AlertsFrameWindowsPage;
-import pagesAndForms.pages.MainPage;
+import pagesAndForms.LeftPanelButtons;
+import pagesAndForms.pages.*;
+import pagesAndForms.pages.FramesPage;
 import utils.ConfigUtil;
 import utils.DriverUtil;
 
@@ -18,16 +17,16 @@ public class TestCase2IFrame extends BaseTest{
         Assert.assertTrue(mainPage.isPageOpened());
         mainPage.openAlertFrameAndWindow();
         AlertsFrameWindowsPage alertsFrameWindowsPage = new AlertsFrameWindowsPage();
-        alertsFrameWindowsPage.openNestedFrames();
-        NestedFramesForm nestedFramesForm = new NestedFramesForm();
-        Assert.assertTrue(nestedFramesForm.isPageOpened());
-        Assert.assertEquals(ConfigUtil.getDataProperty("textParentFrame"),nestedFramesForm.getTextParentFrame());
-        Assert.assertEquals(ConfigUtil.getDataProperty("textChildFrame"),nestedFramesForm.getTextChildFrame());
-        alertsFrameWindowsPage.openFrames();
-        FramesForm framesForm = new FramesForm();
-        Assert.assertTrue(framesForm.isPageOpened());
-        String resultTopFrame = framesForm.getTextTopFrame();
-        String resultBottomFrame = framesForm.getTextBottomFrame();
+        alertsFrameWindowsPage.open(LeftPanelButtons.NESTED_FRAMES);
+        NestedFramesPage nestedFramesPage = new NestedFramesPage();
+        Assert.assertTrue(nestedFramesPage.isPageOpened());
+        Assert.assertEquals(ConfigUtil.getDataProperty("textParentFrame"), nestedFramesPage.getTextParentFrame());
+        Assert.assertEquals(ConfigUtil.getDataProperty("textChildFrame"), nestedFramesPage.getTextChildFrame());
+        alertsFrameWindowsPage.open(LeftPanelButtons.FRAMES);
+        FramesPage framesPage = new FramesPage();
+        Assert.assertTrue(framesPage.isPageOpened());
+        String resultTopFrame = framesPage.getTextTopFrame();
+        String resultBottomFrame = framesPage.getTextBottomFrame();
         Assert.assertEquals(resultBottomFrame,resultTopFrame);
     }
 }

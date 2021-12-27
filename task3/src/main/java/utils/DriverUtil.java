@@ -18,7 +18,7 @@ public class DriverUtil {
     private DriverUtil(){
     }
 
-    public WebDriver getWebDriver() {
+    public static WebDriver getWebDriver() {
         return getInstance().webDriver;
     }
 
@@ -43,10 +43,13 @@ public class DriverUtil {
         return driverUtils;
     }
 
+    public static String getCurrentUrl(){
+        return getInstance().webDriver.getCurrentUrl();
+    }
     public static void openURL(String url){
         getInstance().webDriver.get(url);
     }
-    public static String getCurrentWidnow(){
+    public static String getCurrentWindow(){
         return getInstance().webDriver.getWindowHandle();
     }
     public static void switchToFrame(WebElement element){
@@ -55,31 +58,34 @@ public class DriverUtil {
     public static void switchToFrame(String frame){
         getInstance().webDriver.switchTo().window(frame);
     }
-    public static void saveCurrentWidnows(){
-        tabAndWindow = getInstance().getWebDriver().getWindowHandles();
+    public static void saveCurrentWindows(){
+        tabAndWindow = getInstance().webDriver.getWindowHandles();
     }
     public static void openNewWindow(){
-        Set<String> tabs =  getInstance().getWebDriver().getWindowHandles();
+        Set<String> tabs =  getInstance().webDriver.getWindowHandles();
         for (String s : tabs) {
             if(!tabAndWindow.contains(s)){
-                getInstance().getWebDriver().switchTo().window(s);
+                getInstance().webDriver.switchTo().window(s);
             }
         }
     }
     public static void openAvailableWindow(){
-        for (String s : getInstance().getWebDriver().getWindowHandles()){
-            getInstance().getWebDriver().switchTo().window(s);
+        for (String s : getInstance().webDriver.getWindowHandles()){
+            getInstance().webDriver.switchTo().window(s);
             break;
         }
+    }
+    public static void close(){
+        getInstance().webDriver.close();
     }
 
     private void startChrome(){
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--window-size=" +
-                ConfigUtil.getInstance().getConfProperty("windowWidth") +","+
-                ConfigUtil.getInstance().getConfProperty("windowHeight"));
-        options.addArguments("--lang="+ ConfigUtil.getInstance().getConfProperty("language"));
+                ConfigUtil.getConfProperty("windowWidth") +","+
+                ConfigUtil.getConfProperty("windowHeight"));
+        options.addArguments("--lang="+ ConfigUtil.getConfProperty("language"));
         webDriver = new ChromeDriver(options);
     }
     private void startFireFox(){
@@ -87,8 +93,8 @@ public class DriverUtil {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         //Тут вопрсики, Я вижу только маленький кусок страницы, а все остальное за рамками монитора, Я задаю размеры в пикселях или еще в чемто?
         //Плюс добавить язык!!!
-        firefoxOptions.addArguments("--width="+ ConfigUtil.getInstance().getConfProperty("windowWidth"));
-        firefoxOptions.addArguments("--height="+ ConfigUtil.getInstance().getConfProperty("windowHeight"));
+//        firefoxOptions.addArguments("--width="+ ConfigUtil.getConfProperty("windowWidth"));
+//        firefoxOptions.addArguments("--height="+ ConfigUtil.getConfProperty("windowHeight"));
         webDriver = new FirefoxDriver(firefoxOptions);
     }
 }
