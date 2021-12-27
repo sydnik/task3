@@ -2,10 +2,10 @@ package pagesAndForms.pages;
 
 import elements.Button;
 import org.openqa.selenium.By;
-import pagesAndForms.BasePage;
+import pagesAndForms.BaseForm;
 import pagesAndForms.ClickLeftButtons;
 
-public class BrowserWindowPage extends BasePage implements ClickLeftButtons {
+public class BrowserWindowPage extends BaseForm implements ClickLeftButtons {
     private final By BUTTON_NEW_TAB = By.id("tabButton");
     private final By BUTTON_NEW_WINDOW = By.id("windowButton");
     private final By BUTTON_NEW_WINDOW_MESSAGE = By.id("messageWindowButton");

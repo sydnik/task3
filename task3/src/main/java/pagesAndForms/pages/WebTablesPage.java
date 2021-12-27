@@ -2,21 +2,23 @@ package pagesAndForms.pages;
 
 import data.UserData;
 import elements.Button;
-import elements.Text;
+import elements.Label;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import pagesAndForms.BasePage;
+import pagesAndForms.BaseForm;
 import utils.WaitUtil;
 
 import java.util.*;
 
-public class WebTablesPage extends BasePage {
+public class WebTablesPage extends BaseForm {
     private final By ROWS_WITH_VALUE = By.xpath("//*[@role='rowgroup']/div[not(contains(@class,'-padRow'))]");
     private final By COLUMN_NAMES = By.className("rt-tr");
     private final By BUTTON_ADD = By.id("addNewRecordButton");
+
     public WebTablesPage() {
         super(By.xpath("//*[@class='main-header'][text()='Web Tables']"), "WebTablesPage");
     }
+
     public void clickAdd(){
         Button button = new Button(BUTTON_ADD,"ButtonAdd");
         button.click();
@@ -55,8 +57,8 @@ public class WebTablesPage extends BasePage {
         return getAllUsers().contains(userData);
     }
     private String[] getColumnNames(){
-        Text text = new Text(COLUMN_NAMES,"COLUMN_NAME");
-        String[] names = text.getText().split("\n");
+        Label label = new Label(COLUMN_NAMES,"COLUMN_NAME");
+        String[] names = label.getText().split("\n");
         return names;
     }
 }

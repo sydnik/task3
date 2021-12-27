@@ -1,12 +1,12 @@
 package pagesAndForms.pages;
 
 import elements.Button;
-import elements.Text;
+import elements.Label;
 import org.openqa.selenium.By;
-import pagesAndForms.BasePage;
+import pagesAndForms.BaseForm;
 
 
-public class AlertPage extends BasePage {
+public class AlertPage extends BaseForm {
     private final By BUTTON_TO_SEE_ALERT = By.id("alertButton");
     private final By BUTTON_CONFIRM = By.id("confirmButton");
     private final By BUTTON_PROMPT = By.id("promtButton");
@@ -18,12 +18,12 @@ public class AlertPage extends BasePage {
     }
 
     public String getConfirmResult(){
-        Text text = new Text(CONFIRM_RESULT,"confirmResult");
-        return text.getText();
+        Label label = new Label(CONFIRM_RESULT,"confirmResult");
+        return label.getText();
     }
     public String getPromptResult(){
-        Text text = new Text(PROMPT_RESULT,"promptResult");
-        return text.getText();
+        Label label = new Label(PROMPT_RESULT,"promptResult");
+        return label.getText();
     }
     public void clickAlert(){
         Button button = new Button(BUTTON_TO_SEE_ALERT,"alertButton");

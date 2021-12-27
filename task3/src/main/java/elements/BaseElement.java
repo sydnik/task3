@@ -31,10 +31,11 @@ public abstract class BaseElement {
     public String getText(){
         try {
             String result = findElement().getText();
-            LoggerUtil.info(name, "got Text");
+            LoggerUtil.info(name, "got Label");
             return result;
         }catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
+            LoggerUtil.error(name,"");
+            throw new RuntimeException();
         }
     }
     public void click(){
@@ -56,7 +57,7 @@ public abstract class BaseElement {
         JavascriptExecutor js = ((JavascriptExecutor) DriverUtil.getInstance().getWebDriver());
         js.executeScript("arguments[0].scrollIntoView(true);", findElement());
         try {
-            Thread.sleep(10);// пока не нашел лучшего способа(
+            Thread.sleep(10);// пока не нашел лучшего способа( Если убрать 10мс то клик очень часто промахивается.
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

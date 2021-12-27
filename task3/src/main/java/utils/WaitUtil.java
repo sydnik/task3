@@ -14,7 +14,7 @@ public class WaitUtil {
     private static WaitUtil waitUtil;
 
     private WaitUtil() {
-        this.wait = new WebDriverWait(DriverUtil.getInstance().getWebDriver(),
+        this.wait = new WebDriverWait(DriverUtil.getWebDriver(),
                 Duration.ofSeconds(ConfigUtil.getConfIntProperty("waitSeconds")),
                 Duration.ofMillis(ConfigUtil.getConfIntProperty("timeoutMillis")));
     }

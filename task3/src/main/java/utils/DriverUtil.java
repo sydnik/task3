@@ -1,12 +1,14 @@
 package utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.util.Set;
 
@@ -52,8 +54,8 @@ public class DriverUtil {
     public static String getCurrentWindow(){
         return getInstance().webDriver.getWindowHandle();
     }
-    public static void switchToFrame(WebElement element){
-        getInstance().webDriver.switchTo().frame(element);
+    public static void switchToFrame(By by){
+        getInstance().webDriver.switchTo().frame(WaitUtil.waitPresence(by));
     }
     public static void switchToFrame(String frame){
         getInstance().webDriver.switchTo().window(frame);
@@ -91,10 +93,12 @@ public class DriverUtil {
     private void startFireFox(){
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-        //Тут вопрсики, Я вижу только маленький кусок страницы, а все остальное за рамками монитора, Я задаю размеры в пикселях или еще в чемто?
-        //Плюс добавить язык!!!
-//        firefoxOptions.addArguments("--width="+ ConfigUtil.getConfProperty("windowWidth"));
-//        firefoxOptions.addArguments("--height="+ ConfigUtil.getConfProperty("windowHeight"));
+        FirefoxProfile profile = new FirefoxProfile();
+        profile.setPreference("intl.accept_languages", ConfigUtil.getConfProperty("language"));
+        FirefoxOptions options = new FirefoxOptions();
+        firefoxOptions.addArguments("--width=" + ConfigUtil.getConfIntProperty("windowWidth"));
+        firefoxOptions.addArguments("--height=" + ConfigUtil.getConfIntProperty("windowHeight"));
+        options.setProfile(profile);
         webDriver = new FirefoxDriver(firefoxOptions);
     }
 }

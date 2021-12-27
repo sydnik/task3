@@ -25,8 +25,8 @@ public class TestCase2IFrame extends BaseTest{
         alertsFrameWindowsPage.open(LeftPanelButtons.FRAMES);
         FramesPage framesPage = new FramesPage();
         Assert.assertTrue(framesPage.isPageOpened());
-        String resultTopFrame = framesPage.getTextTopFrame();
-        String resultBottomFrame = framesPage.getTextBottomFrame();
+        String resultTopFrame = framesPage.getTextTopWindow();
+        String resultBottomFrame = framesPage.getTextBottomWindow();
         Assert.assertEquals(resultBottomFrame,resultTopFrame);
     }
 }

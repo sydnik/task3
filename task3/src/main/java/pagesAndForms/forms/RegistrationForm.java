@@ -4,9 +4,9 @@ import data.UserData;
 import elements.Button;
 import elements.JTextField;
 import org.openqa.selenium.By;
-import pagesAndForms.BasePage;
+import pagesAndForms.BaseForm;
 
-public class RegistrationForm extends BasePage {
+public class RegistrationForm extends BaseForm {
     private final By FILED_FIRST_NAME = By.id("firstName");
     private final By FILED_LAST_NAME = By.id("lastName");
     private final By FILED_EMAIL = By.id("userEmail");

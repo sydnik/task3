@@ -3,11 +3,11 @@ package pagesAndForms;
 import elements.Unique;
 import org.openqa.selenium.By;
 
-public abstract class BasePage {
+public abstract class BaseForm {
     private String name;
     private By uniqueElement;
 
-    public BasePage(By uniqueElement,String name) {
+    public BaseForm(By uniqueElement, String name) {
         this.uniqueElement = uniqueElement;
         this.name = name;
     }
