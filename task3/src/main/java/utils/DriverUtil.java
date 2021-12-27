@@ -26,7 +26,9 @@ public class DriverUtil {
 
     public static DriverUtil getInstance(){
         if(driverUtils!=null) {
-            return driverUtils;
+            if(getWebDriver()!=null) {
+                return driverUtils;
+            }
         }
         driverUtils = new DriverUtil();
         switch (ConfigUtil.getConfProperty("browser")) {
