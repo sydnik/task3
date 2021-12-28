@@ -26,7 +26,7 @@ public class DriverUtil {
 
     public static DriverUtil getInstance(){
         if(driverUtils!=null) {
-            if(getWebDriver()!=null) {
+            if(driverUtils.webDriver!=null) {
                 return driverUtils;
             }
         }
