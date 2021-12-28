@@ -15,7 +15,7 @@ public class TestCase4Handles extends BaseTest{
         Assert.assertTrue(mainPage.isPageOpened());
         mainPage.openAlertFrameAndWindow();
         AlertsFrameWindowsPage alertsFrameWindowsPage = new AlertsFrameWindowsPage();
-        alertsFrameWindowsPage.open(LeftPanelButtons.BROWSER_WINDOWS);
+        alertsFrameWindowsPage.click(LeftPanelButtons.BROWSER_WINDOWS);
         BrowserWindowPage browserWindowPage = new BrowserWindowPage();
         Assert.assertTrue(browserWindowPage.isPageOpened());
         DriverUtil.saveCurrentWindows();
@@ -27,7 +27,7 @@ public class TestCase4Handles extends BaseTest{
         DriverUtil.close();
         DriverUtil.openAvailableWindow();
         Assert.assertTrue(browserWindowPage.isPageOpened());
-        browserWindowPage.open(LeftPanelButtons.LINKS);
+        browserWindowPage.click(LeftPanelButtons.LINKS);
         LinksPage linksPage = new LinksPage();
         Assert.assertTrue(linksPage.isPageOpened());
         DriverUtil.saveCurrentWindows();

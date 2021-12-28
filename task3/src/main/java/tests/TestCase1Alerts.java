@@ -19,7 +19,7 @@ public class TestCase1Alerts extends BaseTest{
         Assert.assertTrue(mainPage.isPageOpened());
         mainPage.openAlertFrameAndWindow();
         AlertsFrameWindowsPage alertsFrameWindowsPage = new AlertsFrameWindowsPage();
-        alertsFrameWindowsPage.open(LeftPanelButtons.ALERT);
+        alertsFrameWindowsPage.click(LeftPanelButtons.ALERT);
         AlertPage formAlert = new AlertPage();
         Assert.assertTrue(formAlert.isPageOpened());
         formAlert.clickAlert();

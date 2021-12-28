@@ -17,12 +17,12 @@ public class TestCase2IFrame extends BaseTest{
         Assert.assertTrue(mainPage.isPageOpened());
         mainPage.openAlertFrameAndWindow();
         AlertsFrameWindowsPage alertsFrameWindowsPage = new AlertsFrameWindowsPage();
-        alertsFrameWindowsPage.open(LeftPanelButtons.NESTED_FRAMES);
+        alertsFrameWindowsPage.click(LeftPanelButtons.NESTED_FRAMES);
         NestedFramesPage nestedFramesPage = new NestedFramesPage();
         Assert.assertTrue(nestedFramesPage.isPageOpened());
         Assert.assertEquals(ConfigUtil.getDataProperty("textParentFrame"), nestedFramesPage.getTextParentFrame());
         Assert.assertEquals(ConfigUtil.getDataProperty("textChildFrame"), nestedFramesPage.getTextChildFrame());
-        alertsFrameWindowsPage.open(LeftPanelButtons.FRAMES);
+        alertsFrameWindowsPage.click(LeftPanelButtons.FRAMES);
         FramesPage framesPage = new FramesPage();
         Assert.assertTrue(framesPage.isPageOpened());
         String resultTopFrame = framesPage.getTextTopWindow();

@@ -27,7 +27,7 @@ public class TestCase3Tables extends BaseTest{
         Assert.assertTrue(mainPage.isPageOpened());
         mainPage.openElements();
         ElementsPage elementsPage = new ElementsPage();
-        elementsPage.open(LeftPanelButtons.WEB_TABLES);
+        elementsPage.click(LeftPanelButtons.WEB_TABLES);
         WebTablesPage webTablesPage = new WebTablesPage();
         Assert.assertTrue(webTablesPage.isPageOpened());
         webTablesPage.clickAdd();
