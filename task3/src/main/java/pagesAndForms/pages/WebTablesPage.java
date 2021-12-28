@@ -50,11 +50,8 @@ public class WebTablesPage extends BaseForm {
         return list.size();
     }
 
-    public int getNumberOfRow(UserData userData){
+    private int getNumberOfRow(UserData userData){
         return getAllUsers().indexOf(userData)+1;
-    }
-    public boolean contains(UserData userData){
-        return getAllUsers().contains(userData);
     }
     private String[] getColumnNames(){
         Label label = new Label(COLUMN_NAMES,"COLUMN_NAME");

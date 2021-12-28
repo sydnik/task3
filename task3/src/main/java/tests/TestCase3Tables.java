@@ -37,11 +37,11 @@ public class TestCase3Tables extends BaseTest{
         registrationForm.sendDataUser(userData);
         registrationForm.clickSubmit();
         Assert.assertTrue(registrationForm.isPageClosed());
-        Assert.assertTrue(webTablesPage.contains(userData));
+        Assert.assertTrue(webTablesPage.getAllUsers().contains(userData));
         int amountOfRows = webTablesPage.getAmountOfRows();
         webTablesPage.deleteRow(userData);
         Assert.assertEquals(amountOfRows-1, webTablesPage.getAmountOfRows());
-        Assert.assertFalse(webTablesPage.contains(userData));
+        Assert.assertFalse(webTablesPage.getAllUsers().contains(userData));
     }
     @DataProvider
     public Object[][] getDataForTest(){
