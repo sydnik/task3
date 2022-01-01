@@ -5,8 +5,9 @@ import org.openqa.selenium.By;
 import pagesAndForms.BaseForm;
 
 public class MainPage extends BaseForm {
-    private final By BUTTON_ALERT_FRAME_WINDOW = By.xpath("//*[@class='card-body']//*[text()='Alerts, Frame & Windows']//..//..");
-    private final By BUTTON_ELEMENTS = By.xpath("//*[@class='card-body']//*[text()='Elements']//..//..");
+    private final By BUTTON_ALERT_FRAME_WINDOW = By.xpath("//*[@class='card-body']//*[text()='Alerts, Frame & Windows']");
+    private final By BUTTON_ELEMENTS = By.xpath("//*[@class='card-body']//*[text()='Elements']");
+    private final By BUTTON_WIDGETS = By.xpath("//*[@class='card-body']//*[text()='Widgets']");
 
 
     public MainPage() {
@@ -14,11 +15,12 @@ public class MainPage extends BaseForm {
     }
 
     public void openAlertFrameAndWindow(){
-        Button alertFrameAndWindow = new Button(BUTTON_ALERT_FRAME_WINDOW,"ButtonAlertFrameAndWindow");
-        alertFrameAndWindow.click();
+        new Button(BUTTON_ALERT_FRAME_WINDOW,"ButtonAlertFrameAndWindow").click();
     }
     public void openElements(){
-        Button alertFrameAndWindow = new Button(BUTTON_ELEMENTS,"Elements");
-        alertFrameAndWindow.click();
+        new Button(BUTTON_ELEMENTS,"Elements").click();
+    }
+    public void openWidgets(){
+        new Button(BUTTON_WIDGETS,"Widgets").click();
     }
 }
