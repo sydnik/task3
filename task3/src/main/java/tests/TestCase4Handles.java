@@ -6,6 +6,7 @@ import pagesAndForms.pages.*;
 import pagesAndForms.LeftPanelButtons;
 import utils.ConfigUtil;
 import utils.DriverUtil;
+import utils.WaitUtil;
 
 public class TestCase4Handles extends BaseTest{
     @Test
@@ -32,7 +33,9 @@ public class TestCase4Handles extends BaseTest{
         Assert.assertTrue(linksPage.isPageOpened());
         DriverUtil.saveCurrentWindows();
         String tab = DriverUtil.getCurrentWindow();
+        int numberOfWindow =DriverUtil.getNumberOfWindow()+1;
         linksPage.openHomeNewTab();
+        WaitUtil.waitNewWindow(numberOfWindow);
         DriverUtil.openNewWindow();
         Assert.assertTrue(mainPage.isPageOpened());
         Assert.assertNotEquals(DriverUtil.getCurrentWindow(),tab);

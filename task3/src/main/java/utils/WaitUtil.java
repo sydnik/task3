@@ -46,4 +46,7 @@ public class WaitUtil {
     public static Boolean waitUnPresentAlert(){
         return getInstance().wait.until(ExpectedConditions.not(ExpectedConditions.alertIsPresent()));
     }
+    public static Boolean waitNewWindow(int numberOfWindow){
+        return getInstance().wait.until(ExpectedConditions.numberOfWindowsToBe(numberOfWindow));
+    }
 }

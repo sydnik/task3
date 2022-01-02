@@ -50,6 +50,10 @@ public class DriverUtil {
     public static String getCurrentUrl(){
         return getInstance().webDriver.getCurrentUrl();
     }
+    public static int getNumberOfWindow(){
+        System.out.println(getInstance().webDriver.getWindowHandles().size()+"qwewqe");
+        return getInstance().webDriver.getWindowHandles().size();
+    }
     public static void openURL(String url){
         getInstance().webDriver.get(url);
     }
