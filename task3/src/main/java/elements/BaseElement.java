@@ -19,15 +19,26 @@ public abstract class BaseElement {
     }
 
     public boolean isInVisibility(){
-        return WaitUtil.waitInVisibility(locator);
+        try {
+            boolean result = WaitUtil.waitInVisibility(locator);
+            LoggerUtil.info(name,"Element is invisible");
+            return result;
+        }catch (Exception e){
+            LoggerUtil.error(name,"Element is visible" + e.getMessage());
+            throw new RuntimeException();
+        }
     }
-    public boolean isVisibility(){
-        return findElement().isDisplayed();
+
+    public boolean isVisibilityNow(){
+           boolean result = findElement().isDisplayed();
+           return result;
     }
+
     public String getAttribute(String attribute){
         String result = findElement().getAttribute(attribute);
         return result;
     }
+
     public String getText(){
         try {
             String result = findElement().getText();
@@ -38,12 +49,15 @@ public abstract class BaseElement {
             throw new RuntimeException();
         }
     }
+
     public int getWidth(){
         return findElement().getSize().width;
     }
+
     public int getHeight(){
         return findElement().getSize().height;
     }
+
     public void click(){
         try {
             WaitUtil.waitClickable(findElement()).click();

@@ -3,6 +3,7 @@ package elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import utils.DriverUtil;
+import utils.LoggerUtil;
 import utils.WaitUtil;
 
 public class Slider extends BaseElement{
@@ -15,19 +16,11 @@ public class Slider extends BaseElement{
         Actions actions = new Actions(DriverUtil.getWebDriver());
         actions.moveToElement(findElement()).
                 clickAndHold().
-                moveByOffset(-(getWidth()/2),0).
-                moveByOffset(pixels,0).release().build().perform();
+                moveByOffset(pixels-(getWidth()/2),0).release().build().perform();
+        LoggerUtil.info(name,"setArrow on value ");
     }
-    public int getMaxValue(){
-        return Integer.parseInt(getAttribute("max"));
-    }
-    public int getMinValue(){
-        return Integer.parseInt(getAttribute("min"));
-    }
-    public int getValue(){
-        return Integer.parseInt(findElement().getAttribute("value"));
-    }
-    public boolean waitValue(int value){
-        return WaitUtil.waitToBeAttributeValue(findElement(),"value", String.valueOf(value));
+
+    public boolean waitAttributeValue(int value,String attribute){
+        return WaitUtil.waitToBeAttributeValue(findElement(),attribute, String.valueOf(value));
     }
 }

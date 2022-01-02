@@ -15,6 +15,7 @@ public class NestedFramesPage extends BaseForm {
     public NestedFramesPage() {
         super(By.id("framesWrapper"), "NestedFramesPage");
     }
+
     public String getTextParentFrame(){
         switchParentWindow();
         Label label = new Label(TEXT_PARENT_FRAME,"textParentFrame");
@@ -31,13 +32,16 @@ public class NestedFramesPage extends BaseForm {
         switchEarlyWindow();
         return result;
     }
+
     private void switchParentWindow(){
         savedFrame = DriverUtil.getCurrentWindow();
         DriverUtil.switchToFrame(PARENT_FRAME);
     }
+
     private void switchChildWindow(){
         DriverUtil.switchToFrame(CHILD_FRAME);
     }
+
     private void switchEarlyWindow(){
         DriverUtil.switchToFrame(savedFrame);
     }

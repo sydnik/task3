@@ -21,18 +21,22 @@ public class AlertPage extends BaseForm {
         Label label = new Label(CONFIRM_RESULT,"confirmResult");
         return label.getText();
     }
+
     public String getPromptResult(){
         Label label = new Label(PROMPT_RESULT,"promptResult");
         return label.getText();
     }
+
     public void clickAlert(){
         Button button = new Button(BUTTON_TO_SEE_ALERT,"alertButton");
         button.click();
     }
+
     public void clickConfirm(){
         Button button = new Button(BUTTON_CONFIRM,"confirmButton");
         button.click();
     }
+
     public void clickPrompt(){
         Button button = new Button(BUTTON_PROMPT,"promtButton");
         button.click();

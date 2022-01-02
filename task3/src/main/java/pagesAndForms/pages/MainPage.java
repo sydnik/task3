@@ -9,7 +9,6 @@ public class MainPage extends BaseForm {
     private final By BUTTON_ELEMENTS = By.xpath("//*[@class='card-body']//*[text()='Elements']");
     private final By BUTTON_WIDGETS = By.xpath("//*[@class='card-body']//*[text()='Widgets']");
 
-
     public MainPage() {
         super(By.className("home-content"),"MainPage");
     }
@@ -17,9 +16,11 @@ public class MainPage extends BaseForm {
     public void openAlertFrameAndWindow(){
         new Button(BUTTON_ALERT_FRAME_WINDOW,"ButtonAlertFrameAndWindow").click();
     }
+
     public void openElements(){
         new Button(BUTTON_ELEMENTS,"Elements").click();
     }
+
     public void openWidgets(){
         new Button(BUTTON_WIDGETS,"Widgets").click();
     }

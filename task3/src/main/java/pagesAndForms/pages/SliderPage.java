@@ -18,14 +18,14 @@ public class SliderPage extends BaseForm implements ClickLeftButtons {
         double percents = width*value/100;
         int result = (int) ((percents + (-0.2*(value-50))));
         slider.setArrow(result);
-        slider.waitValue(value);
+        slider.waitAttributeValue(value,"value");
 
     }
     public int getMinValue(){
-        return new Slider(SLIDER,"Slider").getMinValue();
+        return Integer.parseInt(new Slider(SLIDER,"Slider").getAttribute("min"));
     }
     public int getMaxValue(){
-        return new Slider(SLIDER,"Slider").getMaxValue();
+        return Integer.parseInt(new Slider(SLIDER,"Slider").getAttribute("max"));
     }
     public int getValue(){
         return Integer.parseInt(new TextField(SLIDER_VALUE,"SliderValue").getAttribute("value"));

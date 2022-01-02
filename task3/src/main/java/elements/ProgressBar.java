@@ -8,6 +8,7 @@ public class ProgressBar extends BaseElement {
     public ProgressBar(By uniqueElement, String name) {
         super(uniqueElement, name);
     }
+
     public boolean waitTextValue(String value,int timeOut){
         try {
             boolean result = WaitUtil.waitToBeText(findElement(),value,timeOut);

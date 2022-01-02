@@ -23,11 +23,13 @@ public class WebTablesPage extends BaseForm {
         Button button = new Button(BUTTON_ADD,"ButtonAdd");
         button.click();
     }
+
     public boolean deleteRow(UserData user){
         Button buttonDelete = new Button(By.id("delete-record-"+getNumberOfRow(user)),"deleteRowsButton");
         buttonDelete.click();
         return true;
     }
+
     public List<UserData> getAllUsers(){
         List<UserData> usersList  = new ArrayList<>();
         //HashMap нужен чтобы, если столбцы будут менять местами, тест не сломался.
@@ -45,6 +47,7 @@ public class WebTablesPage extends BaseForm {
         }
         return usersList;
     }
+
     public int getAmountOfRows(){
         List<WebElement> list = WaitUtil.watElements(ROWS_WITH_VALUE);
         return list.size();
@@ -53,6 +56,7 @@ public class WebTablesPage extends BaseForm {
     private int getNumberOfRow(UserData userData){
         return getAllUsers().indexOf(userData)+1;
     }
+
     private String[] getColumnNames(){
         Label label = new Label(COLUMN_NAMES,"COLUMN_NAME");
         String[] names = label.getText().split("\n");

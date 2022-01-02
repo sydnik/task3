@@ -13,9 +13,9 @@ public abstract class BaseForm {
     }
 
     public boolean isPageOpened(){
-            Unique unique = new Unique(uniqueElement,"isPageOpened " + name);
-            boolean result =unique.exist();
-            return result;
+        Unique unique = new Unique(uniqueElement,"isPageOpened " + name);
+        boolean result =unique.exist();
+        return result;
     }
     public boolean isPageClosed(){
         Unique unique = new Unique(uniqueElement,"isPageOpened " + name);

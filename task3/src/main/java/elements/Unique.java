@@ -8,6 +8,7 @@ public class Unique extends BaseElement{
     public Unique(By locator, String name) {
         super(locator, name);
     }
+
     public boolean exist(){
         try {
             WaitUtil.waitVisibility(findElement());

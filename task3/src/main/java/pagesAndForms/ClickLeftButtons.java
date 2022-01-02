@@ -8,7 +8,7 @@ public interface  ClickLeftButtons {
     //нужную кнопку, и ставим интерфейс везде где есть левый блок
     default void click(LeftPanelButtons dataButton) {
         Button button = new Button(dataButton.getLocator(),dataButton.getName());
-        if(!button.isVisibility()){
+        if(!button.isVisibilityNow()){
             openBlock(dataButton.getParent());
         }
         button.click();

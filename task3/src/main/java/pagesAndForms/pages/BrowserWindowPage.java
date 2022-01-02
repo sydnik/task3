@@ -19,10 +19,12 @@ public class BrowserWindowPage extends BaseForm implements ClickLeftButtons {
         Button button = new Button(BUTTON_NEW_TAB,"newTab");
         button.click();
     }
+
     public void clickNewWindow(){
         Button button = new Button(BUTTON_NEW_WINDOW,"newWindow");
         button.click();
     }
+
     public void clickNewWindowMessage(){
         Button button = new Button(BUTTON_NEW_WINDOW_MESSAGE,"newWindowMessage");
         button.click();
