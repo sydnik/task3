@@ -106,7 +106,7 @@ public class DriverUtil {
         options.addArguments("--window-size=" +
                 ConfigUtil.getConfProperty("windowWidth") +","+
                 ConfigUtil.getConfProperty("windowHeight"));
-        options.addArguments("--disable-smooth-scrolling");
+        options.addArguments("--"+ConfigUtil.getConfProperty("smoothScrollChrome")+"-smooth-scrolling");
         options.addArguments("--lang="+ ConfigUtil.getConfProperty("language"));
         webDriver = new ChromeDriver(options);
     }
@@ -115,7 +115,7 @@ public class DriverUtil {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         FirefoxProfile profile = new FirefoxProfile();
         profile.setPreference("intl.accept_languages", ConfigUtil.getConfProperty("language"));
-        profile.setPreference("general. smoothScroll",false);
+        profile.setPreference("general. smoothScroll",ConfigUtil.getConfProperty("smoothScrollFireFox"));
         FirefoxOptions options = new FirefoxOptions();
         firefoxOptions.addArguments("--width=" + ConfigUtil.getConfIntProperty("windowWidth"));
         firefoxOptions.addArguments("--height=" + ConfigUtil.getConfIntProperty("windowHeight"));
