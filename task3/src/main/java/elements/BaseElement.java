@@ -34,7 +34,7 @@ public abstract class BaseElement {
             LoggerUtil.info(name, "got Label");
             return result;
         }catch (Exception e) {
-            LoggerUtil.error(name,"");
+            LoggerUtil.error(name,"Didn't get text"+"\n" + e.getMessage());
             throw new RuntimeException();
         }
     }
@@ -53,7 +53,7 @@ public abstract class BaseElement {
             scrollAndClickElement();
         }
         catch (Exception e){
-            LoggerUtil.error(name,"Didn't click element "+e.getMessage());
+            LoggerUtil.error(name,"Didn't click element "+"\n" + e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -69,7 +69,7 @@ public abstract class BaseElement {
             LoggerUtil.info(name,"Element found");
             return element;
         } catch (Exception e){
-            LoggerUtil.error(name,"Didn't find element ");
+            LoggerUtil.error(name,"Didn't find element " +"\n" + e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -77,8 +77,9 @@ public abstract class BaseElement {
         try {
             scrollToElement();
             WaitUtil.waitClickable(findElement()).click();
+            LoggerUtil.info(name,"Use scrollAndClickElement successfully");
         } catch (Exception e){
-            LoggerUtil.error(name,"Didn't click element after scroll "+e.getMessage());
+            LoggerUtil.error(name,"Didn't click element after scroll "+"\n" + e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }

@@ -28,6 +28,6 @@ public class Slider extends BaseElement{
         return Integer.parseInt(findElement().getAttribute("value"));
     }
     public boolean waitValue(int value){
-        return WaitUtil.waitToBeValue(findElement(),"value", String.valueOf(value));
+        return WaitUtil.waitToBeAttributeValue(findElement(),"value", String.valueOf(value));
     }
 }

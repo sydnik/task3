@@ -7,14 +7,12 @@ import pagesAndForms.pages.AlertPage;
 import pagesAndForms.pages.AlertsFrameWindowsPage;
 import pagesAndForms.LeftPanelButtons;
 import pagesAndForms.pages.MainPage;
-import utils.AlertUtil;
-import utils.ConfigUtil;
-import utils.DriverUtil;
-import utils.RandomUtil;
+import utils.*;
 
 public class TestCase1Alerts extends BaseTest{
     @Test
     public void test()  {
+        LoggerUtil.info("TestCase1Alerts","Start test");
         DriverUtil.openURL(ConfigUtil.getDataProperty("mainPageURL"));
         MainPage mainPage = new MainPage();
         Assert.assertTrue(mainPage.isPageOpened());
@@ -40,5 +38,6 @@ public class TestCase1Alerts extends BaseTest{
         AlertUtil.accept();
         Assert.assertTrue(AlertUtil.isAlertClosed());
         Assert.assertEquals(formAlert.getPromptResult(),"You entered " +randomLine);
+        LoggerUtil.info("TestCase1Alerts","Finish test");
     }
 }

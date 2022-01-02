@@ -9,12 +9,14 @@ import pagesAndForms.pages.SliderPage;
 import pagesAndForms.pages.WidgetsPage;
 import utils.ConfigUtil;
 import utils.DriverUtil;
+import utils.LoggerUtil;
 import utils.RandomUtil;
 
 public class TestCase5SliderAndProgressBar extends BaseTest{
 
     @Test
     public void test(){
+        LoggerUtil.info("TestCase5SliderAndProgressBar","Start test");
         DriverUtil.openURL(ConfigUtil.getDataProperty("mainPageURL"));
         MainPage mainPage = new MainPage();
         Assert.assertTrue(mainPage.isPageOpened());
@@ -33,5 +35,6 @@ public class TestCase5SliderAndProgressBar extends BaseTest{
         int ageValue = ConfigUtil.getDataIntProperty("EngineerAge");
         progressBarPage.clickStopOnValue(ageValue);
         Assert.assertTrue(((ageValue- 2) < progressBarPage.getValue())&&progressBarPage.getValue()<(ageValue+2));
+        LoggerUtil.info("TestCase5SliderAndProgressBar","Finish test");
     }
 }

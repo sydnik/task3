@@ -58,7 +58,7 @@ public class WaitUtil {
         return getInstance().wait.until(ExpectedConditions.numberOfWindowsToBe(numberOfWindow));
     }
 
-    public static Boolean waitToBeValue(WebElement element, String attribute, String value){
+    public static Boolean waitToBeAttributeValue(WebElement element, String attribute, String value){
        return getInstance().wait.until(ExpectedConditions.attributeToBe(element,attribute,value));
     }
 
