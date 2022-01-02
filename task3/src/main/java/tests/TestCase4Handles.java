@@ -6,7 +6,6 @@ import pagesAndForms.pages.*;
 import pagesAndForms.LeftPanelButtons;
 import utils.ConfigUtil;
 import utils.DriverUtil;
-import utils.WaitUtil;
 
 public class TestCase4Handles extends BaseTest{
     @Test
