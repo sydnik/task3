@@ -62,12 +62,6 @@ public abstract class BaseElement {
 //        new Actions(DriverUtil.getInstance().getWebDriver()).moveToElement(findElement()).build().perform();
         JavascriptExecutor js = ((JavascriptExecutor) DriverUtil.getWebDriver());
         js.executeScript("arguments[0].scrollIntoView(true);", findElement());
-        try {
-            Thread.sleep(10);// пока не нашел лучшего способа( Если убрать 10мс то клик очень часто промахивается.
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
     }
     protected WebElement findElement(){
         try {

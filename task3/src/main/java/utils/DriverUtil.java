@@ -115,6 +115,7 @@ public class DriverUtil {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         FirefoxProfile profile = new FirefoxProfile();
         profile.setPreference("intl.accept_languages", ConfigUtil.getConfProperty("language"));
+        profile.setPreference("general. smoothScroll",false);
         FirefoxOptions options = new FirefoxOptions();
         firefoxOptions.addArguments("--width=" + ConfigUtil.getConfIntProperty("windowWidth"));
         firefoxOptions.addArguments("--height=" + ConfigUtil.getConfIntProperty("windowHeight"));
