@@ -13,7 +13,7 @@ public class NestedFramesPage extends BaseForm {
     private String savedFrame;
 
     public NestedFramesPage() {
-        super(By.xpath("//*[@class='main-header'][text()='Nested Frames']"), "NestedFramesPage");
+        super(By.id("framesWrapper"), "NestedFramesPage");
     }
     public String getTextParentFrame(){
         switchParentWindow();

@@ -3,8 +3,8 @@ package elements;
 import org.openqa.selenium.By;
 import utils.LoggerUtil;
 
-public class JTextField extends BaseElement{
-    public JTextField(By locator, String name) {
+public class TextField extends BaseElement{
+    public TextField(By locator, String name) {
         super(locator, name);
     }
     public void sendKeys(String s){

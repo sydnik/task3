@@ -14,7 +14,7 @@ public class AlertPage extends BaseForm {
     private final By PROMPT_RESULT = By.id("promptResult");
 
     public AlertPage() {
-        super(By.xpath("//*[@class='main-header'][text()='Alerts']"), "AlertPage");
+        super(By.id("alertButton"), "AlertPage");
     }
 
     public String getConfirmResult(){

@@ -11,8 +11,11 @@ public enum LeftPanelButtons {
     BROWSER_WINDOWS(By.xpath("//*[@class='text'][text()='Browser Windows']"),ALERTS_FRAME_WINDOWS),
     ALERT(By.xpath("//*[@class='text'][text()='Alerts']"),ALERTS_FRAME_WINDOWS),
     FRAMES(By.xpath("//*[@class='text'][text()='Frames']"),ALERTS_FRAME_WINDOWS),
-    NESTED_FRAMES(By.xpath("//*[@class='text'][text()='Nested Frames']"),ALERTS_FRAME_WINDOWS);
+    NESTED_FRAMES(By.xpath("//*[@class='text'][text()='Nested Frames']"),ALERTS_FRAME_WINDOWS),
 
+    WIDGETS(By.xpath("//*[@class='header-wrapper']//*[text()='Widgets']"),null),
+    SLIDER(By.xpath("//*[@class='text'][text()='Slider']"),WIDGETS),
+    PROGRESS_BAR(By.xpath("//*[@class='text'][text()='Progress Bar']"),WIDGETS);
 
 
     private By locator;

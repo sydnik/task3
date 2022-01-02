@@ -2,7 +2,7 @@ package pagesAndForms.forms;
 
 import data.UserData;
 import elements.Button;
-import elements.JTextField;
+import elements.TextField;
 import org.openqa.selenium.By;
 import pagesAndForms.BaseForm;
 
@@ -34,7 +34,7 @@ public class RegistrationForm extends BaseForm {
     }
 
     private void sendKeys(String value, By textFieldLocator){
-        JTextField jTextField = new JTextField(textFieldLocator, value);
-        jTextField.sendKeys(value);
+        TextField textField = new TextField(textFieldLocator, value);
+        textField.sendKeys(value);
     }
 }

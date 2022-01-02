@@ -14,7 +14,7 @@ public class FramesPage extends BaseForm {
 
 
     public FramesPage() {
-        super(By.xpath("//*[@class='main-header'][text()='Frames']"), "FramesPage");
+        super(By.id("framesWrapper"), "FramesPage");
     }
 
     public String getTextTopWindow(){

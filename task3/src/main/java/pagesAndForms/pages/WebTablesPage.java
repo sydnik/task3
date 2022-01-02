@@ -16,7 +16,7 @@ public class WebTablesPage extends BaseForm {
     private final By BUTTON_ADD = By.id("addNewRecordButton");
 
     public WebTablesPage() {
-        super(By.xpath("//*[@class='main-header'][text()='Web Tables']"), "WebTablesPage");
+        super(By.className("web-tables-wrapper"), "WebTablesPage");
     }
 
     public void clickAdd(){

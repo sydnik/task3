@@ -11,7 +11,8 @@ public class BrowserWindowPage extends BaseForm implements ClickLeftButtons {
     private final By BUTTON_NEW_WINDOW_MESSAGE = By.id("messageWindowButton");
 
     public BrowserWindowPage() {
-        super(By.xpath("//*[@class='main-header'][text()='Browser Windows']"), "BrowserWindowPage");
+        super(By.id("browserWindows"), "BrowserWindowPage");
+
     }
 
     public void clickNewTab(){

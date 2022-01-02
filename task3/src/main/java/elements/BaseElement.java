@@ -38,6 +38,12 @@ public abstract class BaseElement {
             throw new RuntimeException();
         }
     }
+    public int getWidth(){
+        return findElement().getSize().width;
+    }
+    public int getHeight(){
+        return findElement().getSize().height;
+    }
     public void click(){
         try {
             WaitUtil.waitClickable(findElement()).click();
