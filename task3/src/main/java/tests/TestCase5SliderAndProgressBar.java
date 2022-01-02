@@ -9,6 +9,7 @@ import pagesAndForms.pages.SliderPage;
 import pagesAndForms.pages.WidgetsPage;
 import utils.ConfigUtil;
 import utils.DriverUtil;
+import utils.RandomUtil;
 
 public class TestCase5SliderAndProgressBar extends BaseTest{
 
@@ -22,7 +23,7 @@ public class TestCase5SliderAndProgressBar extends BaseTest{
         widgetsPage.click(LeftPanelButtons.SLIDER);
         SliderPage sliderPage = new SliderPage();
         Assert.assertTrue(sliderPage.isPageOpened());
-        int value = (int) (Math.random()*(sliderPage.getMaxValue()- sliderPage.getMinValue())- sliderPage.getMinValue());
+        int value = RandomUtil.randomNumber(sliderPage.getMinValue(),sliderPage.getMaxValue());
         sliderPage.setSlider(value);
         Assert.assertEquals(value,sliderPage.getValue());
         sliderPage.click(LeftPanelButtons.PROGRESS_BAR);

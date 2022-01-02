@@ -10,6 +10,7 @@ import pagesAndForms.pages.MainPage;
 import utils.AlertUtil;
 import utils.ConfigUtil;
 import utils.DriverUtil;
+import utils.RandomUtil;
 
 public class TestCase1Alerts extends BaseTest{
     @Test
@@ -34,7 +35,7 @@ public class TestCase1Alerts extends BaseTest{
         Assert.assertEquals(formAlert.getConfirmResult(),ConfigUtil.getDataProperty("resultConfirm"));
         formAlert.clickPrompt();
         Assert.assertEquals(AlertUtil.getText(),ConfigUtil.getDataProperty("textClickPrompt"));
-        String randomLine = RandomStringUtils.randomAlphabetic((int) (Math.random()*100));
+        String randomLine = RandomUtil.randomText();
         AlertUtil.sendKeys(randomLine);
         AlertUtil.accept();
         Assert.assertTrue(AlertUtil.isAlertClosed());
