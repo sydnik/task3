@@ -83,8 +83,12 @@ public class DriverUtil {
             break;
         }
     }
-    public static void close(){
+    public static void closeTab(){
         getInstance().webDriver.close();
+    }
+    public static void close(){
+        getInstance().webDriver.quit();
+        driverUtils=null;
     }
 
     private void startChrome(){
@@ -93,6 +97,7 @@ public class DriverUtil {
         options.addArguments("--window-size=" +
                 ConfigUtil.getConfProperty("windowWidth") +","+
                 ConfigUtil.getConfProperty("windowHeight"));
+        options.addArguments("--disable-smooth-scrolling");
         options.addArguments("--lang="+ ConfigUtil.getConfProperty("language"));
         webDriver = new ChromeDriver(options);
     }

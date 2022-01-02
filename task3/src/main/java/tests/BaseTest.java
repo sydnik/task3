@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import utils.ConfigUtil;
@@ -12,10 +13,10 @@ public abstract class BaseTest {
         DriverUtil.getInstance();
     }
 
-    @AfterTest
+    @AfterMethod
     public void endTests(){
         if (DriverUtil.getWebDriver()!=null) {
-            DriverUtil.getWebDriver().quit();
+            DriverUtil.close();
         }
     }
 }

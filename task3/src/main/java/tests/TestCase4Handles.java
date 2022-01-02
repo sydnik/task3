@@ -25,7 +25,7 @@ public class TestCase4Handles extends BaseTest{
         Assert.assertTrue(DriverUtil.getCurrentUrl().endsWith(ConfigUtil.getDataProperty("newTabURL")));
         SamplePage samplePage = new SamplePage();
         Assert.assertTrue(samplePage.getText().endsWith(ConfigUtil.getDataProperty("textNewTab")));
-        DriverUtil.close();
+        DriverUtil.closeTab();
         DriverUtil.openAvailableWindow();
         Assert.assertTrue(browserWindowPage.isPageOpened());
         browserWindowPage.click(LeftPanelButtons.LINKS);

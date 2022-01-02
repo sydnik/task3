@@ -60,7 +60,7 @@ public abstract class BaseElement {
 
     protected void scrollToElement(){
 //        new Actions(DriverUtil.getInstance().getWebDriver()).moveToElement(findElement()).build().perform();
-        JavascriptExecutor js = ((JavascriptExecutor) DriverUtil.getInstance().getWebDriver());
+        JavascriptExecutor js = ((JavascriptExecutor) DriverUtil.getWebDriver());
         js.executeScript("arguments[0].scrollIntoView(true);", findElement());
         try {
             Thread.sleep(10);// пока не нашел лучшего способа( Если убрать 10мс то клик очень часто промахивается.

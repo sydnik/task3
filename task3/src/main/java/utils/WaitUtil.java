@@ -25,28 +25,47 @@ public class WaitUtil {
         return new WaitUtil();
 
     }
+
     public static WebElement waitVisibility(WebElement element){
         return getInstance().wait.until(ExpectedConditions.visibilityOf(element));
     }
+
     public static boolean waitInVisibility(By locator){
         return getInstance().wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
+
     public static WebElement waitClickable(WebElement element){
         return getInstance().wait.until(ExpectedConditions.elementToBeClickable(element));
     }
+
     public static WebElement waitPresence(By locator){
         return getInstance().wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
+
     public static List<WebElement> watElements(By locator){
         return getInstance().wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
     }
+
     public static Alert waitPresentAlert(){
         return getInstance().wait.until(ExpectedConditions.alertIsPresent());
     }
+
     public static Boolean waitUnPresentAlert(){
         return getInstance().wait.until(ExpectedConditions.not(ExpectedConditions.alertIsPresent()));
     }
+
     public static Boolean waitNewWindow(int numberOfWindow){
         return getInstance().wait.until(ExpectedConditions.numberOfWindowsToBe(numberOfWindow));
+    }
+
+    public static Boolean waitToBeValue(WebElement element, String attribute, String value){
+       return getInstance().wait.until(ExpectedConditions.attributeToBe(element,attribute,value));
+    }
+
+    public static Boolean waitToBeText(WebElement element, String value, int timeOut){
+        WebDriverWait waitCustom = new WebDriverWait(DriverUtil.getWebDriver(),
+                Duration.ofSeconds(ConfigUtil.getConfIntProperty("waitSeconds")),
+                Duration.ofMillis(timeOut));
+       return waitCustom.until(ExpectedConditions.textToBePresentInElement(element,value));
     }
 }
