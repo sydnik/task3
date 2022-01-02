@@ -77,6 +77,15 @@ public class DriverUtil {
             }
         }
     }
+    public static void waitAndOpenNewWindow(){
+        WaitUtil.waitNewWindow(tabAndWindow.size()+1);
+        Set<String> tabs =  getInstance().webDriver.getWindowHandles();
+        for (String s : tabs) {
+            if(!tabAndWindow.contains(s)){
+                getInstance().webDriver.switchTo().window(s);
+            }
+        }
+    }
     public static void openAvailableWindow(){
         for (String s : getInstance().webDriver.getWindowHandles()){
             getInstance().webDriver.switchTo().window(s);

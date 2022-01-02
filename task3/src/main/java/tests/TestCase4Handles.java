@@ -21,7 +21,7 @@ public class TestCase4Handles extends BaseTest{
         Assert.assertTrue(browserWindowPage.isPageOpened());
         DriverUtil.saveCurrentWindows();
         browserWindowPage.clickNewTab();
-        DriverUtil.openNewWindow();
+        DriverUtil.waitAndOpenNewWindow();
         Assert.assertTrue(DriverUtil.getCurrentUrl().endsWith(ConfigUtil.getDataProperty("newTabURL")));
         SamplePage samplePage = new SamplePage();
         Assert.assertTrue(samplePage.getText().endsWith(ConfigUtil.getDataProperty("textNewTab")));
@@ -33,10 +33,9 @@ public class TestCase4Handles extends BaseTest{
         Assert.assertTrue(linksPage.isPageOpened());
         DriverUtil.saveCurrentWindows();
         String tab = DriverUtil.getCurrentWindow();
-        int numberOfWindow =DriverUtil.getNumberOfWindow()+1;
+        DriverUtil.saveCurrentWindows();
         linksPage.openHomeNewTab();
-        WaitUtil.waitNewWindow(numberOfWindow);
-        DriverUtil.openNewWindow();
+        DriverUtil.waitAndOpenNewWindow();
         Assert.assertTrue(mainPage.isPageOpened());
         Assert.assertNotEquals(DriverUtil.getCurrentWindow(),tab);
         DriverUtil.openAvailableWindow();
