@@ -18,6 +18,15 @@ public class ProgressBar extends BaseElement {
             LoggerUtil.error(name,"Didn't wait desired text"+"\n"+e.getMessage());
             throw new RuntimeException();
         }
-
+    }
+    public boolean waitTextValues(String[] values,int timeOut){
+        try {
+            boolean result = WaitUtil.waitToBeTextValues(findElement(),values,timeOut);
+            LoggerUtil.info(name,"Waited the desired text");
+            return result;
+        }catch (Exception e){
+            LoggerUtil.error(name,"Didn't wait desired text"+"\n"+e.getMessage());
+            throw new RuntimeException();
+        }
     }
 }
