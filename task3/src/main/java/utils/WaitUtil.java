@@ -74,7 +74,7 @@ public class WaitUtil {
         for (int i = 0; i < array.length; i++) {
             array[i] = ExpectedConditions.textToBePresentInElement(element,values[i]);
         }
-        return new WebDriverWait(DriverUtil.getWebDriver(), Duration.ofSeconds(10),Duration.ofMillis(timeOut)).until(
-                ExpectedConditions.or(array));
+        return new WebDriverWait(DriverUtil.getWebDriver(), Duration.ofSeconds(ConfigUtil.getConfIntProperty("waitSeconds")),Duration.ofMillis(timeOut)).
+                until(ExpectedConditions.or(array));
     }
 }

@@ -25,7 +25,7 @@ public class ProgressBarPage extends BaseForm {
         progressBar.waitTextValue(value+"%",1);
         button.click();
     }
-    //не знаю какой правильней) Выше ищет конкретное значение, ниже код ищет с погрешность
+    //не знаю какой правильно) Выше ищет конкретное значение, ниже код ищет с погрешность
     public void clickStopOnValueWithAnError(int value,int errorRate){
         Button button = new Button(START_AND_STOP_BUTTON,"startStopButton");
         ProgressBar progressBar = new ProgressBar(PROGRESS_BAR,"progressBar");
