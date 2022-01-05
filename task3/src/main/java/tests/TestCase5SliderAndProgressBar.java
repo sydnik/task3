@@ -32,9 +32,10 @@ public class TestCase5SliderAndProgressBar extends BaseTest{
         ProgressBarPage progressBarPage = new ProgressBarPage();
         Assert.assertTrue(progressBarPage.isPageOpened());
         progressBarPage.clickStart();
-        int ageValue = ConfigUtil.getDataIntProperty("EngineerAge");
+        int ageValue = ConfigUtil.getDataIntProperty("engineerAge");
         progressBarPage.clickStopOnValue(ageValue);
-        Assert.assertTrue(((ageValue- 2) < progressBarPage.getValue())&&progressBarPage.getValue()<(ageValue+2));
+        Assert.assertTrue(((ageValue- ConfigUtil.getDataIntProperty("engineerAgeMarginOfError")) < progressBarPage.getValue())&&
+                progressBarPage.getValue()<(ageValue+ConfigUtil.getDataIntProperty("engineerAgeMarginOfError")));
         LoggerUtil.info("TestCase5SliderAndProgressBar","Finish test");
     }
 }

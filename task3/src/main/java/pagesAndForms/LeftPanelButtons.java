@@ -15,7 +15,8 @@ public enum LeftPanelButtons {
 
     WIDGETS(By.xpath("//*[@class='header-wrapper']//*[text()='Widgets']"),null),
     SLIDER(By.xpath("//*[@class='text'][text()='Slider']"),WIDGETS),
-    PROGRESS_BAR(By.xpath("//*[@class='text'][text()='Progress Bar']"),WIDGETS);
+    PROGRESS_BAR(By.xpath("//*[@class='text'][text()='Progress Bar']"),WIDGETS),
+    DATE_PICKER(By.xpath("//*[@class='text'][text()='Date Picker']"),WIDGETS);
 
 
     private By locator;
