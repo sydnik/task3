@@ -1,15 +1,15 @@
 package tests;
 
-import org.apache.commons.lang.RandomStringUtils;
+import forms.LeftMenuForm;
+import framework.BaseTest;
+import framework.utils.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pagesAndForms.pages.AlertPage;
-import pagesAndForms.pages.AlertsFrameWindowsPage;
-import pagesAndForms.LeftPanelButtons;
-import pagesAndForms.pages.MainPage;
-import utils.*;
+import pages.AlertPage;
+import pages.AlertsFrameWindowsPage;
+import pages.MainPage;
 
-public class TestCase1Alerts extends BaseTest{
+public class TestCase1Alerts extends BaseTest {
     @Test
     public void test()  {
         LoggerUtil.info("TestCase1Alerts","Start test");
@@ -18,7 +18,9 @@ public class TestCase1Alerts extends BaseTest{
         Assert.assertTrue(mainPage.isPageOpened());
         mainPage.openAlertFrameAndWindow();
         AlertsFrameWindowsPage alertsFrameWindowsPage = new AlertsFrameWindowsPage();
-        alertsFrameWindowsPage.click(LeftPanelButtons.ALERT);
+        alertsFrameWindowsPage.isPageOpened();
+        LeftMenuForm leftMenuForm = new LeftMenuForm();
+        leftMenuForm.openAlert();
         AlertPage formAlert = new AlertPage();
         Assert.assertTrue(formAlert.isPageOpened());
         formAlert.clickAlert();

@@ -1,18 +1,19 @@
 package tests;
 
+import forms.LeftMenuForm;
+import framework.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pagesAndForms.LeftPanelButtons;
-import pagesAndForms.pages.MainPage;
-import pagesAndForms.pages.ProgressBarPage;
-import pagesAndForms.pages.SliderPage;
-import pagesAndForms.pages.WidgetsPage;
-import utils.ConfigUtil;
-import utils.DriverUtil;
-import utils.LoggerUtil;
-import utils.RandomUtil;
+import pages.MainPage;
+import pages.ProgressBarPage;
+import pages.SliderPage;
+import pages.WidgetsPage;
+import framework.utils.ConfigUtil;
+import framework.utils.DriverUtil;
+import framework.utils.LoggerUtil;
+import framework.utils.RandomUtil;
 
-public class TestCase5SliderAndProgressBar extends BaseTest{
+public class TestCase5SliderAndProgressBar extends BaseTest {
 
     @Test
     public void test(){
@@ -21,14 +22,15 @@ public class TestCase5SliderAndProgressBar extends BaseTest{
         MainPage mainPage = new MainPage();
         Assert.assertTrue(mainPage.isPageOpened());
         mainPage.openWidgets();
-        WidgetsPage widgetsPage = new WidgetsPage();
-        widgetsPage.click(LeftPanelButtons.SLIDER);
+        new WidgetsPage().isPageOpened();
+        LeftMenuForm leftMenuForm = new LeftMenuForm();
+        leftMenuForm.openSlider();
         SliderPage sliderPage = new SliderPage();
         Assert.assertTrue(sliderPage.isPageOpened());
         int value = RandomUtil.randomNumber(sliderPage.getMinValue(),sliderPage.getMaxValue());
         sliderPage.setSlider(value);
         Assert.assertEquals(value,sliderPage.getValue());
-        sliderPage.click(LeftPanelButtons.PROGRESS_BAR);
+        leftMenuForm.openProgressBar();
         ProgressBarPage progressBarPage = new ProgressBarPage();
         Assert.assertTrue(progressBarPage.isPageOpened());
         progressBarPage.clickStart();

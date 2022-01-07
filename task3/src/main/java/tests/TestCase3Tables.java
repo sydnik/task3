@@ -1,24 +1,25 @@
 package tests;
 
 import data.UserData;
+import forms.LeftMenuForm;
+import framework.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pagesAndForms.forms.RegistrationForm;
-import pagesAndForms.pages.MainPage;
-import pagesAndForms.pages.WebTablesPage;
-import pagesAndForms.pages.ElementsPage;
-import pagesAndForms.LeftPanelButtons;
-import utils.ConfigUtil;
-import utils.DriverUtil;
-import utils.LoggerUtil;
+import forms.RegistrationForm;
+import pages.MainPage;
+import pages.WebTablesPage;
+import pages.ElementsPage;
+import framework.utils.ConfigUtil;
+import framework.utils.DriverUtil;
+import framework.utils.LoggerUtil;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestCase3Tables extends BaseTest{
+public class TestCase3Tables extends BaseTest {
 
     @Test(dataProvider = "getDataForTest")
     public void test(String id,String firstName, String lastName, String email, String age, String salary, String department){
@@ -27,8 +28,8 @@ public class TestCase3Tables extends BaseTest{
         MainPage mainPage = new MainPage();
         Assert.assertTrue(mainPage.isPageOpened());
         mainPage.openElements();
-        ElementsPage elementsPage = new ElementsPage();
-        elementsPage.click(LeftPanelButtons.WEB_TABLES);
+        new ElementsPage().isPageOpened();
+        new LeftMenuForm().openWebTables();
         WebTablesPage webTablesPage = new WebTablesPage();
         Assert.assertTrue(webTablesPage.isPageOpened());
         webTablesPage.clickAdd();

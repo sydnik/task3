@@ -1,19 +1,20 @@
 package tests;
 
+import forms.LeftMenuForm;
+import framework.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pagesAndForms.LeftPanelButtons;
-import pagesAndForms.pages.DatePickerPage;
-import pagesAndForms.pages.MainPage;
-import pagesAndForms.pages.WidgetsPage;
-import utils.ConfigUtil;
-import utils.DateUtil;
-import utils.DriverUtil;
-import utils.LoggerUtil;
+import pages.DatePickerPage;
+import pages.MainPage;
+import pages.WidgetsPage;
+import framework.utils.ConfigUtil;
+import framework.utils.DateUtil;
+import framework.utils.DriverUtil;
+import framework.utils.LoggerUtil;
 
 import java.time.LocalDateTime;
 
-public class TestCase6DatePicker extends BaseTest{
+public class TestCase6DatePicker extends BaseTest {
 
     @Test
     public void test(){
@@ -22,11 +23,13 @@ public class TestCase6DatePicker extends BaseTest{
         MainPage mainPage = new MainPage();
         Assert.assertTrue(mainPage.isPageOpened());
         mainPage.openWidgets();
-        WidgetsPage widgetsPage = new WidgetsPage();
-        widgetsPage.click(LeftPanelButtons.DATE_PICKER);
+        new WidgetsPage().isPageOpened();
+        new LeftMenuForm().openDatePicker();
         DatePickerPage datePickerPage = new DatePickerPage();
         datePickerPage.isPageOpened();
         Assert.assertEquals(DateUtil.getTimeAndDate(ConfigUtil.getDataProperty("datePattern")),datePickerPage.getDate());
+        System.out.println(DateUtil.getTimeAndDate(ConfigUtil.getDataProperty("dateAndTimePattern")));
+        System.out.println(datePickerPage.getDateAndTime());
         Assert.assertEquals(DateUtil.getTimeAndDate(ConfigUtil.getDataProperty("dateAndTimePattern")),datePickerPage.getDateAndTime());
         datePickerPage.openFormDate();
         LocalDateTime localDateTime = DateUtil.getNearest29February(LocalDateTime.now());

@@ -1,16 +1,19 @@
 package tests;
 
 
+import forms.LeftMenuForm;
+import framework.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pagesAndForms.LeftPanelButtons;
-import pagesAndForms.pages.*;
-import pagesAndForms.pages.FramesPage;
-import utils.ConfigUtil;
-import utils.DriverUtil;
-import utils.LoggerUtil;
+import pages.AlertsFrameWindowsPage;
+import pages.MainPage;
+import pages.NestedFramesPage;
+import pages.FramesPage;
+import framework.utils.ConfigUtil;
+import framework.utils.DriverUtil;
+import framework.utils.LoggerUtil;
 
-public class TestCase2IFrame extends BaseTest{
+public class TestCase2IFrame extends BaseTest {
     @Test
     public void test(){
         LoggerUtil.info("TestCase2IFrame","Start test");
@@ -19,12 +22,14 @@ public class TestCase2IFrame extends BaseTest{
         Assert.assertTrue(mainPage.isPageOpened());
         mainPage.openAlertFrameAndWindow();
         AlertsFrameWindowsPage alertsFrameWindowsPage = new AlertsFrameWindowsPage();
-        alertsFrameWindowsPage.click(LeftPanelButtons.NESTED_FRAMES);
+        alertsFrameWindowsPage.isPageOpened();
+        LeftMenuForm leftMenuForm = new LeftMenuForm();
+        leftMenuForm.openNestedFrames();
         NestedFramesPage nestedFramesPage = new NestedFramesPage();
         Assert.assertTrue(nestedFramesPage.isPageOpened());
         Assert.assertEquals(ConfigUtil.getDataProperty("textParentFrame"), nestedFramesPage.getTextParentFrame());
         Assert.assertEquals(ConfigUtil.getDataProperty("textChildFrame"), nestedFramesPage.getTextChildFrame());
-        alertsFrameWindowsPage.click(LeftPanelButtons.FRAMES);
+        leftMenuForm.openFrames();
         FramesPage framesPage = new FramesPage();
         Assert.assertTrue(framesPage.isPageOpened());
         String resultTopFrame = framesPage.getTextTopWindow();

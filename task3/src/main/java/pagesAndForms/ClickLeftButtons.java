@@ -1,6 +1,6 @@
 package pagesAndForms;
 
-import elements.Button;
+import framework.elements.Button;
 
 public interface  ClickLeftButtons {
     //Мне интересно, так лучше делать? Или расписывать эти кнопки для всех страниц

@@ -1,14 +1,15 @@
 package tests;
 
+import forms.LeftMenuForm;
+import framework.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pagesAndForms.pages.*;
-import pagesAndForms.LeftPanelButtons;
-import utils.ConfigUtil;
-import utils.DriverUtil;
-import utils.LoggerUtil;
+import pages.*;
+import framework.utils.ConfigUtil;
+import framework.utils.DriverUtil;
+import framework.utils.LoggerUtil;
 
-public class TestCase4Handles extends BaseTest{
+public class TestCase4Handles extends BaseTest {
     @Test
     public void test() {
         LoggerUtil.info("TestCase4Handles","Start test");
@@ -16,8 +17,9 @@ public class TestCase4Handles extends BaseTest{
         MainPage mainPage = new MainPage();
         Assert.assertTrue(mainPage.isPageOpened());
         mainPage.openAlertFrameAndWindow();
-        AlertsFrameWindowsPage alertsFrameWindowsPage = new AlertsFrameWindowsPage();
-        alertsFrameWindowsPage.click(LeftPanelButtons.BROWSER_WINDOWS);
+        new AlertsFrameWindowsPage().isPageOpened();
+        LeftMenuForm leftMenuForm = new LeftMenuForm();
+        leftMenuForm.openBrowseWindows();
         BrowserWindowPage browserWindowPage = new BrowserWindowPage();
         Assert.assertTrue(browserWindowPage.isPageOpened());
         DriverUtil.saveCurrentWindows();
@@ -29,7 +31,7 @@ public class TestCase4Handles extends BaseTest{
         DriverUtil.closeTab();
         DriverUtil.openAvailableWindow();
         Assert.assertTrue(browserWindowPage.isPageOpened());
-        browserWindowPage.click(LeftPanelButtons.LINKS);
+        leftMenuForm.openLinks();
         LinksPage linksPage = new LinksPage();
         Assert.assertTrue(linksPage.isPageOpened());
         DriverUtil.saveCurrentWindows();
