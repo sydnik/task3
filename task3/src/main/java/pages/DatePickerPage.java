@@ -46,7 +46,6 @@ public class DatePickerPage extends BaseForm {
 
     public void selectDay(int day){
         By locator = By.xpath("//div[text()='"+day+"' and not(contains(@class,'react-datepicker__day--outside-month'))]");
-        Button button = new Button((locator),"select day" + day);
-        button.click();
+        new Button((locator),"select day" + day).click();
     }
 }

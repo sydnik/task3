@@ -13,7 +13,7 @@ public class SelectElement extends BaseElement{
             new Select(findElement()).selectByValue(value);
             LoggerUtil.info(this.getClass(),name + " selected : "+ value);
         } catch (Exception e){
-            LoggerUtil.error(this.getClass(),name + "Didn't select : "+ value);
+            LoggerUtil.error(this.getClass(),name + "Didn't select : "+ value + "\n" + e.getMessage());
             throw e;
         }
 

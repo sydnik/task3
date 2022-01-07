@@ -27,6 +27,7 @@ public class LeftMenuForm extends BaseForm {
     public LeftMenuForm() {
         super(new Label(By.className("left-pannel"),"leftMenuPanel"), "LeftMenuForm");
     }
+
     public void openElements(){
         ELEMENTS.click();
     }
@@ -36,7 +37,6 @@ public class LeftMenuForm extends BaseForm {
         }
         LINKS.click();
     }
-
     public void openWebTables(){
         if(!WEB_TABLES.isVisibilityNow()){
             openElements();
@@ -49,6 +49,7 @@ public class LeftMenuForm extends BaseForm {
         }
         UPLOAD_AND_DOWNLOAD.click();
     }
+
     public void openAlertsFrameWindows(){
         ALERTS_FRAME_WINDOWS.click();
     }
@@ -76,6 +77,7 @@ public class LeftMenuForm extends BaseForm {
         }
         NESTED_FRAMES.click();
     }
+
     public void openWidgets(){
         WIDGETS.click();
     }

@@ -22,7 +22,7 @@ public class ConfigUtil {
             configProperties.load(readerConfig);
         } catch (Exception e) {
             LoggerUtil.fatal(this.getClass(), e.getMessage());
-            throw new RuntimeException();
+            throw new RuntimeException(e.getMessage());
         }
     }
     public static ConfigUtil getInstance()  {

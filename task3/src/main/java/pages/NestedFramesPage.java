@@ -4,7 +4,6 @@ import framework.elements.Container;
 import framework.elements.Label;
 import org.openqa.selenium.By;
 import framework.BaseForm;
-import framework.utils.DriverUtil;
 
 public class NestedFramesPage extends BaseForm {
     private final By PARENT_FRAME = By.id("frame1");
@@ -17,7 +16,7 @@ public class NestedFramesPage extends BaseForm {
     }
 
     public String getTextParentFrame(){
-        saveKeyWidnow();
+        saveKeyWindow();
         switchWindow(PARENT_FRAME);
         String result = PARENT_FRAME_LABEL.getText();
         switchSavedFrame();
@@ -25,7 +24,7 @@ public class NestedFramesPage extends BaseForm {
     }
 
     public String getTextChildFrame(){
-        saveKeyWidnow();
+        saveKeyWindow();
         switchWindow(PARENT_FRAME);
         switchWindow(CHILD_FRAME);
         String result = CHILD_FRAME_LABEL.getText();

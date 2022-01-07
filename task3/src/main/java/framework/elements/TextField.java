@@ -13,7 +13,7 @@ public class TextField extends BaseElement{
             findElement().sendKeys(s);
             LoggerUtil.info(this.getClass(),name + "write text: "+s);
         }catch (Exception e){
-            LoggerUtil.error(this.getClass(),name + "Didn't sendKeys" +"\n" + e.getMessage());
+            LoggerUtil.error(this.getClass(),name + "Didn't sendKeys" + "\n" + e.getMessage());
             throw e;
         }
 

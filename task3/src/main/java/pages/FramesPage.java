@@ -4,7 +4,6 @@ import framework.elements.Container;
 import framework.elements.Label;
 import org.openqa.selenium.By;
 import framework.BaseForm;
-import framework.utils.DriverUtil;
 
 public class FramesPage extends BaseForm {
     private final By TOP_FRAME = By.id("frame1");
@@ -18,7 +17,7 @@ public class FramesPage extends BaseForm {
     }
 
     public String getTextTopWindow(){
-        saveKeyWidnow();
+        saveKeyWindow();
         switchWindow(TOP_FRAME);
         String result = TEXT_TOP_FRAME.getText();
         switchSavedFrame();
@@ -26,7 +25,7 @@ public class FramesPage extends BaseForm {
     }
 
     public String getTextBottomWindow(){
-        saveKeyWidnow();
+        saveKeyWindow();
         switchWindow(BOTTOM_FRAME);
         String result = TEXT_BOTTOM_FRAME.getText();
         switchSavedFrame();

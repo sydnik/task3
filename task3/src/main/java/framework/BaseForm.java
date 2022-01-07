@@ -17,7 +17,7 @@ public abstract class BaseForm {
     public void switchWindow(By locator){
         DriverUtil.switchToFrame(locator);
     }
-    public void saveKeyWidnow(){
+    public void saveKeyWindow(){
         savedFrame = DriverUtil.getCurrentWindow();
     }
     public void switchSavedFrame(){

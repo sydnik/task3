@@ -4,9 +4,8 @@ import framework.elements.Button;
 import framework.elements.Container;
 import org.openqa.selenium.By;
 import framework.BaseForm;
-import pagesAndForms.ClickLeftButtons;
 
-public class BrowserWindowPage extends BaseForm implements ClickLeftButtons {
+public class BrowserWindowPage extends BaseForm {
     private final Button NEW_TAB_BUTTON = new Button(By.id("tabButton"),"newTabButton");
     private final Button NEW_WINDOW_BUTTON = new Button(By.id("windowButton"),"newWindowButton");
     private final Button NEW_WINDOW_MESSAGE_BUTTON = new Button(By.id("messageWindowButton"),"newWindowMessageButton");

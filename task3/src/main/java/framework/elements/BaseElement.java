@@ -30,27 +30,27 @@ public abstract class BaseElement {
     }
 
     public boolean isVisibilityNow(){
-        LoggerUtil.info(this.getClass()," - visibility now" + name);
+        LoggerUtil.info(this.getClass()," - visibility now " + name);
         return findElement().isDisplayed();
     }
 
     public boolean exist(){
         try {
-            LoggerUtil.error(this.getClass(),"check exist"+ name);
+            LoggerUtil.error(this.getClass(),"check exist "+ name );
             findElement();
             return true;
         }catch (Exception e){
-            LoggerUtil.error(this.getClass(),  "there is no element"+ name);
+            LoggerUtil.error(this.getClass(),  "there is no element "+ name + "\n" + e.getMessage());
             throw e;
         }
     }
     public boolean unExist(){
         try {
-            LoggerUtil.error(this.getClass(),"check un exist"+ name);
+            LoggerUtil.error(this.getClass(),"check un exist "+ name);
 
             return WaitUtil.waitUnPresence(locator);
         }catch (Exception e){
-            LoggerUtil.error(this.getClass(),  "there is "+ name);
+            LoggerUtil.error(this.getClass(),  "there is "+ name + "\n" + e.getMessage());
             throw e;
         }
     }
@@ -100,7 +100,7 @@ public abstract class BaseElement {
     protected WebElement findElement(){
         try {
             WebElement element = WaitUtil.waitPresence(locator);
-            LoggerUtil.info(( this.getClass()),name + "found");
+            LoggerUtil.info(( this.getClass()),name + " found");
             return element;
         } catch (Exception e){
             LoggerUtil.error(this.getClass(),"Didn't find "+ name +"\n" + e.getMessage());

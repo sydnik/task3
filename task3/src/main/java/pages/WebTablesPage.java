@@ -24,16 +24,12 @@ public class WebTablesPage extends BaseForm {
         BUTTON_ADD.click();
     }
 
-    public boolean deleteRow(UserData user){
-        Button buttonDelete = new Button(By.id("delete-record-"+getNumberOfRow(user)),"deleteRowsButton");
-        buttonDelete.click();
-        return true;
+    public void deleteRow(UserData user){
+        new Button(By.id("delete-record-"+getNumberOfRow(user)),"deleteRowsButton").click();
     }
 
     public List<UserData> getAllUsers(){
         List<UserData> usersList  = new ArrayList<>();
-        //HashMap нужен чтобы, если столбцы будут менять местами, тест не сломался.
-        //Можно сделать просто по позициям, но мне кажется в больших проектах так будет лучше.
         HashMap<String,String> map = new HashMap<>();
         List<WebElement> list = WaitUtil.watElements(ROWS_WITH_VALUE);
         String[] keys = getColumnNames();

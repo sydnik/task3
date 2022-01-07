@@ -16,7 +16,7 @@ public class ProgressBar extends BaseElement {
             return result;
         }catch (Exception e){
             LoggerUtil.error(this.getClass(),name +" didn't wait desired text"+"\n"+e.getMessage());
-            throw new RuntimeException();
+            throw e;
         }
     }
     public boolean waitTextValues(String[] values,int timeOut){
@@ -26,7 +26,7 @@ public class ProgressBar extends BaseElement {
             return result;
         }catch (Exception e){
             LoggerUtil.error(this.getClass(),name + "didn't wait desired text"+"\n"+e.getMessage());
-            throw new RuntimeException();
+            throw e;
         }
     }
 }

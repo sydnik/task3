@@ -5,9 +5,8 @@ import framework.elements.Slider;
 import framework.elements.TextField;
 import org.openqa.selenium.By;
 import framework.BaseForm;
-import pagesAndForms.ClickLeftButtons;
 
-public class SliderPage extends BaseForm implements ClickLeftButtons {
+public class SliderPage extends BaseForm {
     private final Slider SLIDER = new Slider(By.xpath("//*[@type='range']"),"Slider");
     private final TextField SLIDER_VALUE = new TextField(By.id("sliderValue"),"SliderValue");
     public SliderPage() {
@@ -20,7 +19,6 @@ public class SliderPage extends BaseForm implements ClickLeftButtons {
         int result = (int) ((percents + (-0.2*(value-50))));
         SLIDER.setArrow(result);
         SLIDER.waitAttributeValue(value,"value");
-
     }
 
     public int getMinValue(){

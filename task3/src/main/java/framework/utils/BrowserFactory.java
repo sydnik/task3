@@ -17,8 +17,8 @@ public class BrowserFactory {
             case "Chrome": {
                 return startChrome();
             } default: {
-                LoggerUtil.fatal(BrowserFactory.class, ConfigUtil.getConfProperty("browser") + " - invalid browser name");
-                throw new IllegalArgumentException(ConfigUtil.getConfProperty("browser") + " - invalid browser name");
+                LoggerUtil.fatal(BrowserFactory.class, browserName + " - invalid browser name");
+                throw new IllegalArgumentException(browserName + " - invalid browser name");
             }
         }
     }
