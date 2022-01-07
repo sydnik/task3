@@ -18,7 +18,7 @@ public class TestCase6DatePicker extends BaseTest {
 
     @Test
     public void test(){
-        LoggerUtil.info("TestCase6DatePicker","Start test");
+        LoggerUtil.info(this.getClass(),"Start test");
         DriverUtil.openURL(ConfigUtil.getDataProperty("mainPageURL"));
         MainPage mainPage = new MainPage();
         Assert.assertTrue(mainPage.isPageOpened());
@@ -35,6 +35,6 @@ public class TestCase6DatePicker extends BaseTest {
         LocalDateTime localDateTime = DateUtil.getNearest29February(LocalDateTime.now());
         datePickerPage.setDate(localDateTime);
         Assert.assertEquals(DateUtil.getTimeAndDate(localDateTime,ConfigUtil.getDataProperty("datePattern")),datePickerPage.getDate());
-        LoggerUtil.info("TestCase6DatePicker","Finish test");
+        LoggerUtil.info(this.getClass(),"Finish test");
     }
 }

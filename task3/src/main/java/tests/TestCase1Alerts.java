@@ -12,7 +12,7 @@ import pages.MainPage;
 public class TestCase1Alerts extends BaseTest {
     @Test
     public void test()  {
-        LoggerUtil.info("TestCase1Alerts","Start test");
+        LoggerUtil.info(this.getClass(),"Start test");
         DriverUtil.openURL(ConfigUtil.getDataProperty("mainPageURL"));
         MainPage mainPage = new MainPage();
         Assert.assertTrue(mainPage.isPageOpened());
@@ -40,6 +40,6 @@ public class TestCase1Alerts extends BaseTest {
         AlertUtil.accept();
         Assert.assertTrue(AlertUtil.isAlertClosed());
         Assert.assertEquals(formAlert.getPromptResult(),"You entered " +randomLine);
-        LoggerUtil.info("TestCase1Alerts","Finish test");
+        LoggerUtil.info(this.getClass(),"Finish test");
     }
 }

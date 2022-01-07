@@ -21,26 +21,37 @@ public abstract class BaseElement {
     public boolean isInVisibility(){
         try {
             boolean result = WaitUtil.waitInVisibility(locator);
-            LoggerUtil.info(name,"Element is invisible");
+            LoggerUtil.info(this.getClass(),name + " is invisible");
             return result;
         }catch (Exception e){
-            LoggerUtil.error(name,"Element is visible" + e.getMessage());
-            throw new RuntimeException();
+            LoggerUtil.error(this.getClass(),name + " is visible\n" + e.getMessage());
+            throw e;
         }
     }
 
     public boolean isVisibilityNow(){
-           boolean result = findElement().isDisplayed();
-           return result;
+        LoggerUtil.info(this.getClass()," - visibility now" + name);
+        return findElement().isDisplayed();
     }
 
     public boolean exist(){
         try {
+            LoggerUtil.error(this.getClass(),"check exist"+ name);
             WaitUtil.waitVisibility(findElement());
             return true;
         }catch (Exception e){
-            LoggerUtil.error(name,"there is no element");
-            throw new RuntimeException();
+            LoggerUtil.error(this.getClass(),  "there is no element"+ name);
+            throw e;
+        }
+    }
+    public boolean unExist(){
+        try {
+            LoggerUtil.error(this.getClass(),"check un exist"+ name);
+            WaitUtil.waitUnPresence(locator);
+            return true;
+        }catch (Exception e){
+            LoggerUtil.error(this.getClass(),  "there is "+ name);
+            throw e;
         }
     }
 
@@ -52,11 +63,11 @@ public abstract class BaseElement {
     public String getText(){
         try {
             String result = findElement().getText();
-            LoggerUtil.info(name, "got Label");
+            LoggerUtil.info(this.getClass(),  "got text of the" + name );
             return result;
         }catch (Exception e) {
-            LoggerUtil.error(name,"Didn't get text"+"\n" + e.getMessage());
-            throw new RuntimeException();
+            LoggerUtil.error(this.getClass(),"Didn't get text of the"+ name + "\n" + e.getMessage());
+            throw e;
         }
     }
 
@@ -71,14 +82,14 @@ public abstract class BaseElement {
     public void click(){
         try {
             WaitUtil.waitClickable(findElement()).click();
-            LoggerUtil.info(name,"Clicked");
+            LoggerUtil.info(this.getClass(),"Clicked"+name);
         }
         catch (ElementClickInterceptedException e) {
             scrollAndClickElement();
         }
         catch (Exception e){
-            LoggerUtil.error(name,"Didn't click element "+"\n" + e.getMessage());
-            throw new RuntimeException(e.getMessage());
+            LoggerUtil.error(this.getClass(),"Didn't click " + name +"\n" + e.getMessage());
+            throw e;
         }
     }
 
@@ -89,21 +100,21 @@ public abstract class BaseElement {
     protected WebElement findElement(){
         try {
             WebElement element = WaitUtil.waitPresence(locator);
-            LoggerUtil.info(name,"Element found");
+            LoggerUtil.info(( this.getClass()),name + "found");
             return element;
         } catch (Exception e){
-            LoggerUtil.error(name,"Didn't find element " +"\n" + e.getMessage());
-            throw new RuntimeException(e.getMessage());
+            LoggerUtil.error(this.getClass(),"Didn't find "+ name +"\n" + e.getMessage());
+            throw e;
         }
     }
     protected void scrollAndClickElement(){
         try {
             scrollToElement();
             WaitUtil.waitClickable(findElement()).click();
-            LoggerUtil.info(name,"Use scrollAndClickElement successfully");
+            LoggerUtil.info(this.getClass(),name + "Used scrollAndClickElement successfully");
         } catch (Exception e){
-            LoggerUtil.error(name,"Didn't click element after scroll "+"\n" + e.getMessage());
-            throw new RuntimeException(e.getMessage());
+            LoggerUtil.error(this.getClass(),"Didn't click " + name + " after scroll "+"\n" + e.getMessage());
+            throw e;
         }
     }
 

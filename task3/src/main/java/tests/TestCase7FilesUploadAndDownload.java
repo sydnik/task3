@@ -13,7 +13,7 @@ import framework.utils.LoggerUtil;
 public class TestCase7FilesUploadAndDownload extends BaseTest {
     @Test
     public void test(){
-        LoggerUtil.info("TestCase7FilesUploadAndDownload","Start test");
+        LoggerUtil.info(this.getClass(),"Start test");
         DriverUtil.openURL(ConfigUtil.getDataProperty("mainPageURL"));
         MainPage mainPage = new MainPage();
         Assert.assertTrue(mainPage.isPageOpened());
@@ -22,6 +22,6 @@ public class TestCase7FilesUploadAndDownload extends BaseTest {
         new LeftMenuForm().openUploadAndDownload();
 
 
-        LoggerUtil.info("TestCase7FilesUploadAndDownload","End test");
+        LoggerUtil.info(this.getClass(),"End test");
     }
 }

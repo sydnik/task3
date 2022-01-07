@@ -17,7 +17,7 @@ public class TestCase5SliderAndProgressBar extends BaseTest {
 
     @Test
     public void test(){
-        LoggerUtil.info("TestCase5SliderAndProgressBar","Start test");
+        LoggerUtil.info(this.getClass(),"Start test");
         DriverUtil.openURL(ConfigUtil.getDataProperty("mainPageURL"));
         MainPage mainPage = new MainPage();
         Assert.assertTrue(mainPage.isPageOpened());
@@ -38,6 +38,6 @@ public class TestCase5SliderAndProgressBar extends BaseTest {
         progressBarPage.clickStopOnValue(ageValue);
         Assert.assertTrue(((ageValue- ConfigUtil.getDataIntProperty("engineerAgeMarginOfError")) < progressBarPage.getValue())&&
                 progressBarPage.getValue()<(ageValue+ConfigUtil.getDataIntProperty("engineerAgeMarginOfError")));
-        LoggerUtil.info("TestCase5SliderAndProgressBar","Finish test");
+        LoggerUtil.info(this.getClass(),"Finish test");
     }
 }

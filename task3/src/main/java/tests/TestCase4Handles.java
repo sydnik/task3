@@ -12,7 +12,7 @@ import framework.utils.LoggerUtil;
 public class TestCase4Handles extends BaseTest {
     @Test
     public void test() {
-        LoggerUtil.info("TestCase4Handles","Start test");
+        LoggerUtil.info(this.getClass(),"Start test");
         DriverUtil.openURL(ConfigUtil.getDataProperty("mainPageURL"));
         MainPage mainPage = new MainPage();
         Assert.assertTrue(mainPage.isPageOpened());
@@ -43,6 +43,6 @@ public class TestCase4Handles extends BaseTest {
         Assert.assertNotEquals(DriverUtil.getCurrentWindow(),tab);
         DriverUtil.openAvailableWindow();
         Assert.assertTrue(linksPage.isPageOpened());
-        LoggerUtil.info("TestCase4Handles","Finish test");
+        LoggerUtil.info(this.getClass(),"Finish test");
     }
 }

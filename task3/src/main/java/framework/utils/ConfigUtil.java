@@ -21,7 +21,7 @@ public class ConfigUtil {
             configProperties = new Properties();
             configProperties.load(readerConfig);
         } catch (Exception e) {
-            LoggerUtil.fatal("ConfigUtil", e.getMessage());
+            LoggerUtil.fatal(this.getClass(), e.getMessage());
             throw new RuntimeException();
         }
     }

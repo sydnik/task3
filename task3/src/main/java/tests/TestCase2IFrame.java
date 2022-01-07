@@ -16,7 +16,7 @@ import framework.utils.LoggerUtil;
 public class TestCase2IFrame extends BaseTest {
     @Test
     public void test(){
-        LoggerUtil.info("TestCase2IFrame","Start test");
+        LoggerUtil.info(this.getClass(),"Start test");
         DriverUtil.openURL(ConfigUtil.getDataProperty("mainPageURL"));
         MainPage mainPage = new MainPage();
         Assert.assertTrue(mainPage.isPageOpened());
@@ -35,6 +35,6 @@ public class TestCase2IFrame extends BaseTest {
         String resultTopFrame = framesPage.getTextTopWindow();
         String resultBottomFrame = framesPage.getTextBottomWindow();
         Assert.assertEquals(resultBottomFrame,resultTopFrame);
-        LoggerUtil.info("TestCase2IFrame","Finish test");
+        LoggerUtil.info(this.getClass(),"Finish test");
     }
 }

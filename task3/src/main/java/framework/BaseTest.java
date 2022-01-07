@@ -17,7 +17,9 @@ public abstract class BaseTest {
     @AfterTest
     public void finishTest(){
         System.out.println("Tests completed:" + (System.currentTimeMillis()-time) + "ms");
-        LoggerUtil.info("FinishData","Tests completed:" + (System.currentTimeMillis()-time) + "ms");
+        LoggerUtil.info(BaseTest.class,"Tests completed:" + (System.currentTimeMillis()-time) + "ms");
+        System.out.println(getClass());
+        System.out.println(this.getClass());
     }
     @BeforeMethod
     public void startMethod() {

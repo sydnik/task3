@@ -54,6 +54,9 @@ public class WaitUtil {
     public static Boolean waitUnPresentAlert(){
         return getInstance().wait.until(ExpectedConditions.not(ExpectedConditions.alertIsPresent()));
     }
+    public static Boolean waitUnPresence(By locator){
+        return getInstance().wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfElementLocated(locator)));
+    }
 
     public static Boolean waitNewWindow(int numberOfWindow){
         return getInstance().wait.until(ExpectedConditions.numberOfWindowsToBe(numberOfWindow));

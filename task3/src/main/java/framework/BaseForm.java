@@ -13,13 +13,9 @@ public abstract class BaseForm {
     }
 
     public boolean isPageOpened(){
-//        Unique unique = new Unique(uniqueElement,"isPageOpened " + name);
-//        boolean result =unique.exist();
-        return true;
+        return uniqueElement.exist();
     }
     public boolean isPageClosed(){
-//        Unique unique = new Unique(uniqueElement,"isPageOpened " + name);
-//        boolean result =unique.isInVisibility();
-        return true;
+        return uniqueElement.unExist();
     }
 }

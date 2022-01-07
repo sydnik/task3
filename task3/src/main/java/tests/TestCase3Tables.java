@@ -23,7 +23,7 @@ public class TestCase3Tables extends BaseTest {
 
     @Test(dataProvider = "getDataForTest")
     public void test(String id,String firstName, String lastName, String email, String age, String salary, String department){
-        LoggerUtil.info("TestCase3Tables","Start test");
+        LoggerUtil.info(this.getClass(),"Start test");
         DriverUtil.openURL(ConfigUtil.getDataProperty("mainPageURL"));
         MainPage mainPage = new MainPage();
         Assert.assertTrue(mainPage.isPageOpened());
@@ -44,7 +44,7 @@ public class TestCase3Tables extends BaseTest {
         webTablesPage.deleteRow(userData);
         Assert.assertEquals(amountOfRows-1, webTablesPage.getAmountOfRows());
         Assert.assertFalse(webTablesPage.getAllUsers().contains(userData));
-        LoggerUtil.info("TestCase3Tables","Finish test");
+        LoggerUtil.info(this.getClass(),"Finish test");
     }
     @DataProvider
     public Object[][] getDataForTest(){
@@ -60,7 +60,7 @@ public class TestCase3Tables extends BaseTest {
             }
             result = list.toArray(new Object[0][]);
         }  catch (IOException e) {
-            LoggerUtil.fatal("DataForTest3",e.getMessage());
+            LoggerUtil.fatal(this.getClass(),"don't get data for test" + e.getMessage());
             throw new RuntimeException();
         }
         return result;
