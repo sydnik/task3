@@ -2,6 +2,7 @@ package pages;
 
 import framework.elements.Button;
 import framework.elements.ProgressBar;
+import framework.utils.ConfigUtil;
 import org.openqa.selenium.By;
 import framework.BaseForm;
 
@@ -19,16 +20,16 @@ public class ProgressBarPage extends BaseForm {
     }
 
     public void clickStopOnValue(int value){
-        PROGRESS_BAR.waitTextValue(value+"%",1);
+        PROGRESS_BAR.waitTextValue(value+"%", ConfigUtil.getConfIntProperty("minTimeoutMillis"));
         START_AND_STOP_BUTTON.click();
     }
-    //не знаю какой правильно) Выше ищет конкретное значение, ниже код ищет с погрешность
+
     public void clickStopOnValueWithAnError(int value,int errorRate){
         String[] values = new String[errorRate*2+1];
         for (int i = -errorRate; i <=errorRate ; i++) {
             values[i+errorRate]= (value-i)+"%";
         }
-        PROGRESS_BAR.waitTextValues(values,1);
+        PROGRESS_BAR.waitTextValues(values,ConfigUtil.getConfIntProperty("minTimeoutMillis"));
         START_AND_STOP_BUTTON.click();
     }
 

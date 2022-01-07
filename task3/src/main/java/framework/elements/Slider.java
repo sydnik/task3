@@ -16,7 +16,8 @@ public class Slider extends BaseElement{
         Actions actions = new Actions(DriverUtil.getWebDriver());
         actions.moveToElement(findElement()).
                 clickAndHold().
-                moveByOffset(pixels-(getWidth()/2),0).release().build().perform();
+                moveByOffset(pixels-(getWidth()/2),0).
+                release().build().perform();
         LoggerUtil.info(this.getClass(),name + "setArrow on "+ pixels);
     }
 

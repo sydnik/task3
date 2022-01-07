@@ -11,32 +11,25 @@ public class FramesPage extends BaseForm {
     private final Label TEXT_TOP_FRAME = new Label(By.id("sampleHeading"),"textTopFrame");
     private final By BOTTOM_FRAME = By.id("frame2");
     private final Label TEXT_BOTTOM_FRAME = new Label(By.id("sampleHeading"),"textBottomFrame");
-    private String savedFrame;
+
 
     public FramesPage() {
         super(new Container(By.id("framesWrapper"),"UniqueElementFramesPage"), "FramesPage");
     }
 
     public String getTextTopWindow(){
-        switchParentWindow(TOP_FRAME);
+        saveKeyWidnow();
+        switchWindow(TOP_FRAME);
         String result = TEXT_TOP_FRAME.getText();
-        switchEarlyWindow();
+        switchSavedFrame();
         return result;
     }
 
     public String getTextBottomWindow(){
-        switchParentWindow(BOTTOM_FRAME);
+        saveKeyWidnow();
+        switchWindow(BOTTOM_FRAME);
         String result = TEXT_BOTTOM_FRAME.getText();
-        switchEarlyWindow();
+        switchSavedFrame();
         return result;
-    }
-
-    private void switchEarlyWindow(){
-        DriverUtil.switchToFrame(savedFrame);
-    }
-
-    private void switchParentWindow(By locator){
-        savedFrame = DriverUtil.getCurrentWindow();
-        DriverUtil.switchToFrame(locator);
     }
 }

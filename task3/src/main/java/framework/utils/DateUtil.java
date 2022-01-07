@@ -19,10 +19,10 @@ public class DateUtil {
 
     public static LocalDateTime getNearest29February(LocalDateTime date){
         if(isLeapYear(date.getYear())){
-            return LocalDateTime.of(date.getYear(),2,29,12,00);
+            return LocalDateTime.of(date.getYear(),2,29,12, 0);
         }
-        LocalDateTime dateNext29February = LocalDateTime.of(getNextLeapYear(date.getYear()),2,29,12,00);
-        LocalDateTime datePrevious29February = LocalDateTime.of(getPreviousLeapYear(date.getYear()),2,29,12,00);
+        LocalDateTime dateNext29February = LocalDateTime.of(getNextLeapYear(date.getYear()),2,29,12,0);
+        LocalDateTime datePrevious29February = LocalDateTime.of(getPreviousLeapYear(date.getYear()),2,29,12,0);
         long timePrevious = DateUtil.getLongTime(date) - DateUtil.getLongTime(datePrevious29February);
         long timeNext = DateUtil.getLongTime(dateNext29February) - DateUtil.getLongTime(date) ;
         if(timeNext<=timePrevious )
@@ -61,10 +61,7 @@ public class DateUtil {
         if(year%4==0&&year%100!=0){
             return true;
         }
-        else if (year%400==0){
-            return true;
-        }
-        return false;
+        else return year % 400 == 0;
     }
     public static long getLongTime(LocalDateTime localDateTime){
         return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();

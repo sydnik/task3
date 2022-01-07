@@ -7,39 +7,34 @@ import framework.BaseForm;
 
 
 public class AlertPage extends BaseForm {
-    private final By BUTTON_TO_SEE_ALERT = By.id("alertButton");
-    private final By BUTTON_CONFIRM = By.id("confirmButton");
-    private final By BUTTON_PROMPT = By.id("promtButton");
-    private final By CONFIRM_RESULT = By.id("confirmResult");
-    private final By PROMPT_RESULT = By.id("promptResult");
+    private final Button TO_SEE_ALERT_BUTTON = new Button(By.id("alertButton"),"alertButton");
+    private final Button CONFIRM_BUTTON = new Button(By.id("confirmButton"),"confirmButton");
+    private final Button PROMPT_BUTTON = new Button(By.id("promtButton"),"promptButton");
+    private final Label CONFIRM_RESULT = new Label(By.id("confirmResult"),"confirmResult");
+    private final Label PROMPT_RESULT = new Label(By.id("promptResult"),"promptResult");
 
     public AlertPage() {
         super(new Button(By.id("alertButton"),"wd"), "AlertPage");
     }
 
     public String getConfirmResult(){
-        Label label = new Label(CONFIRM_RESULT,"confirmResult");
-        return label.getText();
+        return CONFIRM_RESULT.getText();
     }
 
     public String getPromptResult(){
-        Label label = new Label(PROMPT_RESULT,"promptResult");
-        return label.getText();
+        return PROMPT_RESULT.getText();
     }
 
     public void clickAlert(){
-        Button button = new Button(BUTTON_TO_SEE_ALERT,"alertButton");
-        button.click();
+        TO_SEE_ALERT_BUTTON.click();
     }
 
     public void clickConfirm(){
-        Button button = new Button(BUTTON_CONFIRM,"confirmButton");
-        button.click();
+        CONFIRM_BUTTON.click();
     }
 
     public void clickPrompt(){
-        Button button = new Button(BUTTON_PROMPT,"promtButton");
-        button.click();
+        PROMPT_BUTTON.click();
 
     }
 }

@@ -7,9 +7,8 @@ public class AlertUtil {
         WaitUtil.waitPresentAlert();
         return true;
     }
-    public static boolean accept(){
+    public static void accept(){
         WaitUtil.waitPresentAlert().accept();
-        return true;
     }
     public static String getText(){
         return WaitUtil.waitPresentAlert().getText();
