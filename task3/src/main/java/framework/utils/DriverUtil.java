@@ -30,19 +30,7 @@ public class DriverUtil {
             }
         }
         driverUtils = new DriverUtil();
-        switch (ConfigUtil.getConfProperty("browser")) {
-            case "FireFox": {
-                driverUtils.startFireFox();
-                break;
-            }
-            case "Chrome": {
-                driverUtils.startChrome();
-                break;
-            } default: {
-                LoggerUtil.fatal(DriverUtil.class, ConfigUtil.getConfProperty("browser") + " - invalid browser name");
-                throw new IllegalArgumentException();
-            }
-        }
+        driverUtils.webDriver = BrowserFactory.getBrowser(ConfigUtil.getConfProperty("browser"));
         return driverUtils;
     }
 
@@ -99,26 +87,4 @@ public class DriverUtil {
         driverUtils=null;
     }
 
-    private void startChrome(){
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--window-size=" +
-                ConfigUtil.getConfProperty("windowWidth") +","+
-                ConfigUtil.getConfProperty("windowHeight"));
-        options.addArguments("--"+ConfigUtil.getConfProperty("smoothScrollChrome")+"-smooth-scrolling");
-        options.addArguments("--lang="+ ConfigUtil.getConfProperty("language"));
-        webDriver = new ChromeDriver(options);
-    }
-    private void startFireFox(){
-        WebDriverManager.firefoxdriver().setup();
-        FirefoxOptions firefoxOptions = new FirefoxOptions();
-        FirefoxProfile profile = new FirefoxProfile();
-        profile.setPreference("intl.accept_languages", ConfigUtil.getConfProperty("language"));
-        profile.setPreference("general. smoothScroll",ConfigUtil.getConfProperty("smoothScrollFireFox"));
-        FirefoxOptions options = new FirefoxOptions();
-        firefoxOptions.addArguments("--width=" + ConfigUtil.getConfIntProperty("windowWidth"));
-        firefoxOptions.addArguments("--height=" + ConfigUtil.getConfIntProperty("windowHeight"));
-        options.setProfile(profile);
-        webDriver = new FirefoxDriver(firefoxOptions);
-    }
 }

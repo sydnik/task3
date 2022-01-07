@@ -11,10 +11,10 @@ public class SelectElement extends BaseElement{
     public void selectValue(String value){
         try {
             new Select(findElement()).selectByValue(value);
-            LoggerUtil.info(name,"Value selected : "+ value);
+            LoggerUtil.info(this.getClass(),name + " selected : "+ value);
         } catch (Exception e){
-            LoggerUtil.error(name,"Didn't select value : "+ value);
-            throw new RuntimeException();
+            LoggerUtil.error(this.getClass(),name + "Didn't select : "+ value);
+            throw e;
         }
 
     }

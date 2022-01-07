@@ -11,10 +11,10 @@ public class TextField extends BaseElement{
     public void sendKeys(String s){
         try {
             findElement().sendKeys(s);
-            LoggerUtil.info(name,"send text: "+s);
+            LoggerUtil.info(this.getClass(),name + "write text: "+s);
         }catch (Exception e){
-            LoggerUtil.error(name,"Didn't sendKeys" +"\n" + e.getMessage());
-            throw new RuntimeException();
+            LoggerUtil.error(this.getClass(),name + "Didn't sendKeys" +"\n" + e.getMessage());
+            throw e;
         }
 
     }

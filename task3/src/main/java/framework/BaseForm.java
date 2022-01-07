@@ -15,6 +15,6 @@ public abstract class BaseForm {
         return uniqueElement.exist();
     }
     public boolean isPageClosed(){
-        return uniqueElement.unExist();
+        return uniqueElement.isInVisibility();
     }
 }

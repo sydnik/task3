@@ -37,7 +37,7 @@ public abstract class BaseElement {
     public boolean exist(){
         try {
             LoggerUtil.error(this.getClass(),"check exist"+ name);
-            WaitUtil.waitVisibility(findElement());
+            findElement();
             return true;
         }catch (Exception e){
             LoggerUtil.error(this.getClass(),  "there is no element"+ name);
@@ -47,8 +47,8 @@ public abstract class BaseElement {
     public boolean unExist(){
         try {
             LoggerUtil.error(this.getClass(),"check un exist"+ name);
-            WaitUtil.waitUnPresence(locator);
-            return true;
+
+            return WaitUtil.waitUnPresence(locator);
         }catch (Exception e){
             LoggerUtil.error(this.getClass(),  "there is "+ name);
             throw e;

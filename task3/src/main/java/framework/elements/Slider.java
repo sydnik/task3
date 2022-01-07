@@ -17,7 +17,7 @@ public class Slider extends BaseElement{
         actions.moveToElement(findElement()).
                 clickAndHold().
                 moveByOffset(pixels-(getWidth()/2),0).release().build().perform();
-        LoggerUtil.info(name,"setArrow on value ");
+        LoggerUtil.info(this.getClass(),name + "setArrow on "+ pixels);
     }
 
     public boolean waitAttributeValue(int value,String attribute){
