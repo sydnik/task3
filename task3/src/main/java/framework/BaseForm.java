@@ -1,7 +1,6 @@
 package framework;
 
 import framework.elements.BaseElement;
-import framework.elements.Unique;
 
 public abstract class BaseForm {
     private String name;
