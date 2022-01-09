@@ -2,13 +2,14 @@ package tests;
 
 import forms.LeftMenuForm;
 import framework.BaseTest;
+import framework.utils.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.ElementsPage;
 import pages.MainPage;
-import framework.utils.ConfigUtil;
-import framework.utils.DriverUtil;
-import framework.utils.LoggerUtil;
+import pages.UploadAndDownload;
+
+import java.io.File;
 
 public class TestCase7FilesUploadAndDownload extends BaseTest {
     @Test
@@ -20,8 +21,12 @@ public class TestCase7FilesUploadAndDownload extends BaseTest {
         mainPage.openElements();
         new ElementsPage().isPageOpened();
         new LeftMenuForm().openUploadAndDownload();
-
-
-        LoggerUtil.info(this.getClass(),"End test");
+        UploadAndDownload uploadAndDownload = new UploadAndDownload();
+        File file = FilesUtil.getFile(ConfigUtil.getConfProperty("pathForDownload"),uploadAndDownload.getDownloadFileName());
+        file.delete();
+        uploadAndDownload.startDownload();
+        Assert.assertTrue(WaitUtil.waitFileDownLoad(file));
+        uploadAndDownload.startUpload(file.getAbsolutePath());
+        Assert.assertTrue(uploadAndDownload.getUploadFileName().endsWith(file.getName()));
     }
 }

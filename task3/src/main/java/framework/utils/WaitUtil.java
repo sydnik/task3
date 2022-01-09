@@ -7,6 +7,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.List;
 
@@ -79,5 +82,9 @@ public class WaitUtil {
         }
         return new WebDriverWait(DriverUtil.getWebDriver(), Duration.ofSeconds(ConfigUtil.getConfIntProperty("waitSeconds")),Duration.ofMillis(timeOut)).
                 until(ExpectedConditions.or(array));
+    }
+
+    public static Boolean waitFileDownLoad(File file){
+        return getInstance().wait.until(a -> file.exists());
     }
 }
