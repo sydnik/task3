@@ -24,6 +24,7 @@ public class BrowserFactory {
             }
         }
     }
+
     private static WebDriver startChrome(){
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
@@ -38,6 +39,7 @@ public class BrowserFactory {
         options.addArguments("--lang="+ ConfigUtil.getConfProperty("language"));
         return new ChromeDriver(options);
     }
+
     private static WebDriver startFireFox(){
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions firefoxOptions = new FirefoxOptions();

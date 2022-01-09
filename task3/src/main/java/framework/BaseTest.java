@@ -10,18 +10,23 @@ import framework.utils.LoggerUtil;
 
 public abstract class BaseTest {
     private long time;
+
     @BeforeTest
     public void startTest(){
-        time=System.currentTimeMillis();
+
     }
+
     @AfterTest
     public void finishTest(){
-        LoggerUtil.info(BaseTest.class,"Tests completed:" + (System.currentTimeMillis()-time) + "ms");
+
     }
+
     @BeforeMethod
     public void startMethod() {
+        time=System.currentTimeMillis();
         ConfigUtil.getInstance();
         DriverUtil.getInstance();
+
     }
 
     @AfterMethod
@@ -29,5 +34,6 @@ public abstract class BaseTest {
         if (DriverUtil.getWebDriver()!=null) {
             DriverUtil.close();
         }
+        LoggerUtil.info(this.getClass(),"Tests completed:" + (System.currentTimeMillis()-time) + "ms");
     }
 }

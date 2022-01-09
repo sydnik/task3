@@ -28,11 +28,10 @@ public class TestCase6DatePicker extends BaseTest {
         DatePickerPage datePickerPage = new DatePickerPage();
         datePickerPage.isPageOpened();
         Assert.assertEquals(DateUtil.getTimeAndDate(ConfigUtil.getDataProperty("datePattern")),datePickerPage.getDate());
-        System.out.println(DateUtil.getTimeAndDate(ConfigUtil.getDataProperty("dateAndTimePattern")));
-        System.out.println(datePickerPage.getDateAndTime());
         Assert.assertEquals(DateUtil.getTimeAndDate(ConfigUtil.getDataProperty("dateAndTimePattern")),datePickerPage.getDateAndTime());
         datePickerPage.openFormDate();
-        LocalDateTime localDateTime = DateUtil.getNearest29February(LocalDateTime.now());
+        LocalDateTime localDateTime = DateUtil.getNearestDay(LocalDateTime.now(),
+                ConfigUtil.getDataIntProperty("dateFindMonth"),ConfigUtil.getDataIntProperty("dateFindDay"));
         datePickerPage.setDate(localDateTime);
         Assert.assertEquals(DateUtil.getTimeAndDate(localDateTime,ConfigUtil.getDataProperty("datePattern")),datePickerPage.getDate());
         LoggerUtil.info(this.getClass(),"Finish test");

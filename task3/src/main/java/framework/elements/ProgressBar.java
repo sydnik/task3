@@ -25,7 +25,7 @@ public class ProgressBar extends BaseElement {
             LoggerUtil.info(this.getClass(),name + " waited the desired text");
             return result;
         }catch (Exception e){
-            LoggerUtil.error(this.getClass(),name + "didn't wait desired text"+"\n"+e.getMessage());
+            LoggerUtil.error(this.getClass(),name + " didn't wait desired text"+"\n"+e.getMessage());
             throw e;
         }
     }

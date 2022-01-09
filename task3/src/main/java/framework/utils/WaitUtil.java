@@ -57,6 +57,7 @@ public class WaitUtil {
     public static Boolean waitUnPresentAlert(){
         return getInstance().wait.until(ExpectedConditions.not(ExpectedConditions.alertIsPresent()));
     }
+
     public static Boolean waitUnPresence(By locator){
         return getInstance().wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfElementLocated(locator)));
     }
@@ -75,6 +76,7 @@ public class WaitUtil {
                 Duration.ofMillis(timeOut));
        return waitCustom.until(ExpectedConditions.textToBePresentInElement(element,value));
     }
+
     public static Boolean waitToBeTextValues(WebElement element, String[] values, int timeOut){
         ExpectedCondition<?>[] array = new ExpectedCondition[values.length];
         for (int i = 0; i < array.length; i++) {

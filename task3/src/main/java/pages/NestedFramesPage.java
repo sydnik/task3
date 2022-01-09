@@ -16,19 +16,19 @@ public class NestedFramesPage extends BaseForm {
     }
 
     public String getTextParentFrame(){
-        saveKeyWindow();
+        saveWindowKey();
         switchWindow(PARENT_FRAME);
         String result = PARENT_FRAME_LABEL.getText();
-        switchSavedFrame();
+        saveCurrentWindow();
         return result;
     }
 
     public String getTextChildFrame(){
-        saveKeyWindow();
+        saveWindowKey();
         switchWindow(PARENT_FRAME);
         switchWindow(CHILD_FRAME);
         String result = CHILD_FRAME_LABEL.getText();
-        switchSavedFrame();
+        saveCurrentWindow();
         return result;
     }
 }

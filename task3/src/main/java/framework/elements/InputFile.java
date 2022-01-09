@@ -1,5 +1,6 @@
 package framework.elements;
 
+import framework.utils.LoggerUtil;
 import org.openqa.selenium.By;
 
 public class InputFile extends BaseElement{
@@ -7,6 +8,13 @@ public class InputFile extends BaseElement{
         super(locator, name);
     }
     public void uploadFile(String path){
-        findElement().sendKeys(path);
+        try {
+            findElement().sendKeys(path);
+            LoggerUtil.info(this.getClass(),name + " downloaded file: "+path);
+        }catch (Exception e){
+            LoggerUtil.error(this.getClass(),name + " didn't download" + "\n" + e.getMessage());
+            throw e;
+        }
+
     }
 }

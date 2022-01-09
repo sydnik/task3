@@ -1,5 +1,6 @@
 package framework.elements;
 
+import org.apache.commons.logging.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
@@ -36,18 +37,18 @@ public abstract class BaseElement {
 
     public boolean exist(){
         try {
-            LoggerUtil.error(this.getClass(),"check exist "+ name );
             findElement();
+            LoggerUtil.error(this.getClass(),"check exist "+ name );
             return true;
         }catch (Exception e){
             LoggerUtil.error(this.getClass(),  "there is no element "+ name + "\n" + e.getMessage());
             throw e;
         }
     }
+
     public boolean unExist(){
         try {
             LoggerUtil.error(this.getClass(),"check un exist "+ name);
-
             return WaitUtil.waitUnPresence(locator);
         }catch (Exception e){
             LoggerUtil.error(this.getClass(),  "there is "+ name + "\n" + e.getMessage());
@@ -56,8 +57,14 @@ public abstract class BaseElement {
     }
 
     public String getAttribute(String attribute){
-        String result = findElement().getAttribute(attribute);
-        return result;
+        try {
+            String result = findElement().getAttribute(attribute);
+            LoggerUtil.info(this.getClass(),name  + "found the" + attribute);
+            return result;
+        }catch (Exception e){
+            LoggerUtil.error(this.getClass(), name+ " didn't find the " + attribute);
+            throw  e;
+        }
     }
 
     public String getText(){
@@ -72,10 +79,12 @@ public abstract class BaseElement {
     }
 
     public int getWidth(){
+        LoggerUtil.info(this.getClass(),"get width element");
         return findElement().getSize().width;
     }
 
     public int getHeight(){
+        LoggerUtil.info(this.getClass(),"get height element");
         return findElement().getSize().height;
     }
 
@@ -94,8 +103,14 @@ public abstract class BaseElement {
     }
 
     protected void scrollToElement(){
-        JavascriptExecutor js = ((JavascriptExecutor) DriverUtil.getWebDriver());
-        js.executeScript("arguments[0].scrollIntoView(true);", findElement());
+        try {
+            JavascriptExecutor js = ((JavascriptExecutor) DriverUtil.getWebDriver());
+            js.executeScript("arguments[0].scrollIntoView(true);", findElement());
+            LoggerUtil.info(this.getClass(),name + " used js scroll");
+        }catch (Exception e){
+            LoggerUtil.error(this.getClass(),name+" can't use scroll");
+        }
+
     }
     protected WebElement findElement(){
         try {

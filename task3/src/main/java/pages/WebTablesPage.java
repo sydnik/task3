@@ -14,14 +14,14 @@ import java.util.*;
 public class WebTablesPage extends BaseForm {
     private final By ROWS_WITH_VALUE = By.xpath("//*[@role='rowgroup']/div[not(contains(@class,'-padRow'))]");
     private final Label COLUMN_NAMES =  new Label(By.className("rt-tr"),"COLUMN_NAME");
-    private final Button BUTTON_ADD = new Button(By.id("addNewRecordButton"),"ButtonAdd");
+    private final Button ADD_BUTTON = new Button(By.id("addNewRecordButton"),"ButtonAdd");
 
     public WebTablesPage() {
         super(new Container(By.className("web-tables-wrapper"),"UniqueElement"), "WebTablesPage");
     }
 
     public void clickAdd(){
-        BUTTON_ADD.click();
+        ADD_BUTTON.click();
     }
 
     public void deleteRow(UserData user){

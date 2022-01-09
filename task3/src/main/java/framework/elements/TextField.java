@@ -11,9 +11,9 @@ public class TextField extends BaseElement{
     public void sendKeys(String s){
         try {
             findElement().sendKeys(s);
-            LoggerUtil.info(this.getClass(),name + "write text: "+s);
+            LoggerUtil.info(this.getClass(),name + " write text: "+s);
         }catch (Exception e){
-            LoggerUtil.error(this.getClass(),name + "Didn't sendKeys" + "\n" + e.getMessage());
+            LoggerUtil.error(this.getClass(),name + " Didn't sendKeys" + "\n" + e.getMessage());
             throw e;
         }
 

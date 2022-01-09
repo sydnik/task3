@@ -1,6 +1,7 @@
 package framework.utils;
 
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -17,51 +18,73 @@ public class DateUtil {
         return date.format(dateFormat);
     }
 
-    public static LocalDateTime getNearest29February(LocalDateTime date){
-        if(isLeapYear(date.getYear())){
-            return LocalDateTime.of(date.getYear(),2,29,12, 0);
+    public static LocalDateTime getNearestDay(LocalDateTime time,int whatMonth, int whatDay){
+        LocalDateTime thisYear = getNearestThisYear(time,whatMonth,whatDay);
+        LocalDateTime nextTime = getNextNearestYears(time,whatMonth,whatDay);
+        LocalDateTime previousTime = getPreviousNearestYears(time,whatMonth,whatDay);
+        long thisYearMs;
+        if(thisYear==null){
+            thisYearMs =Long.MAX_VALUE;
         }
-        LocalDateTime dateNext29February = LocalDateTime.of(getNextLeapYear(date.getYear()),2,29,12,0);
-        LocalDateTime datePrevious29February = LocalDateTime.of(getPreviousLeapYear(date.getYear()),2,29,12,0);
-        long timePrevious = DateUtil.getLongTime(date) - DateUtil.getLongTime(datePrevious29February);
-        long timeNext = DateUtil.getLongTime(dateNext29February) - DateUtil.getLongTime(date) ;
-        if(timeNext<=timePrevious )
-        {
-            return dateNext29February;
-        }else {
-            return datePrevious29February;
+        else {
+            thisYearMs = getDifferenceBetweenTime(time,thisYear);
         }
+        long previousYearMs = getDifferenceBetweenTime(previousTime,time);
+        long nextYearMs = getDifferenceBetweenTime(nextTime,time);
+        if(previousYearMs>=thisYearMs&&thisYearMs<=nextYearMs){
+            return thisYear;
+        }
+        else if(thisYearMs>=previousYearMs&&previousYearMs<=nextYearMs){
+            return previousTime;
+        }
+        else {
+            return nextTime;
+        }
+
     }
 
-    public static int getNextLeapYear(int year){
-        int i = 1;
-        while (true){
-            if(isLeapYear(year+i)){
-                return year+i;
+    public static LocalDateTime getNearestThisYear(LocalDateTime time, int month, int day){
+        LocalDateTime thisYear = null;
+        try {
+            thisYear = LocalDateTime.of(time.getYear(),month,day,12,0);
+        }catch (DateTimeException e){
+            if(!e.getMessage().endsWith("leap year")){
+                throw e;
             }
-            else {
+        }
+        return thisYear;
+    }
+
+    public static LocalDateTime getNextNearestYears(LocalDateTime time, int month, int day){
+        int i =1;
+        while (true){
+            try {
+                return LocalDateTime.of(time.getYear()+i,month,day,12,0);
+            }catch (DateTimeException e ){
+                if(!e.getMessage().endsWith("leap year")){
+                    throw e;
+                }
                 i++;
             }
         }
     }
 
-    public static int getPreviousLeapYear(int year){
-        int i = 1;
+    public static LocalDateTime getPreviousNearestYears(LocalDateTime time, int month, int day){
+        int i =1;
         while (true){
-            if(isLeapYear(year-i)){
-                return year-i;
-            }
-            else {
+            try {
+                return LocalDateTime.of(time.getYear()-i,month,day,12,0);
+            }catch (DateTimeException e ){
+                if(!e.getMessage().endsWith("leap year")){
+                    throw e;
+                }
                 i++;
             }
         }
     }
 
-    public static boolean isLeapYear(int year){
-        if(year%4==0&&year%100!=0){
-            return true;
-        }
-        else return year % 400 == 0;
+    public static long getDifferenceBetweenTime(LocalDateTime time1,LocalDateTime time2){
+        return Math.abs(getLongTime(time1)-getLongTime(time2));
     }
     public static long getLongTime(LocalDateTime localDateTime){
         return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();

@@ -22,6 +22,7 @@ public class Slider extends BaseElement{
     }
 
     public boolean waitAttributeValue(int value,String attribute){
+        LoggerUtil.info(this.getClass(),name + " is waiting for the " + value +" in a certain "+attribute);
         return WaitUtil.waitToBeAttributeValue(findElement(),attribute, String.valueOf(value));
     }
 }

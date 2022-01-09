@@ -17,18 +17,18 @@ public class FramesPage extends BaseForm {
     }
 
     public String getTextTopWindow(){
-        saveKeyWindow();
+        saveWindowKey();
         switchWindow(TOP_FRAME);
         String result = TEXT_TOP_FRAME.getText();
-        switchSavedFrame();
+        saveCurrentWindow();
         return result;
     }
 
     public String getTextBottomWindow(){
-        saveKeyWindow();
+        saveWindowKey();
         switchWindow(BOTTOM_FRAME);
         String result = TEXT_BOTTOM_FRAME.getText();
-        switchSavedFrame();
+        saveCurrentWindow();
         return result;
     }
 }
