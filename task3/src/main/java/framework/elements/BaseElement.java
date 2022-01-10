@@ -1,6 +1,5 @@
 package framework.elements;
 
-import org.apache.commons.logging.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
@@ -38,7 +37,7 @@ public abstract class BaseElement {
     public boolean exist(){
         try {
             findElement();
-            LoggerUtil.error(this.getClass(),"check exist "+ name );
+            LoggerUtil.info(this.getClass(),"check exist "+ name );
             return true;
         }catch (Exception e){
             LoggerUtil.error(this.getClass(),  "there is no element "+ name + "\n" + e.getMessage());

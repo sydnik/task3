@@ -86,6 +86,7 @@ public class DateUtil {
     public static long getDifferenceBetweenTime(LocalDateTime time1,LocalDateTime time2){
         return Math.abs(getLongTime(time1)-getLongTime(time2));
     }
+
     public static long getLongTime(LocalDateTime localDateTime){
         return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }

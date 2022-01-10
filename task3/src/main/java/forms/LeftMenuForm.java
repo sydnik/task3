@@ -1,7 +1,6 @@
 package forms;
 
 import framework.BaseForm;
-import framework.elements.BaseElement;
 import framework.elements.Button;
 import framework.elements.Label;
 import org.openqa.selenium.By;
