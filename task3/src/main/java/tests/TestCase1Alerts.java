@@ -38,7 +38,7 @@ public class TestCase1Alerts extends BaseTest {
         String randomLine = RandomUtil.randomText();
         AlertUtil.sendKeys(randomLine);
         AlertUtil.accept();
-        Assert.assertTrue(false);
+        Assert.assertTrue(AlertUtil.isAlertClosed());
         Assert.assertEquals(formAlert.getPromptResult(),"You entered " +randomLine);
         LoggerUtil.info(this.getClass(),"Finish test");
     }
